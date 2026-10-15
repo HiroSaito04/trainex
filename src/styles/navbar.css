@@ -1,0 +1,170 @@
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+
+  background: var(--header-bg);
+  backdrop-filter: blur(18px);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  width: min(100% - 48px, 1600px);
+  min-height: 74px;
+  margin-inline: auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  color: var(--text);
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  display: grid;
+  width: 37px;
+  height: 37px;
+  place-items: center;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: var(--surface-raised);
+  color: var(--accent);
+  font-size: 21px;
+}
+
+.brand-accent {
+  color: var(--accent);
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 650;
+  transition: color 150ms;
+}
+
+.nav-link:hover {
+  color: var(--accent);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-button {
+  min-width: 125px;
+  padding: 11px 15px;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  background: var(--surface-raised);
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 750;
+  transition: background 150ms;
+}
+
+.theme-button:hover {
+  background: var(--surface-soft);
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .nav-container {
+    width: min(100% - 28px, 1600px);
+    min-height: 66px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu {
+    position: relative;
+    display: block;
+  }
+
+  .mobile-menu summary {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface-raised);
+    font-size: 12px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-menu nav {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 110;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 210px;
+    padding: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .theme-button {
+    min-width: 0;
+    padding: 10px;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,27 @@
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Vite build output
+dist/
+dist-ssr/
+
+# Arduino temporary compilation output
+build/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Local editor settings
+.vscode/*
+!.vscode/extensions.json

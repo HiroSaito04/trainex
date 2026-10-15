@@ -1,0 +1,131 @@
+
+{
+  "version": 1,
+  "author": "TRAINEX",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd",
+      "top": -230,
+      "left": 120,
+      "attrs": {
+        "pins": "i2c"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot",
+      "top": 230,
+      "left": 20,
+      "attrs": {
+        "travelLength": "30"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_eb",
+      "top": 240,
+      "left": 200,
+      "attrs": {
+        "color": "red",
+        "label": "EB"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_rst",
+      "top": 240,
+      "left": 290,
+      "attrs": {
+        "color": "blue",
+        "label": "EB RST"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_open",
+      "top": 240,
+      "left": 380,
+      "attrs": {
+        "color": "green",
+        "label": "OPEN"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_close",
+      "top": 240,
+      "left": 470,
+      "attrs": {
+        "color": "yellow",
+        "label": "CLOSE"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -60,
+      "left": 330,
+      "attrs": {
+        "color": "green",
+        "label": "ALL DOORS CLOSED"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 20,
+      "left": 330,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz",
+      "top": 60,
+      "left": 440,
+      "attrs": {
+        "volume": "0.1"
+      }
+    }
+  ],
+  "connections": [
+    ["lcd:GND", "uno:GND.2", "black", []],
+    ["lcd:VCC", "uno:5V", "red", []],
+    ["lcd:SDA", "uno:A4", "green", []],
+    ["lcd:SCL", "uno:A5", "purple", []],
+
+    ["pot:GND", "uno:GND.3", "black", []],
+    ["pot:VCC", "uno:5V", "red", []],
+    ["pot:SIG", "uno:A0", "orange", []],
+
+    ["btn_eb:1.l", "uno:2", "red", []],
+    ["btn_eb:2.l", "uno:GND.1", "black", []],
+
+    ["btn_rst:1.l", "uno:3", "blue", []],
+    ["btn_rst:2.l", "uno:GND.1", "black", []],
+
+    ["btn_open:1.l", "uno:4", "green", []],
+    ["btn_open:2.l", "uno:GND.1", "black", []],
+
+    ["btn_close:1.l", "uno:5", "yellow", []],
+    ["btn_close:2.l", "uno:GND.1", "black", []],
+
+    ["uno:6", "r1:1", "green", []],
+    ["r1:2", "led1:A", "green", []],
+    ["led1:C", "uno:GND.1", "black", []],
+
+    ["uno:7", "bz:2", "gray", []],
+    ["bz:1", "uno:GND.1", "black", []]
+  ],
+  "dependencies": {}
+}
