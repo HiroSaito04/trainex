@@ -1,0 +1,39 @@
+
+/* ========================================
+   HARDWARE CONNECTION PANEL
+======================================== */
+
+.key-values > div {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 1rem;
+  padding: 0.8rem 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.key-values > div:last-child {
+  border-bottom: 0;
+}
+
+.key-values dt {
+  color: var(--muted);
+}
+
+.key-values dd {
+  margin: 0;
+
+  font-weight: 700;
+  text-align: right;
+
+  overflow-wrap: anywhere;
+}
+
+/* ========================================
+   HARDWARE CONNECTION INDICATORS
+======================================== */
+
+.status-panel .eyebrow {
+  color: var(--accent-text);
+}

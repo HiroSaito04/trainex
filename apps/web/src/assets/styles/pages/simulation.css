@@ -1,0 +1,166 @@
+/* ========================================
+   SIMULATION TOOLBAR
+======================================== */
+
+.toolbar {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.65rem;
+}
+
+/* ========================================
+   SIMULATOR LAYOUT
+======================================== */
+
+.simulator-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr) 310px;
+
+  gap: 1rem;
+  align-items: start;
+}
+
+/* ========================================
+   SIMULATOR WORKSPACE
+======================================== */
+
+.simulator-canvas {
+  display: grid;
+  place-items: center;
+
+  min-height: 500px;
+
+  overflow: hidden;
+
+  border-top: 3px solid var(--brand-maroon);
+}
+
+/* ========================================
+   EMPTY SIMULATOR PLACEHOLDER
+======================================== */
+
+.empty-state {
+  max-width: 520px;
+
+  padding: 2rem;
+  text-align: center;
+}
+
+.empty-state p:not(.eyebrow) {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.empty-illustration {
+  display: grid;
+  place-items: center;
+
+  width: 85px;
+  height: 85px;
+
+  margin: 0 auto 1.2rem;
+
+  background: var(--raised);
+  color: var(--accent-text);
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  font-size: 3rem;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 0.45rem;
+}
+
+.tag-row span {
+  padding: 0.35rem 0.65rem;
+
+  background: var(--raised);
+  color: var(--muted);
+
+  border: 1px solid var(--border);
+  border-radius: 100px;
+
+  font-size: 0.76rem;
+}
+
+/* ========================================
+   TRAIN STATE PANEL
+======================================== */
+
+.status-panel {
+  padding: 1.25rem;
+
+  border-top: 3px solid var(--brand-gold);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 0.7rem;
+}
+
+.metric {
+  min-width: 0;
+  padding: 0.8rem;
+
+  background: var(--raised);
+
+  border-radius: 10px;
+}
+
+.metric span {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  color: var(--muted);
+  font-size: 0.73rem;
+}
+
+.metric strong {
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
+
+/* Full-width modular 2D simulator */
+
+.simulator-canvas-2d {
+  display: block;
+
+  min-height: 0;
+
+  padding: 0;
+  background: transparent;
+
+  border: none;
+  box-shadow: none;
+
+  overflow: visible;
+}
+
+/* The 3D module owns its canvas and responsive control bank. */
+.simulator-canvas-3d {
+  display: block;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}

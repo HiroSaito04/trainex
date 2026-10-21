@@ -1,0 +1,15 @@
+{
+  "name": "@trainex/input-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dependencies": {
+    "@trainex/contracts": "*"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

@@ -1,0 +1,239 @@
+
+/* ========================================
+   HOMEPAGE HERO
+======================================== */
+
+.hero {
+  display: grid;
+
+  grid-template-columns: 1.06fr 0.94fr;
+  align-items: center;
+
+  gap: 3rem;
+
+  padding-block: 5.5rem 3rem;
+}
+
+.hero h1 {
+  margin-bottom: 1.4rem;
+}
+
+.hero .lead {
+  margin-bottom: 1.8rem;
+}
+
+/* ========================================
+   HERO VISUAL
+======================================== */
+
+.hero-visual {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  min-height: 335px;
+  padding: 2.5rem;
+
+  background: linear-gradient(
+    145deg,
+    var(--hero-start),
+    var(--hero-end)
+  );
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  overflow: hidden;
+}
+
+.hero-visual::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 26px,
+      var(--brand-gold) 27px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 26px,
+      var(--brand-gold) 27px
+    );
+
+  opacity: 0.1;
+
+  pointer-events: none;
+}
+
+.visual-label,
+.visual-note {
+  position: relative;
+
+  color: var(--muted);
+
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.visual-label {
+  margin-bottom: 1.2rem;
+}
+
+.visual-note {
+  margin-top: 1.25rem;
+}
+
+/* ========================================
+   SIMULATED DISPLAY PREVIEW
+======================================== */
+
+.visual-display {
+  position: relative;
+
+  display: grid;
+  gap: 0.65rem;
+
+  padding: 1.5rem;
+
+  background: var(--surface);
+
+  border: 2px solid var(--brand-maroon);
+  border-radius: 14px;
+
+  box-shadow: var(--shadow);
+}
+
+.visual-display strong {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+}
+
+.visual-display span:last-child {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.display-indicator {
+  width: 12px;
+  height: 12px;
+
+  background: var(--brand-gold);
+
+  border: 2px solid var(--brand-maroon);
+  border-radius: 50%;
+}
+
+.visual-controls {
+  position: relative;
+
+  display: flex;
+  gap: 0.8rem;
+
+  margin-top: 1rem;
+}
+
+.visual-controls i {
+  display: block;
+
+  width: 22%;
+  height: 34px;
+
+  background: var(--soft);
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+/* ========================================
+   SIMULATOR PREVIEW
+======================================== */
+
+.split-section {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+  gap: 3rem;
+}
+
+.split-section .lead {
+  margin-bottom: 1.25rem;
+}
+
+.list-panel {
+  padding: 1.3rem;
+}
+
+.numbered-row {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+  padding: 1rem;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.numbered-row:last-child {
+  border-bottom: 0;
+}
+
+.numbered-row span {
+  color: var(--accent-text);
+  font-weight: 800;
+}
+
+
+/* Homepage visual variety */
+
+.hero-visual {
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      var(--gold-glow),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      var(--maroon-glow),
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      var(--hero-start),
+      var(--hero-end)
+    );
+}
+
+/* Alternate neutral cards rather than
+   using maroon on every card */
+
+.feature-card:nth-child(even) {
+  background: var(--surface-alt);
+}
+
+.feature-card:nth-child(3) {
+  border-top: 3px solid var(--brand-maroon);
+}
+
+.list-panel {
+  background: var(--surface-alt);
+}
+
+/* Keep previews visually distinct */
+
+.visual-display {
+  background: var(--surface);
+  border-color: var(--border);
+  border-top: 3px solid var(--brand-maroon);
+}
+

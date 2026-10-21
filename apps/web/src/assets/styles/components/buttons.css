@@ -1,0 +1,82 @@
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.5rem;
+
+  padding: 0.77rem 1.05rem;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.4;
+
+  text-align: center;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.btn:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+/* Primary
+   Light: maroon with white text
+   Dark: gold with dark-maroon text */
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--contrast);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: var(--accent-hover);
+}
+
+/* Secondary */
+
+.btn-secondary {
+  background: var(--raised);
+
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-secondary:not(:disabled):hover {
+  border-color: var(--accent);
+  background: var(--soft);
+}
+
+/* Ghost */
+
+.btn-ghost {
+  background: transparent;
+
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-ghost:not(:disabled):hover {
+  background: var(--raised);
+}
+
+/* Action groups */
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 0.75rem;
+}

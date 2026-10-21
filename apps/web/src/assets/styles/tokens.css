@@ -1,0 +1,100 @@
+
+/* TRAINEX — OFFICIAL BRAND COLORS */
+
+:root {
+  --brand-maroon: #800000;
+  --brand-gold: #FFD700;
+  --brand-white: #FFFFFF;
+  --brand-black: #0A0C10;
+
+  --maroon-deep: #500000;
+  --maroon-hover: #660000;
+  --gold-hover: #FFE34D;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --container-width: 1180px;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 220ms ease;
+}
+
+/* ==============================
+   LIGHT MODE — WHITE / GRAY
+============================== */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #F4F5F7;
+  --surface: #FFFFFF;
+  --surface-alt: #E8EBF0;
+  --raised: #ECEEF2;
+  --soft: #F7EDEE;
+
+  --text: #191C22;
+  --muted: #626B78;
+
+  --border: rgba(24, 29, 38, 0.14);
+
+  --accent: #800000;
+  --accent-hover: #660000;
+  --accent-text: #800000;
+  --contrast: #FFFFFF;
+
+  --header: rgba(255, 255, 255, 0.96);
+
+  --hero-start: #FFFFFF;
+  --hero-end: #E8EBF0;
+
+  --gold-glow: rgba(255, 215, 0, 0.18);
+  --maroon-glow: rgba(128, 0, 0, 0.08);
+
+  --danger: #B42335;
+  --success: #166534;
+
+  --shadow:
+    0 12px 35px rgba(20, 24, 31, 0.06);
+}
+
+/* ==============================
+   DARK MODE — BLACK / CHARCOAL
+============================== */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0A0C10;
+  --surface: #181C23;
+  --surface-alt: #20252D;
+  --raised: #252A33;
+  --soft: #30252A;
+
+  --text: #F6F7F9;
+  --muted: #ADB4C0;
+
+  --border: rgba(255, 255, 255, 0.12);
+
+  --accent: #FFD700;
+  --accent-hover: #FFE34D;
+  --accent-text: #FFD700;
+  --contrast: #191919;
+
+  --header: rgba(10, 12, 16, 0.96);
+
+  --hero-start: #20242C;
+  --hero-end: #101318;
+
+  --gold-glow: rgba(255, 215, 0, 0.10);
+  --maroon-glow: rgba(128, 0, 0, 0.24);
+
+  --danger: #FF8998;
+  --success: #4ADE80;
+
+  --shadow:
+    0 16px 45px rgba(0, 0, 0, 0.30);
+}

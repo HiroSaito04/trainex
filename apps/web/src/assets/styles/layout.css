@@ -1,0 +1,87 @@
+
+/* ========================================
+   APPLICATION SHELL
+======================================== */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ========================================
+   CONTAINERS
+======================================== */
+
+.container {
+  width: min(
+    var(--container-width),
+    calc(100% - 2rem)
+  );
+
+  margin-inline: auto;
+}
+
+/* ========================================
+   PAGE STRUCTURE
+======================================== */
+
+.page {
+  padding-block: 3.5rem 5rem;
+}
+
+.page-header {
+  margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+  margin-bottom: 0.85rem;
+}
+
+.section {
+  padding-block: 3.5rem;
+}
+
+.section-heading {
+  margin-bottom: 1.3rem;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   GRIDS
+======================================== */
+
+.card-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 1rem;
+}
+
+.card-grid.two-cols {
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+}
+
+.card-grid.align-start {
+  align-items: start;
+}
+
+/* ========================================
+   SPACING
+======================================== */
+
+.spaced {
+  margin-top: 1.7rem;
+}

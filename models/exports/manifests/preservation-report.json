@@ -1,0 +1,45 @@
+{
+  "source_blend_sha256": "1fcfce14f09e99b085595b6d839f9462c1ebbf00f6998655bc6499b1a2017f4c",
+  "source_glb_sha256": "618872f1492001d38135dfb2859e10586bd5a7e43162e445e11dceb230c73d56",
+  "styled_glb_sha256": "9726a60e1ad781a44dd14b90f4b87093131f7efb0f788d8877dc76b52817c57e",
+  "mesh_count": 370,
+  "node_count": 395,
+  "styled_mesh_count": 347,
+  "style_assignments": {
+    "cab_frame": 38,
+    "black_plastic": 43,
+    "console": 43,
+    "floor": 5,
+    "dial_bezel": 44,
+    "console_dark": 10,
+    "console_trim": 24,
+    "red_button": 14,
+    "steel": 53,
+    "green_button": 10,
+    "amber_button": 8,
+    "white_button": 25,
+    "lamp_amber": 2,
+    "dial_face": 6,
+    "cab_roof": 1,
+    "cab_wall": 15,
+    "seat": 5,
+    "seat_frame": 1
+  },
+  "existing_textured_material_uses_preserved": 8,
+  "preserved_identically": [
+    "nodes",
+    "scenes",
+    "mesh positions",
+    "accessors",
+    "bufferViews",
+    "image bytes",
+    "embedded textures",
+    "BIN chunk",
+    "source .blend",
+    "original .glb"
+  ],
+  "changed": [
+    "material assignments of originally untextured meshes",
+    "additional glTF PBR materials"
+  ]
+}

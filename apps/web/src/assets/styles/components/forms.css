@@ -1,0 +1,93 @@
+
+/* ========================================
+   FORM LAYOUT
+======================================== */
+
+.form-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.form-stack label {
+  display: grid;
+  gap: 0.4rem;
+
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.form-stack input,
+.search-input {
+  width: 100%;
+  min-width: 0;
+
+  padding: 0.75rem 0.8rem;
+
+  background: var(--bg);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.form-stack input:focus,
+.search-input:focus {
+  outline: none;
+
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 3px rgba(128, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .form-stack input:focus,
+[data-theme="dark"] .search-input:focus {
+  box-shadow:
+    0 0 0 3px rgba(255, 215, 0, 0.18);
+}
+
+input::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+/* ========================================
+   GLOSSARY SEARCH
+======================================== */
+
+.search-label {
+  display: block;
+
+  margin-bottom: 0.45rem;
+
+  font-weight: 750;
+}
+
+.search-input {
+  max-width: 540px;
+  margin-bottom: 0.75rem;
+}
+
+.results-count,
+.tiny-note {
+  color: var(--muted);
+  font-size: 0.79rem;
+}
+
+/* ========================================
+   FORM FEEDBACK
+======================================== */
+
+.feedback-error {
+  color: var(--danger) !important;
+  margin-top: 0.7rem !important;
+}

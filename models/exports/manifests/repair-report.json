@@ -1,0 +1,49 @@
+{
+  "source_blend_sha256": "1fcfce14f09e99b085595b6d839f9462c1ebbf00f6998655bc6499b1a2017f4c",
+  "source_glb_sha256": "618872f1492001d38135dfb2859e10586bd5a7e43162e445e11dceb230c73d56",
+  "repaired_glb_sha256": "56653f0a104534fde6f4903d670be9b0cb581ac53d81965a1199b6c6b6883043",
+  "original_mesh_count": 370,
+  "repaired_mesh_count": 370,
+  "original_node_count": 395,
+  "repaired_node_count": 395,
+  "source_geometry_bytes_unchanged": true,
+  "source_node_transforms_unchanged": true,
+  "archived_duplicate_root_nodes_hidden": [
+    "DistributionBoardPanel.001",
+    "StorageDistributionBoardPanel.006",
+    "CommunicationsRadioControlPanel.001",
+    "RIghtBottomCompartment.001",
+    "MiddlePanel.001",
+    "Floor.001",
+    "MasterController.001"
+  ],
+  "mispositioned_upper_front_wall_parts_hidden": [
+    "FrontWall",
+    "FrontWall.001",
+    "FrontWall.002"
+  ],
+  "material_categories_textured": {
+    "cab_wall": 1,
+    "cab_roof": 1,
+    "cab_frame": 1,
+    "console": 1,
+    "console_trim": 1,
+    "console_dark": 1,
+    "floor": 1,
+    "seat": 1,
+    "seat_frame": 1,
+    "steel": 1,
+    "black_plastic": 1,
+    "green_button": 1,
+    "red_button": 1,
+    "amber_button": 1,
+    "white_button": 1,
+    "dial_face": 1,
+    "dial_bezel": 1,
+    "lamp_amber": 1
+  },
+  "generated_uv_accessors": 338,
+  "added_embedded_image_textures": 11,
+  "original_controls_and_console_retained": true,
+  "blender_master_source_unchanged": true
+}

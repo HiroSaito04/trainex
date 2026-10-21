@@ -1,0 +1,27 @@
+{
+  "name": "trainex-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.0",
+    "@trainex/contracts": "*",
+    "@trainex/input-manager": "*",
+    "@trainex/simulation-engine": "*",
+    "@trainex/simulator-2d": "*",
+    "@trainex/simulator-3d": "*"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "tailwindcss": "^4.1.0",
+    "vite": "^7.1.0"
+  }
+}

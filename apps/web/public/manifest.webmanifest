@@ -1,0 +1,11 @@
+
+{
+  "name": "TRAINEX Railway Driver Training",
+  "short_name": "TRAINEX",
+  "description": "Interactive railway driver training and learning platform",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#800000",
+  "theme_color": "#800000"
+}

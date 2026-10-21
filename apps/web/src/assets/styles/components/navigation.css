@@ -1,0 +1,817 @@
+
+/* =========================================
+   TRAINEX NAVIGATION SYSTEM
+========================================= */
+
+/* HEADER */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+
+  background: var(--header);
+
+  border-bottom: 1px solid var(--border);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.055);
+}
+
+/* Thin branded accent along the top */
+
+.site-header::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    var(--brand-maroon) 0%,
+    var(--brand-maroon) 65%,
+    var(--brand-gold) 100%
+  );
+}
+
+/* =========================================
+   DESKTOP HEADER GRID
+========================================= */
+
+.nav-inner {
+  min-height: 86px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(185px, 1fr)
+    auto
+    minmax(185px, 1fr);
+
+  align-items: center;
+  column-gap: 1.5rem;
+}
+
+/* =========================================
+   TRAINEX TYPOGRAPHIC WORDMARK
+========================================= */
+
+.nav-brand,
+.sidebar-brand,
+.footer-brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: fit-content;
+
+  text-decoration: none;
+}
+
+.nav-brand {
+  gap: 0.55rem;
+}
+
+/* Brand text */
+
+.brand-wordmark {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1;
+
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+/* TRAIN */
+
+.brand-wordmark-train {
+  color: var(--text);
+}
+
+/* EX */
+
+.brand-wordmark-ex {
+  display: inline-block;
+
+  margin-left: 2px;
+  padding: 0.18em 0.25em 0.2em;
+
+  background: var(--brand-maroon);
+  color: var(--brand-gold);
+
+  border-radius: 4px;
+
+  font-weight: 900;
+  letter-spacing: -0.045em;
+}
+
+/* Railway-inspired double underline */
+
+.brand-wordmark::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -9px;
+
+  width: 100%;
+  height: 3px;
+
+  border-radius: 4px;
+
+  background: linear-gradient(
+    90deg,
+    var(--brand-maroon) 0%,
+    var(--brand-maroon) 68%,
+    var(--brand-gold) 68%,
+    var(--brand-gold) 100%
+  );
+}
+
+/* Small institutional tagline */
+
+.brand-tagline {
+  margin-top: 7px;
+
+  color: var(--muted);
+
+  font-size: 0.55rem;
+  font-weight: 750;
+
+  letter-spacing: 0.19em;
+  line-height: 1.5;
+}
+
+/* =========================================
+   DESKTOP NAVIGATION CAPSULE
+========================================= */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 0.25rem;
+
+  padding: 0.35rem;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 100px;
+
+  box-shadow:
+    0 3px 14px rgba(0, 0, 0, 0.035);
+}
+
+.desktop-nav .nav-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 39px;
+
+  padding: 0.55rem 0.82rem;
+
+  border-radius: 100px;
+
+  color: var(--muted);
+
+  font-size: 0.8rem;
+  font-weight: 650;
+
+  white-space: nowrap;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* Hover */
+
+.desktop-nav .nav-link:hover {
+  background: var(--raised);
+  color: var(--text);
+}
+
+/* Active page */
+
+.desktop-nav .nav-link.active {
+  background: var(--raised);
+
+  color: var(--accent-text);
+
+  font-weight: 800;
+
+  box-shadow:
+    inset 0 0 0 1px var(--border);
+}
+
+/* Active indicator dot */
+
+.desktop-nav .nav-link.active::before {
+  content: "";
+
+  width: 5px;
+  height: 5px;
+
+  margin-right: 0.45rem;
+
+  flex-shrink: 0;
+
+  background: var(--accent);
+
+  border-radius: 50%;
+}
+
+/* =========================================
+   RIGHT NAV ACTIONS
+========================================= */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 0.65rem;
+}
+
+.desktop-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 0.65rem;
+}
+
+/* Theme button */
+
+.icon-button,
+.menu-toggle,
+.sidebar-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  padding: 0;
+
+  background: var(--surface);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.icon-button:hover,
+.menu-toggle:hover,
+.sidebar-close:hover {
+  background: var(--raised);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.icon-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Primary simulator action */
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.6rem;
+
+  min-height: 43px;
+
+  padding: 0.65rem 1rem;
+
+  background: var(--accent);
+  color: var(--contrast);
+
+  border-radius: 12px;
+
+  font-size: 0.8rem;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.nav-cta:hover {
+  background: var(--accent-hover);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 23px var(--maroon-glow);
+}
+
+.nav-cta svg {
+  flex-shrink: 0;
+}
+
+/* Mobile toggle hidden on desktop */
+
+.menu-toggle {
+  display: none;
+}
+
+/* =========================================
+   MOBILE SIDEBAR BACKDROP
+========================================= */
+
+.sidebar-backdrop {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 70;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+
+  background: rgba(0, 0, 0, 0.65);
+  border: none;
+
+  opacity: 0;
+  pointer-events: none;
+
+  backdrop-filter: blur(3px);
+
+  transition:
+    opacity 250ms ease;
+}
+
+.sidebar-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =========================================
+   MOBILE SIDEBAR
+========================================= */
+
+.mobile-sidebar {
+  display: none;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 80;
+
+  width: min(370px, 90vw);
+  height: 100vh;
+  height: 100dvh;
+
+  flex-direction: column;
+
+  background: var(--surface);
+
+  border-left: 1px solid var(--border);
+
+  box-shadow:
+    -18px 0 70px rgba(0, 0, 0, 0.3);
+
+  transform: translateX(105%);
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    transform 320ms cubic-bezier(
+      0.22, 1, 0.36, 1
+    ),
+    visibility 320ms;
+}
+
+.mobile-sidebar.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* =========================================
+   SIDEBAR HEADER
+========================================= */
+
+.sidebar-header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding: 1.5rem 1.35rem;
+
+  border-bottom: 1px solid var(--border);
+}
+
+/* Top gold detail */
+
+.sidebar-header::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    var(--brand-maroon),
+    var(--brand-gold)
+  );
+}
+
+.sidebar-brand .brand-wordmark {
+  font-size: 1.4rem;
+}
+
+.sidebar-close {
+  flex-shrink: 0;
+}
+
+/* =========================================
+   SIDEBAR SCROLLABLE CONTENT
+========================================= */
+
+.sidebar-body {
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 1.6rem 1.3rem;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.sidebar-intro {
+  margin-bottom: 1.6rem;
+}
+
+.sidebar-eyebrow {
+  color: var(--accent-text);
+
+  font-size: 0.65rem;
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+}
+
+.sidebar-intro h2 {
+  margin: 0.4rem 0 0.45rem;
+
+  color: var(--text);
+
+  font-size: 1.45rem;
+  font-weight: 850;
+}
+
+.sidebar-intro p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* =========================================
+   SIDEBAR NAVIGATION
+========================================= */
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.4rem;
+}
+
+.sidebar-link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.85rem;
+
+  min-height: 53px;
+
+  padding: 0.85rem 0.95rem;
+
+  color: var(--text);
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.sidebar-link:hover {
+  background: var(--raised);
+  transform: translateX(-2px);
+}
+
+.sidebar-link.active {
+  background: var(--raised);
+
+  color: var(--accent-text);
+
+  border-color: var(--border);
+
+  font-weight: 800;
+}
+
+/* Active left rail */
+
+.sidebar-link.active::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+
+  width: 3px;
+
+  background: var(--accent);
+
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar-link-number {
+  min-width: 24px;
+
+  color: var(--muted);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.sidebar-link.active .sidebar-link-number {
+  color: var(--accent-text);
+}
+
+.sidebar-link-text {
+  flex: 1;
+
+  font-size: 0.94rem;
+}
+
+.sidebar-link-arrow {
+  color: var(--muted);
+  font-size: 1.05rem;
+
+  transition:
+    transform var(--transition-fast);
+}
+
+.sidebar-link:hover .sidebar-link-arrow {
+  transform: translate(2px, -2px);
+  color: var(--accent-text);
+}
+
+/* =========================================
+   SIDEBAR QUICK ACCESS
+========================================= */
+
+.sidebar-secondary {
+  display: grid;
+  gap: 0.8rem;
+
+  margin-top: 1.7rem;
+  padding-top: 1.3rem;
+
+  border-top: 1px solid var(--border);
+}
+
+.sidebar-secondary-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  color: var(--muted);
+  font-size: 0.9rem;
+
+  transition:
+    color var(--transition-fast);
+}
+
+.sidebar-secondary-link:hover {
+  color: var(--accent-text);
+}
+
+.sidebar-secondary-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* =========================================
+   SIDEBAR SIMULATOR BUTTON
+========================================= */
+
+.sidebar-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  min-height: 52px;
+
+  margin-top: 1.5rem;
+  padding: 0.9rem 1rem;
+
+  background: var(--accent);
+  color: var(--contrast);
+
+  border-radius: 12px;
+
+  font-size: 0.88rem;
+  font-weight: 800;
+
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.sidebar-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   SIDEBAR FOOTER
+========================================= */
+
+.sidebar-footer {
+  padding: 1.1rem 1.3rem 1.4rem;
+
+  border-top: 1px solid var(--border);
+
+  background: var(--surface-alt);
+}
+
+.sidebar-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  color: var(--text);
+
+  font-size: 0.87rem;
+  font-weight: 700;
+}
+
+.sidebar-footer p {
+  margin: 1rem 0 0;
+
+  color: var(--muted);
+
+  font-size: 0.72rem;
+}
+
+/* =========================================
+   TRAINEX FOOTER
+========================================= */
+
+.site-footer {
+  position: relative;
+
+  padding-block: 2.5rem;
+
+  background: var(--surface);
+
+  border-top: 1px solid var(--border);
+}
+
+.site-footer::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    var(--brand-maroon),
+    var(--brand-gold)
+  );
+}
+
+.footer-inner {
+  display: grid;
+
+  grid-template-columns:
+    1.2fr 1fr 1fr;
+
+  align-items: start;
+
+  gap: 2rem;
+}
+
+.footer-brand .brand-wordmark {
+  font-size: 1.4rem;
+}
+
+.footer-identity p {
+  max-width: 270px;
+
+  margin-top: 1.4rem;
+
+  color: var(--muted);
+
+  font-size: 0.85rem;
+}
+
+.footer-links {
+  display: grid;
+
+  gap: 0.65rem;
+
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.footer-links a:hover {
+  color: var(--accent-text);
+}
+
+.footer-meta {
+  display: grid;
+  gap: 0.75rem;
+
+  justify-items: start;
+}
+
+.footer-meta span {
+  color: var(--accent-text);
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+.footer-meta small {
+  color: var(--muted);
+
+  font-size: 0.8rem;
+  line-height: 1.7;
+}

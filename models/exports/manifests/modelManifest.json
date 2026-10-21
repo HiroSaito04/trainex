@@ -1,0 +1,69 @@
+{
+  "model": "Trainex-Driver Cabin Model 01",
+  "provenance": {
+    "source_blend": "models/blender/cabin/Trainex-Driver Cabin Model 01.blend",
+    "source_backup_blend1": "models/blender/cabin/Trainex-Driver Cabin Model 01.blend1",
+    "source_glb": "models/blender/cabin/Trainex-Driver Cabin Model 01.glb",
+    "source_glb_sha256": "618872f1492001d38135dfb2859e10586bd5a7e43162e445e11dceb230c73d56",
+    "public_copy_sha256": "618872f1492001d38135dfb2859e10586bd5a7e43162e445e11dceb230c73d56"
+  },
+  "policy": "The uploaded model is unchanged; browser enhancements (materials, displays, decals, interactions) are runtime-only and do not change source mesh transforms.",
+  "geometry_count": 370,
+  "node_count": 395,
+  "embedded_images": 9,
+  "camera_note": "Uploaded GLB has no exported camera node. The web viewer retains its existing driver-eye preset; no camera transform is inferred from the GLB.",
+  "source_roots": [
+    "StorageDistributionBoardPanel",
+    "Controls",
+    "CabinFrontRearWallsandFloor",
+    "CabinWalls",
+    "CabinBeamAndWindowsills",
+    "BypassStorageButtons",
+    "DriverSeat",
+    "DistributionBoardPanel.001",
+    "StorageDistributionBoardPanel.006",
+    "CommunicationsRadioControlPanel.001",
+    "RIghtBottomCompartment.001",
+    "MiddlePanel.001",
+    "Floor.001",
+    "MasterController.001"
+  ],
+  "interactive_objects": [
+    "INTERACTIVE_Master_Controller_Shaft",
+    "INTERACTIVE_EmergencyBrake_Cap",
+    "INTERACTIVE_LeftDoor_Open_Cap",
+    "INTERACTIVE_LeftDoor_Close_Cap",
+    "INTERACTIVE_RightDoor_Open_Cap",
+    "INTERACTIVE_RightDoor_Close_Cap"
+  ],
+  "runtime_added": [
+    "INTERACTIVE_EmergencyBrake_Reset_Cap",
+    "INTERACTIVE_Master_Detent_EB",
+    "INTERACTIVE_Master_Detent_B3",
+    "INTERACTIVE_Master_Detent_B2",
+    "INTERACTIVE_Master_Detent_B1",
+    "INTERACTIVE_Master_Detent_N",
+    "INTERACTIVE_Master_Detent_P1",
+    "INTERACTIVE_Master_Detent_P2",
+    "INTERACTIVE_Master_Detent_P3",
+    "INDICATOR_AllDoorsOpen_Lamp"
+  ],
+  "instrument_mappings": {
+    "speedometer": "03_Instruments_Displays__SPEED_Dial",
+    "brake_cylinder": "03_Instruments_Displays__BC_Dial",
+    "brake_pipe": "03_Instruments_Displays__BP_Dial",
+    "all_doors_closed": "03_Instruments_Displays__Status_ALL_DOORS_CLOSED_Cap",
+    "main_tcms": "04_TCMS_Electrical__TCMS_ScreenGraphic"
+  },
+  "dynamic_values": [
+    "speed",
+    "masterHandle",
+    "doorState",
+    "allDoorsClosed",
+    "emergencyBrake",
+    "permittedSpeedKmh",
+    "brakeCylinderPressureKpa (if supplied)",
+    "brakePipePressureKpa (if supplied)"
+  ],
+  "door_note": "The two modeled door sides send commands to the same engine door system; independent side states are not available."
+}
