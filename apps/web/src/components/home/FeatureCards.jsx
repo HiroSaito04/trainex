@@ -17,10 +17,10 @@ const features = [
     icon: "⬡",
   },
   {
-    title: "Training Activities",
+    title: "Training Scenarios",
     description:
-      "Follow guided procedures and learn the purpose of core equipment.",
-    to: "/training",
+      "Choose structured driver-control exercises and practise them in the simulators.",
+    to: "/train",
     icon: "✓",
   },
 ];

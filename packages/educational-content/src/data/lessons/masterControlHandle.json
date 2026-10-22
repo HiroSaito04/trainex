@@ -1,0 +1,79 @@
+{
+  "id": "masterControlHandle",
+  "title": "Master Control Handle and Eight Detents",
+  "level": "Beginner",
+  "estimatedMinutes": 11,
+  "summary": "Understand the configured EB, B3, B2, B1, N, P1, P2 and P3 control positions.",
+  "objectives": [
+    "Name all eight detents",
+    "Explain traction, neutral and service braking",
+    "Distinguish emergency braking from routine braking"
+  ],
+  "sections": [
+    {
+      "heading": "Power positions: P1, P2, P3",
+      "body": "The three power positions request increasing levels of traction effort in this training configuration. Speed will change over time depending on traction, resistance, train load and operating conditions.",
+      "points": [
+        "P1 is a low power request.",
+        "P2 is a greater power request.",
+        "P3 is the highest configured power request."
+      ]
+    },
+    {
+      "heading": "Neutral: N",
+      "body": "Neutral requests no powered traction and no active service-brake step from the combined controller. If a train is moving, it can continue rolling while resistive forces gradually affect speed; N does not mean an immediate stop."
+    },
+    {
+      "heading": "Service braking: B1, B2, B3",
+      "body": "The three service-braking detents request graduated braking. B1 is the lowest, B2 is intermediate and B3 is the greatest configured service-brake request. The actual relationship between controller position and braking force depends on rolling stock design."
+    },
+    {
+      "heading": "Emergency: EB",
+      "body": "EB is the emergency-brake detent in this teaching arrangement. It is reserved for emergency response, not routine speed regulation. A separate emergency-brake switch may initiate the same emergency-braking state."
+    },
+    {
+      "heading": "Interpret the controller safely",
+      "body": "A controller position is a request, not a measurement. Use the speedometer and relevant brake indications to observe its effect. On real trains, operating technique and recovery procedures are vehicle-specific."
+    }
+  ],
+  "componentIds": [
+    "MASTER_CONTROL_HANDLE",
+    "EMERGENCY_BRAKE_SWITCH",
+    "FRONT_DISPLAY_PANEL"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "What is the purpose of N?",
+      "choices": [
+        "Maximum traction",
+        "Coasting / neither service braking nor traction from the handle",
+        "Maximum service braking",
+        "Door opening"
+      ],
+      "answerIndex": 1,
+      "explanation": "N is the neutral position of the configured combined handle."
+    },
+    {
+      "question": "Which is the highest configured service braking detent?",
+      "choices": [
+        "P3",
+        "B1",
+        "B3",
+        "N"
+      ],
+      "answerIndex": 2,
+      "explanation": "B3 requests the greatest configured service braking of the three service detents."
+    },
+    {
+      "question": "What does EB represent?",
+      "choices": [
+        "Emergency braking",
+        "Electric bell only",
+        "Extra traction",
+        "Door release"
+      ],
+      "answerIndex": 0,
+      "explanation": "EB is the emergency-brake detent, separate from regular service-braking steps."
+    }
+  ]
+}

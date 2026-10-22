@@ -1,0 +1,59 @@
+{
+  "id": "tractionAndBraking",
+  "title": "Train Traction and Acceleration",
+  "level": "Beginner",
+  "estimatedMinutes": 10,
+  "summary": "Understand how traction effort, resistance and power requests affect movement.",
+  "objectives": [
+    "Describe what traction effort does",
+    "Explain why changing a power detent does not instantly set a speed",
+    "Recognize conditions that restrict the application of power"
+  ],
+  "sections": [
+    {
+      "heading": "From a power request to movement",
+      "body": "A traction controller requests propulsive effort, often through electric traction motors. Acceleration depends on the available effort and opposing forces. The driver monitors actual speed rather than assuming a fixed speed at P1, P2 or P3."
+    },
+    {
+      "heading": "Graded traction",
+      "body": "In this eight-position training cab, P1, P2 and P3 represent ascending power requests. Increasing the request may increase acceleration, but real vehicle responses depend on traction control, adhesion, gradients, operating restrictions and speed."
+    },
+    {
+      "heading": "Interlocks before traction",
+      "body": "Train designs use interlocks to prevent unsafe actions, including traction under certain door conditions. A driver should confirm the relevant door status and other required conditions before applying power."
+    },
+    {
+      "heading": "Transition to coasting",
+      "body": "Moving from a power detent to N removes the active traction request from the handle. The train can continue moving due to momentum; it slows only as resistive forces or other brake systems act."
+    }
+  ],
+  "componentIds": [
+    "MASTER_CONTROL_HANDLE",
+    "ALL_DOORS_CLOSED_LAMP",
+    "FRONT_DISPLAY_PANEL"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Does P3 automatically mean a specific train speed?",
+      "choices": [
+        "Yes, a fixed speed",
+        "No, P3 requests traction effort",
+        "Yes, zero speed",
+        "Only when doors are open"
+      ],
+      "answerIndex": 1,
+      "explanation": "A traction detent requests effort; the actual speed depends on vehicle dynamics and conditions."
+    },
+    {
+      "question": "What best describes coasting?",
+      "choices": [
+        "Maximum service braking",
+        "Movement without an active traction request from the handle",
+        "Emergency stop",
+        "Door closing"
+      ],
+      "answerIndex": 1,
+      "explanation": "Coasting occurs when the train continues rolling without active traction from the combined controller."
+    }
+  ]
+}

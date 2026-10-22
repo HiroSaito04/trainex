@@ -1,6 +1,1 @@
-{
-    "name":  "@trainex/realtime-relay",
-    "version":  "0.1.0",
-    "private":  true,
-    "type":  "module"
-}
+{"name":"@trainex/realtime-relay","version":"1.0.0","type":"module","private":true,"scripts":{"start":"node src/server.js","test":"node --test tests/*.test.js"},"dependencies":{"ws":"^8.18.0","@trainex/contracts":"*"}}

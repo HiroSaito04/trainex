@@ -1,0 +1,1 @@
+End-to-end: start simulator; pair ESP32; set P1-P3 and verify shared 2D/3D state; open doors at standstill; verify closed-lamp output after closing; activate EB and reset only after standstill with handle N. Wrong session and duplicate input sequence must be rejected.

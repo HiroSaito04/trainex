@@ -18,6 +18,9 @@
 @import "./pages/simulation.css";
 @import "./pages/hardware.css";
 @import "./pages/content.css";
+@import "./pages/education.css";
 
 /* Responsive overrides */
 @import "./responsive.css";
+
+@import "./theme-refinement.css";

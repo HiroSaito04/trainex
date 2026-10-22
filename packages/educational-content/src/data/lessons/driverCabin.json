@@ -1,0 +1,66 @@
+{
+  "id": "driverCabin",
+  "title": "Driver Cab Layout and Control Groups",
+  "level": "Beginner",
+  "estimatedMinutes": 9,
+  "summary": "Identify the driving desk, traction/braking controller, door controls, display panel and safety indications.",
+  "objectives": [
+    "Locate the main control groups",
+    "Explain how controls differ from feedback instruments",
+    "Recognize the purpose of a safety-critical switch"
+  ],
+  "sections": [
+    {
+      "heading": "Driving desk and working zones",
+      "body": "The driving desk groups frequently used controls near the operator and places information where it can be read promptly. A typical arrangement includes a master controller, train speed indication, door controls, brake indications and warning lamps.",
+      "points": [
+        "Movement controls request traction, neutral and braking.",
+        "Instruments provide speed and system indications.",
+        "Safety controls are designed for abnormal conditions."
+      ]
+    },
+    {
+      "heading": "Master controller area",
+      "body": "A combined controller may have graduated power and braking detents. The configured teaching cab uses P1–P3, N, B1–B3 and EB. Higher numbered power or service-braking steps represent stronger requests within this model."
+    },
+    {
+      "heading": "Door and safety controls",
+      "body": "Passenger door controls request opening and closing at suitable stops. A separate emergency-brake switch requests emergency braking. All Doors Closed indication reports the status of the monitored door system rather than simply showing that a button was pressed."
+    },
+    {
+      "heading": "Reading the front panel",
+      "body": "Speed, braking indications, master-controller status and warning messages support the driving task. Display designs differ between vehicles; always interpret a reading according to its label, units and the particular train system."
+    }
+  ],
+  "componentIds": [
+    "FRONT_DISPLAY_PANEL",
+    "ALL_DOORS_CLOSED_LAMP",
+    "MASTER_CONTROL_HANDLE",
+    "EMERGENCY_BRAKE_SWITCH",
+    "PASSENGER_DOOR_CONTROLS"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Which item requests movement or braking?",
+      "choices": [
+        "Speedometer",
+        "Master control handle",
+        "Door-closed lamp",
+        "Brake pressure dial"
+      ],
+      "answerIndex": 1,
+      "explanation": "The handle is an operating control; the other items are indications."
+    },
+    {
+      "question": "Where would a driver verify a completed passenger-door closure?",
+      "choices": [
+        "The All Doors Closed indicator",
+        "The traction step label",
+        "The cab handrail",
+        "The seat adjustment"
+      ],
+      "answerIndex": 0,
+      "explanation": "Door-closed feedback is a status indication, distinct from the Close request."
+    }
+  ]
+}

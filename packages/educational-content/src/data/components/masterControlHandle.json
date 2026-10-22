@@ -1,0 +1,68 @@
+{
+  "id": "MASTER_CONTROL_HANDLE",
+  "slug": "master-control-handle",
+  "title": "Master Control Handle",
+  "category": "Driver controls",
+  "summary": "A combined traction and braking controller with eight configured positions.",
+  "purpose": "Request propulsion, neutral/coasting, service braking or emergency braking from the driving desk.",
+  "positions": [
+    {
+      "value": "EB",
+      "meaning": "Emergency braking request"
+    },
+    {
+      "value": "B3",
+      "meaning": "Service brake step 3 (strongest configured)"
+    },
+    {
+      "value": "B2",
+      "meaning": "Service brake step 2"
+    },
+    {
+      "value": "B1",
+      "meaning": "Service brake step 1"
+    },
+    {
+      "value": "N",
+      "meaning": "Neutral / coasting"
+    },
+    {
+      "value": "P1",
+      "meaning": "Power step 1"
+    },
+    {
+      "value": "P2",
+      "meaning": "Power step 2"
+    },
+    {
+      "value": "P3",
+      "meaning": "Power step 3 (strongest configured)"
+    }
+  ],
+  "observations": [
+    "P1, P2 and P3 request increasing levels of traction.",
+    "N requests neither active traction nor service braking from the handle.",
+    "B1, B2 and B3 request increasing levels of service braking; EB requests emergency braking."
+  ],
+  "interactions": [
+    "Identify each of the eight configured detents.",
+    "Compare speedometer response during power, neutral and braking requests.",
+    "Explain the distinction between a command and the response shown by instruments."
+  ],
+  "safetyNotes": [
+    "The eight-detent layout is specific to this teaching cab; actual driver controllers vary.",
+    "A traction request should only be made when required door and other operating conditions are satisfied."
+  ],
+  "relatedLessonIds": [
+    "masterControlHandle",
+    "tractionAndBraking",
+    "serviceBraking",
+    "emergencyBraking"
+  ],
+  "glossaryTerms": [
+    "Traction",
+    "Coasting",
+    "Service Brake",
+    "Emergency Brake"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "tractionOperation",
+  "title": "Graded Traction and Acceleration",
+  "description": "Compare how P1, P2 and P3 request traction and how train speed responds.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "p1",
+      "instruction": "Select P1 and observe the speedometer for the low traction request.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P1"
+      }
+    },
+    {
+      "id": "p2",
+      "instruction": "Select P2 and compare the commanded power level with P1.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P2"
+      }
+    },
+    {
+      "id": "p3",
+      "instruction": "Select P3 and observe that train speed changes progressively, not immediately.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P3"
+      }
+    },
+    {
+      "id": "speed",
+      "instruction": "Observe the speedometer reaching at least 1 km/h; compare actual speed with the controller position.",
+      "expect": {
+        "speedAtLeast": 1
+      }
+    },
+    {
+      "id": "neutral",
+      "instruction": "Return to N. Explain why the moving train does not instantly stop.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N"
+      }
+    }
+  ],
+  "learningObjective": "Distinguish a power detent’s requested effort from the speed actually achieved.",
+  "operatingConditions": [
+    "Passenger doors confirmed closed.",
+    "Emergency brake not active."
+  ],
+  "expectedObservations": [
+    "Traction detents request increasing power in this teaching configuration.",
+    "Speed changes over time, rather than jumping to a preset value.",
+    "N removes the active traction request but does not instantly stop movement."
+  ],
+  "debriefQuestions": [
+    "Does P3 correspond to one fixed km/h value?",
+    "Which instrument confirms the train is accelerating?"
+  ]
+}

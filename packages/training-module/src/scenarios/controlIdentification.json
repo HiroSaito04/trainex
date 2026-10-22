@@ -1,0 +1,46 @@
+{
+  "id": "controlIdentification",
+  "title": "Identifying Driver-Cab Controls",
+  "description": "Locate the master handle, understand neutral and power detents, and distinguish controls from indications.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "neutral",
+      "instruction": "Locate the master control handle (not the speedometer) and select N. Identify the neutral indication.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N"
+      }
+    },
+    {
+      "id": "power",
+      "instruction": "Locate P2 on the same handle and observe the selected position as a request for traction, not a speed setting.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P2"
+      }
+    },
+    {
+      "id": "coast",
+      "instruction": "Return the handle to N and observe the controller indication.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N"
+      }
+    }
+  ],
+  "learningObjective": "Recognize which cab equipment requests motion and which equipment reports the response.",
+  "operatingConditions": [
+    "Begin at standstill with the monitored passenger doors closed.",
+    "This exercise uses the eight-position combined controller of the teaching cab."
+  ],
+  "expectedObservations": [
+    "N means no traction or service-braking request from the handle.",
+    "P2 is a power request, not a prescribed speed; observe the speedometer.",
+    "The handle returns to N without automatically stopping a moving train."
+  ],
+  "debriefQuestions": [
+    "What is the difference between the master handle and the speedometer?",
+    "Why should the driver check indications after moving a controller?"
+  ]
+}

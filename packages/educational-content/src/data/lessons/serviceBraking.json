@@ -1,0 +1,69 @@
+{
+  "id": "serviceBraking",
+  "title": "Service Braking and Brake Indications",
+  "level": "Intermediate",
+  "estimatedMinutes": 12,
+  "summary": "Learn the difference between normal service braking, deceleration and pressure indications.",
+  "objectives": [
+    "Compare B1, B2 and B3",
+    "Identify the roles of brake cylinder and brake pipe",
+    "Explain why pressure values are system-dependent"
+  ],
+  "sections": [
+    {
+      "heading": "Service braking",
+      "body": "Service braking is the normal controlled reduction of train speed. In the training controller B1, B2 and B3 represent progressively greater requests. Smooth control relies on anticipating a stop and observing the resulting speed change."
+    },
+    {
+      "heading": "Brake cylinder pressure",
+      "body": "On pneumatic friction-brake equipment, pressure delivered to a brake cylinder can produce mechanical braking force through the brake gear. The precise response and indicated scale vary by vehicle and brake design."
+    },
+    {
+      "heading": "Brake pipe pressure",
+      "body": "In train air-brake systems that use a brake pipe, pressure can convey braking and release commands through the train. Its relation to cylinder pressure is not universally the same for every multiple-unit or blended-brake arrangement."
+    },
+    {
+      "heading": "Reading the gauges",
+      "body": "Read the gauge label and units first, then interpret the trend alongside speed. Pressure is not itself a measure of stopping distance: speed, gradient, adhesion, load and brake characteristics also matter. Any numeric pressures shown in this teaching simulator are illustrative, not certified rolling-stock values."
+    }
+  ],
+  "componentIds": [
+    "MASTER_CONTROL_HANDLE",
+    "FRONT_DISPLAY_PANEL"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Which detent is the strongest configured service-brake request?",
+      "choices": [
+        "B3",
+        "B1",
+        "P3",
+        "N"
+      ],
+      "answerIndex": 0,
+      "explanation": "B3 is the strongest of the three configured service-braking positions."
+    },
+    {
+      "question": "What does brake cylinder pressure describe where pneumatic brakes are fitted?",
+      "choices": [
+        "Traction voltage",
+        "Pressure associated with a brake actuator",
+        "Passenger door position",
+        "Track gradient"
+      ],
+      "answerIndex": 1,
+      "explanation": "Brake cylinder pressure relates to a pneumatic brake actuator."
+    },
+    {
+      "question": "Do all trains use the same brake pipe and cylinder pressure relationship?",
+      "choices": [
+        "Yes",
+        "No, brake-system designs differ",
+        "Only at standstill",
+        "Only with electric traction"
+      ],
+      "answerIndex": 1,
+      "explanation": "Brake arrangements, including electro-pneumatic and blended systems, differ across rolling stock."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "term": "Service Brake",
+    "slug": "service-brake",
+    "category": "Braking",
+    "definition": "A controllable braking function used to reduce train speed during normal operation; the exercise controller represents graduated requests with B1, B2 and B3.",
+    "relatedComponentIds": [
+      "MASTER_CONTROL_HANDLE"
+    ]
+  },
+  {
+    "term": "Emergency Brake",
+    "slug": "emergency-brake",
+    "category": "Braking",
+    "definition": "A safety braking function intended for situations requiring urgent deceleration, distinct from ordinary service braking.",
+    "relatedComponentIds": [
+      "EMERGENCY_BRAKE_SWITCH"
+    ]
+  },
+  {
+    "term": "Emergency Brake Reset",
+    "slug": "emergency-brake-reset",
+    "category": "Braking",
+    "definition": "Restoring an emergency braking system to a releasable state under the applicable train and operator procedures, after its cause has been addressed.",
+    "relatedComponentIds": [
+      "EMERGENCY_BRAKE_SWITCH"
+    ]
+  },
+  {
+    "term": "Brake Cylinder",
+    "slug": "brake-cylinder",
+    "category": "Braking",
+    "definition": "A device in a pneumatic friction-braking system in which air pressure can operate the mechanical brake gear.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  },
+  {
+    "term": "Brake Pipe",
+    "slug": "brake-pipe",
+    "category": "Braking",
+    "definition": "A pneumatic line used in certain train braking arrangements to convey pressure changes or brake commands along the train.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  },
+  {
+    "term": "kPa",
+    "slug": "kpa",
+    "category": "Braking",
+    "definition": "Kilopascal, a unit of pressure used on some train brake-system gauges.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  },
+  {
+    "term": "Braking Distance",
+    "slug": "braking-distance",
+    "category": "Braking",
+    "definition": "The distance a train travels while decelerating from a specified speed to a stop; affected by speed, adhesion, gradient and other conditions.",
+    "relatedComponentIds": [
+      "MASTER_CONTROL_HANDLE"
+    ]
+  }
+]

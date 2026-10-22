@@ -1,0 +1,57 @@
+[
+  {
+    "term": "Passenger Door Controls",
+    "slug": "passenger-door-controls",
+    "category": "Passenger doors",
+    "definition": "Cab controls that request passenger-door opening or closing subject to the vehicle’s operating conditions.",
+    "relatedComponentIds": [
+      "PASSENGER_DOOR_CONTROLS"
+    ]
+  },
+  {
+    "term": "All Doors Closed",
+    "slug": "all-doors-closed",
+    "category": "Passenger doors",
+    "definition": "An indication that the monitored passenger-door system has confirmed the required door-closed condition.",
+    "relatedComponentIds": [
+      "ALL_DOORS_CLOSED_LAMP"
+    ]
+  },
+  {
+    "term": "Door Interlock",
+    "slug": "door-interlock",
+    "category": "Passenger doors",
+    "definition": "A system condition that restricts traction or another action until required passenger-door status is confirmed.",
+    "relatedComponentIds": [
+      "ALL_DOORS_CLOSED_LAMP",
+      "PASSENGER_DOOR_CONTROLS"
+    ]
+  },
+  {
+    "term": "Door Opening",
+    "slug": "door-opening",
+    "category": "Passenger doors",
+    "definition": "The period during which passenger doors are moving toward their fully open state.",
+    "relatedComponentIds": [
+      "PASSENGER_DOOR_CONTROLS"
+    ]
+  },
+  {
+    "term": "Door Closing",
+    "slug": "door-closing",
+    "category": "Passenger doors",
+    "definition": "The period during which passenger doors are moving toward their secured closed state.",
+    "relatedComponentIds": [
+      "PASSENGER_DOOR_CONTROLS"
+    ]
+  },
+  {
+    "term": "Door Status",
+    "slug": "door-status",
+    "category": "Passenger doors",
+    "definition": "Information showing the current condition or transition of the passenger-door system.",
+    "relatedComponentIds": [
+      "PASSENGER_DOOR_CONTROLS"
+    ]
+  }
+]

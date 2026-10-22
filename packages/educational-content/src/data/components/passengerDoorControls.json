@@ -1,0 +1,32 @@
+{
+  "id": "PASSENGER_DOOR_CONTROLS",
+  "slug": "passenger-door-controls",
+  "title": "Passenger Door Controls",
+  "category": "Driver controls",
+  "summary": "Driver-operated controls to request passenger-door opening and closing.",
+  "purpose": "Manage passenger-door operation at appropriate stops and observe door-secured feedback before movement.",
+  "observations": [
+    "Opening, open, closing and closed are distinct door conditions.",
+    "All Doors Closed indicates that the monitored doors have completed closure.",
+    "Door-related interlocks can restrict traction until the relevant conditions are met."
+  ],
+  "interactions": [
+    "Request opening at standstill when appropriate.",
+    "Request closing and observe the status through completion.",
+    "Check the required closed indication before requesting traction."
+  ],
+  "safetyNotes": [
+    "Actual trains can have selective door-side enable, platform checks and other safety interlocks.",
+    "The teaching cab uses a simplified combined door-control arrangement."
+  ],
+  "relatedLessonIds": [
+    "passengerDoorOperation",
+    "railwaySafety",
+    "driverCabin"
+  ],
+  "glossaryTerms": [
+    "Passenger Door Controls",
+    "Door Interlock",
+    "All Doors Closed"
+  ]
+}

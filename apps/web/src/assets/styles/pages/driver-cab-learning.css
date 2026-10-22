@@ -1,0 +1,8 @@
+/* Train page pedagogical sections; inherits TRAINEX light/dark theme variables. */
+.train-learning-objective { margin:1rem 0 .5rem; border:1px solid var(--edu-border,var(--border)); border-left:4px solid var(--brand-maroon,#800000); background:var(--surface-alt); border-radius:10px; padding:.95rem 1rem; }
+.train-learning-objective strong { display:block; color:var(--text); font-size:.84rem; margin-bottom:.3rem; }
+.train-learning-objective p { margin:0; color:var(--muted); line-height:1.55; font-size:.89rem; }
+.train-brief-disclosure { margin:1rem 0; }
+.train-brief-disclosure .edu-collapsible-body { color:var(--text); }
+.train-brief-disclosure .edu-collapsible-body ul,.train-brief-disclosure .edu-collapsible-body ol { margin:.1rem 0; padding-left:1.4rem; }
+.train-brief-disclosure .edu-collapsible-body li { margin:.5rem 0; font-size:.86rem; line-height:1.55; }

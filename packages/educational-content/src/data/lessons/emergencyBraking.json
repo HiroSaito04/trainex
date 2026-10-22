@@ -1,0 +1,59 @@
+{
+  "id": "emergencyBraking",
+  "title": "Emergency Braking and Recovery Principles",
+  "level": "Intermediate",
+  "estimatedMinutes": 10,
+  "summary": "Recognize when emergency braking is used and what a driver should monitor after it is commanded.",
+  "objectives": [
+    "Differentiate emergency and service braking",
+    "Identify emergency-brake indications",
+    "Explain why recovery follows equipment-specific rules"
+  ],
+  "sections": [
+    {
+      "heading": "Purpose of emergency braking",
+      "body": "Emergency braking is a safety function for abnormal or hazardous situations requiring an urgent stop. It is separate from routine service-brake regulation. The response can include traction cut-off and a high-priority brake application, depending on the vehicle."
+    },
+    {
+      "heading": "Commands and indications",
+      "body": "The teaching cab supports emergency activation by EB on the master controller or a separate emergency-brake switch. An active indication confirms the system’s modeled emergency state; speed indication shows deceleration and eventual standstill."
+    },
+    {
+      "heading": "Observe the response",
+      "body": "After an emergency request, monitor whether speed decreases and whether the emergency indication remains active. An emergency command must not be treated as proof of immediate zero speed."
+    },
+    {
+      "heading": "Recovery is not automatic",
+      "body": "After the train stops, real-world reset and movement authority depend on the operator, train type and the event that caused the braking. The teaching cab permits reset at standstill with N selected; this must not be generalized as a real fleet procedure."
+    }
+  ],
+  "componentIds": [
+    "EMERGENCY_BRAKE_SWITCH",
+    "MASTER_CONTROL_HANDLE",
+    "FRONT_DISPLAY_PANEL"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Is emergency braking intended for normal speed regulation?",
+      "choices": [
+        "Yes",
+        "No, service braking is used for normal deceleration",
+        "Only above 60 km/h",
+        "Only during door closing"
+      ],
+      "answerIndex": 1,
+      "explanation": "Service braking is used for controlled routine slowing; emergency braking is for abnormal situations."
+    },
+    {
+      "question": "What confirms that an emergency request has brought the train to a standstill?",
+      "choices": [
+        "The driver pressed EB",
+        "Speed indication showing standstill",
+        "The train is still accelerating",
+        "A door-open button"
+      ],
+      "answerIndex": 1,
+      "explanation": "An emergency request does not cause instantaneous standstill; the driver must observe the resulting response."
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Configure WLAN, WSS server CA, device token and relay host. Confirm TLS connectivity, auth, browser pairing, and received feedback. Disconnect Wi-Fi: verify automatic reconnect. Never use unsecured wss certificate skipping in deployment.

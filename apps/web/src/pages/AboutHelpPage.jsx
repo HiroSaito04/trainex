@@ -1,71 +1,16 @@
+import { Link } from 'react-router-dom';
+import PageHeader from '../components/common/PageHeader.jsx';
+import '../assets/styles/pages/education.css';
 
-import PageHeader from "../components/common/PageHeader.jsx";
-
-export default function AboutHelpPage() {
-  return (
-    <div className="container page">
-      <PageHeader
-        eyebrow="ABOUT / HELP"
-        title="About TRAINEX"
-        description="A browser-based railway driver training platform focused on core driver console operation and railway education."
-      />
-
-      <div className="card-grid two-cols align-start">
-        <section className="panel card-stack">
-          <h2>Getting started</h2>
-
-          <ol className="steps">
-            <li>
-              Choose a 2D or 3D simulator workspace.
-            </li>
-
-            <li>
-              Connect the independent simulation
-              runtime when available.
-            </li>
-
-            <li>
-              Start a simulation session and
-              operate the supported controls.
-            </li>
-
-            <li>
-              Use Learning Materials and
-              the Glossary for context.
-            </li>
-          </ol>
-        </section>
-
-        <section className="panel card-stack">
-          <h2>Browser compatibility</h2>
-
-          <p>
-            TRAINEX targets modern desktop and
-            mobile browsers. 2D controls should
-            support touch; 3D performance depends
-            on the device. Audio may require
-            user interaction.
-          </p>
-
-          <p>
-            Hardware over the internet uses a
-            secure WebSocket relay. Direct USB
-            Serial is limited to supported desktop
-            browsers and is not implemented in
-            this initial frontend scaffold.
-          </p>
-        </section>
-      </div>
-
-      <section className="panel callout">
-        <h2>Educational use only</h2>
-
-        <p>
-          TRAINEX represents a simplified
-          training simulation and is not an
-          operational railway control system.
-        </p>
-      </section>
-    </div>
-  );
+export default function AboutHelpPage(){
+  return <main className="container page edu-page">
+    <PageHeader eyebrow="ABOUT TRAINEX" title="About & support" description="TRAINEX is a browser-based training prototype for practicing core driver-cab controls and learning how they work." />
+    <div className="edu-page-links" aria-label="Other areas"><Link to="/learn">Learn · Materials →</Link><Link to="/train">Train · Scenarios →</Link><span className="edu-current">About / Guide · Support</span></div>
+    <section className="about-overview">
+      <article className="edu-group"><p className="edu-kicker">OUR PURPOSE</p><h2>Learn and practice in one place</h2><p>Explore the controls in 2D or 3D, study the five required cab components, and use training scenarios to rehearse their simulated operation. The Simulation Engine supplies the train state for each active session.</p>
+       <Link className="edu-action-link" to="/simulators">Explore simulators →</Link></article>
+      <article className="edu-group"><p className="edu-kicker">NEED HELP?</p><h2>Step-by-step guides</h2><p>Get instructions for simulator controls, hardware connection, and troubleshooting—separate from lessons and exercises.</p><Link className="edu-primary-link" to="/about/guide">Browse all guides →</Link></article>
+    </section>
+    <section className="edu-group"><p className="edu-kicker">IMPORTANT</p><h2>Training use and compatibility</h2><p>TRAINEX is an educational prototype, not an authorized railway driving or operational safety system. The 3D view requires a compatible browser and a loaded GLB; supported hardware can communicate by secure WebSocket relay or compatible USB serial connections.</p></section>
+  </main>;
 }

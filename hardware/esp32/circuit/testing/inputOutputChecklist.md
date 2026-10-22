@@ -1,0 +1,6 @@
+- [ ] Eight detents map in order EB, B3, B2, B1, N, P1, P2, P3.
+- [ ] EB activation is latched by engine and reset requires N and stopped train.
+- [ ] Door Open and Door Close are accepted only under operating rules.
+- [ ] All Doors Closed LED changes only after engine indicates closure.
+- [ ] EB LED changes with authoritative engine EB state.
+- [ ] USB and WSS paths tested individually; no duplicate command delivery.

@@ -1,0 +1,38 @@
+[
+  {
+    "term": "Interlock",
+    "slug": "interlock",
+    "category": "Railway safety",
+    "definition": "A safeguard that restricts a control or operation until specified conditions are met.",
+    "relatedComponentIds": [
+      "MASTER_CONTROL_HANDLE"
+    ]
+  },
+  {
+    "term": "Standstill",
+    "slug": "standstill",
+    "category": "Railway safety",
+    "definition": "The condition in which a train is not moving.",
+    "relatedComponentIds": [
+      "PASSENGER_DOOR_CONTROLS"
+    ]
+  },
+  {
+    "term": "Emergency Stop",
+    "slug": "emergency-stop",
+    "category": "Railway safety",
+    "definition": "Bringing a train to a stop under an emergency braking response, as required by an abnormal or hazardous situation.",
+    "relatedComponentIds": [
+      "EMERGENCY_BRAKE_SWITCH"
+    ]
+  },
+  {
+    "term": "Safety-Critical Control",
+    "slug": "safety-critical-control",
+    "category": "Railway safety",
+    "definition": "A control whose incorrect operation could contribute to harm and which therefore requires careful use under approved procedures.",
+    "relatedComponentIds": [
+      "EMERGENCY_BRAKE_SWITCH"
+    ]
+  }
+]

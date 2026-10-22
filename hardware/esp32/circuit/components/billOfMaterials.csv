@@ -1,0 +1,11 @@
+item,component,specification,quantity
+1,ESP32-WROOM DevKit,"Classic ESP32-WROOM, 3.3 V GPIO",1
+2,1P12T rotary selector,"Non-shorting, adjustable stop to 8 positions; common + 8 throws",1
+3,Lever grip / master-handle knob,"Mechanically attach to 6-mm selector shaft, confirm compatibility",1
+4,Momentary emergency brake pushbutton,"Normally-open, panel mount, red mushroom button",1
+5,Momentary EB reset pushbutton,"Normally-open, panel mount, separate reset",1
+6,Momentary door open pushbutton,"Normally-open, panel mount",1
+7,Momentary door close pushbutton,"Normally-open, panel mount",1
+8,Status LEDs and resistors,"2 LEDs, 330-Ω series resistors from GPIO to LED, LED to GND",2
+9,USB cable / USB power,Cable matching ESP32 connector; PC or regulated power bank,1
+10,"Enclosure, wires, terminals",Insulated panel wiring / strain relief,as-needed

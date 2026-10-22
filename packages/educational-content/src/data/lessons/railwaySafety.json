@@ -1,0 +1,61 @@
+{
+  "id": "railwaySafety",
+  "title": "Driver Awareness and Railway Safety",
+  "level": "Beginner",
+  "estimatedMinutes": 9,
+  "summary": "Study safety checks, interlocks, recognition of abnormal indications and the limits of generic procedures.",
+  "objectives": [
+    "Explain the value of pre-departure checks",
+    "Distinguish emergency response from routine operations",
+    "Recognize why real procedures must be fleet-specific"
+  ],
+  "sections": [
+    {
+      "heading": "Observe before acting",
+      "body": "The driver’s tasks include assessing required indications before making a movement request. Door status, train speed, brake status and relevant warnings should be interpreted together with route authority and local operating rules."
+    },
+    {
+      "heading": "Interlocks are safeguards",
+      "body": "Interlocks help prevent certain unsafe requests, such as traction with unconfirmed doors. They are supporting protections, not replacements for visual observation, operating discipline or the railway’s prescribed procedures."
+    },
+    {
+      "heading": "Responding to unusual indications",
+      "body": "If an indication is unexpected, the driver must apply the operator’s rules for that train and situation. Educational examples can show the consequences of commands but cannot prescribe a universal action for every fault."
+    },
+    {
+      "heading": "Simulation versus railway authorization",
+      "body": "Practice scenarios provide conceptual understanding only. Actual railway driving, braking, door operation and recovery from emergencies require authorized training, rolling-stock documentation and the applicable railway rule book."
+    }
+  ],
+  "componentIds": [
+    "EMERGENCY_BRAKE_SWITCH",
+    "PASSENGER_DOOR_CONTROLS",
+    "ALL_DOORS_CLOSED_LAMP",
+    "MASTER_CONTROL_HANDLE",
+    "FRONT_DISPLAY_PANEL"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Why should a driver observe indications instead of relying only on a control request?",
+      "choices": [
+        "Indications show the response or current condition",
+        "Indications do not matter",
+        "Requests guarantee completion",
+        "Only the display color matters"
+      ],
+      "answerIndex": 0,
+      "explanation": "Operating feedback helps distinguish a commanded action from what has actually occurred."
+    },
+    {
+      "question": "Which resource governs a real vehicle’s emergency reset procedure?",
+      "choices": [
+        "A generic simulator lesson",
+        "The operator’s authorized procedures and rolling-stock instructions",
+        "The color of the button",
+        "A glossary search"
+      ],
+      "answerIndex": 1,
+      "explanation": "Real-world emergency recovery is governed by the applicable operator and train-specific procedures."
+    }
+  ]
+}

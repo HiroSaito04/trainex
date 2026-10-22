@@ -1,0 +1,41 @@
+{
+  "id": "hardwareConnection",
+  "title": "Connecting TRAINEX Hardware",
+  "summary": "Overview of how an ESP32 controller can forward normalized commands to an active TRAINEX browser session.",
+  "prerequisites": [
+    "Supported ESP32-based prototype",
+    "Deployed TRAINEX website with a compatible secure relay",
+    "Network connection and matching pairing/session identifiers"
+  ],
+  "steps": [
+    {
+      "title": "Power the controller",
+      "body": "Use a suitable USB supply and confirm the ESP32 firmware is running."
+    },
+    {
+      "title": "Connect through the relay",
+      "body": "Pair the hardware session through the website’s hardware interface. For a deployed HTTPS site, use a secure wss:// relay."
+    },
+    {
+      "title": "Verify pairing",
+      "body": "Check that device and session identifiers match. Do not send hardware commands to an unpaired session."
+    },
+    {
+      "title": "Test a safe control",
+      "body": "At standstill, move the controller to N or operate a non-traction training control and confirm the same state appears in 2D and 3D."
+    },
+    {
+      "title": "Disconnect safely",
+      "body": "End the pairing and stop the active session after training."
+    }
+  ],
+  "notes": [
+    "Bluetooth is not required for the Wi-Fi/WebSocket workflow.",
+    "The browser cannot connect directly to arbitrary ESP32 devices across the public internet without a reachable relay.",
+    "The relay/firmware must implement the agreed command protocol; educational content does not install those services."
+  ],
+  "relatedLessonIds": [
+    "introduction",
+    "driverCabin"
+  ]
+}

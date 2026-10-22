@@ -1,6 +1,6 @@
 {
-    "name":  "@trainex/hardware-client",
-    "version":  "0.1.0",
-    "private":  true,
-    "type":  "module"
+  "name":"@trainex/hardware-client","version":"1.0.0","type":"module","private":true,
+  "main":"./src/index.js","exports":"./src/index.js",
+  "scripts":{"test":"node --test tests/*.test.js"},
+  "dependencies":{"@trainex/contracts":"*"}
 }

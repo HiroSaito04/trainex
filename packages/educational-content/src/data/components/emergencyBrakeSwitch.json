@@ -1,0 +1,31 @@
+{
+  "id": "EMERGENCY_BRAKE_SWITCH",
+  "slug": "emergency-brake-switch",
+  "title": "Emergency Brake Switch",
+  "category": "Safety controls",
+  "summary": "A safety-critical control that requests emergency braking.",
+  "purpose": "Initiate an emergency-braking response for abnormal situations that require urgent deceleration.",
+  "observations": [
+    "An emergency-brake-active indication is displayed when the emergency request is accepted.",
+    "Train speed should decrease over time; an emergency command does not instantly stop a moving train.",
+    "Traction may be inhibited while the emergency state remains active."
+  ],
+  "interactions": [
+    "Identify the separate emergency brake switch.",
+    "Observe the emergency state and speedometer response during a practice exercise.",
+    "Discuss why reset must follow applicable train-specific instructions."
+  ],
+  "safetyNotes": [
+    "Emergency braking is not used as a substitute for routine service braking.",
+    "The teaching exercise permits reset at standstill with N selected; this is not a universal railway procedure."
+  ],
+  "relatedLessonIds": [
+    "emergencyBraking",
+    "railwaySafety",
+    "driverCabin"
+  ],
+  "glossaryTerms": [
+    "Emergency Brake",
+    "Emergency Brake Reset"
+  ]
+}

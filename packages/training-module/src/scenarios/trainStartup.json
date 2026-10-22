@@ -1,0 +1,48 @@
+{
+  "id": "trainStartup",
+  "title": "Cab Readiness and Departure Checks",
+  "description": "Practice neutral selection, door-closed confirmation and a cautious initial traction request.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "neutral",
+      "instruction": "At standstill, locate the master controller and select N before a departure-readiness check.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N",
+        "masterHandle": "N"
+      }
+    },
+    {
+      "id": "doors",
+      "instruction": "Read the All Doors Closed indication. Explain why a door-close command alone is not enough.",
+      "expect": {
+        "doorsClosed": true,
+        "doorState": "CLOSED"
+      }
+    },
+    {
+      "id": "p1",
+      "instruction": "With the door closure indication confirmed, request low power using P1 and observe the speedometer.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P1",
+        "masterHandle": "P1"
+      }
+    }
+  ],
+  "learningObjective": "Describe the relationship between a cab readiness check, door status and the first power request.",
+  "operatingConditions": [
+    "Train initially at standstill.",
+    "The simplified teaching cab does not implement full electrical startup, signaling authority or fleet-specific checks."
+  ],
+  "expectedObservations": [
+    "Neutral is displayed before traction.",
+    "All Doors Closed remains the required door-status confirmation.",
+    "P1 is a low power request and speed changes progressively after acceptance."
+  ],
+  "debriefQuestions": [
+    "Why is selecting N not a complete train startup procedure?",
+    "Why must door closure be confirmed rather than inferred from a Close command?"
+  ]
+}

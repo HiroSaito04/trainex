@@ -1,0 +1,45 @@
+{
+  "id": "coasting",
+  "title": "Coasting and Momentum",
+  "description": "Observe train motion after changing the controller from power to neutral.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "traction",
+      "instruction": "Set P1 to request traction and begin moving the train.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P1"
+      }
+    },
+    {
+      "id": "move",
+      "instruction": "Read the speedometer until it shows a speed greater than 1 km/h.",
+      "expect": {
+        "speedAtLeast": 1
+      }
+    },
+    {
+      "id": "coast",
+      "instruction": "Select N to remove the active traction request; observe speed while the train coasts.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N"
+      }
+    }
+  ],
+  "learningObjective": "Explain why a train can continue moving after traction is removed.",
+  "operatingConditions": [
+    "Doors closed and traction available.",
+    "Observe a nonzero speed before selecting neutral."
+  ],
+  "expectedObservations": [
+    "P1 creates a power request.",
+    "N requests neither powered traction nor service braking.",
+    "Speed can remain above zero because of momentum and then change due to resistances."
+  ],
+  "debriefQuestions": [
+    "Does neutral mean the train has stopped?",
+    "Why might speed gradually decrease while coasting?"
+  ]
+}

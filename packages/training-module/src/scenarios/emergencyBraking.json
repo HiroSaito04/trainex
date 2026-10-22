@@ -1,0 +1,68 @@
+{
+  "id": "emergencyBraking",
+  "title": "Emergency Brake Response",
+  "description": "Request emergency braking while moving, observe deceleration and examine conditions for a training reset.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "move",
+      "instruction": "At standstill with doors confirmed closed, select P1 to begin a low-speed exercise.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P1"
+      }
+    },
+    {
+      "id": "speed",
+      "instruction": "Observe a moving speed of at least 1 km/h before demonstrating emergency braking.",
+      "expect": {
+        "speedAtLeast": 1
+      }
+    },
+    {
+      "id": "eb",
+      "instruction": "Activate the separate emergency brake switch and observe the emergency indication.",
+      "expect": {
+        "commandType": "EMERGENCY_BRAKE_ACTIVATE",
+        "emergencyBrake": true
+      }
+    },
+    {
+      "id": "stop",
+      "instruction": "Monitor the speedometer while emergency braking reduces train speed to standstill.",
+      "expect": {
+        "speedAtMost": 0.1
+      }
+    },
+    {
+      "id": "neutral",
+      "instruction": "At standstill, select N as required by this teaching configuration.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N"
+      }
+    },
+    {
+      "id": "reset",
+      "instruction": "Use the teaching cab’s emergency reset input and verify that the emergency indication clears.",
+      "expect": {
+        "commandType": "EMERGENCY_BRAKE_RESET",
+        "emergencyBrake": false
+      }
+    }
+  ],
+  "learningObjective": "Differentiate emergency from service braking and observe the emergency state through standstill.",
+  "operatingConditions": [
+    "Begin at low simulated speed.",
+    "Reset steps apply only to this training configuration, not universal railway operating instructions."
+  ],
+  "expectedObservations": [
+    "The emergency indicator becomes active.",
+    "Speed decreases over time; emergency activation does not produce instantaneous standstill.",
+    "Emergency remains active until the modeled reset conditions are satisfied."
+  ],
+  "debriefQuestions": [
+    "Why is emergency braking different from B1–B3 service braking?",
+    "Why must real-life recovery follow operator-specific procedures?"
+  ]
+}

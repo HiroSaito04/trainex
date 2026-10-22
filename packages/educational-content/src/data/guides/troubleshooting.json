@@ -1,0 +1,42 @@
+{
+  "id": "troubleshooting",
+  "title": "Troubleshooting TRAINEX",
+  "summary": "Practical checks for missing 3D assets, inert controls, inconsistent indications and deployment errors.",
+  "prerequisites": [
+    "Access to the browser developer tools and project source"
+  ],
+  "steps": [
+    {
+      "title": "3D cabin does not load",
+      "body": "Confirm apps/web/public/models/cabin/trainex_cabin.glb exists and the browser can request /models/cabin/trainex_cabin.glb."
+    },
+    {
+      "title": "In-cab button is not clickable",
+      "body": "Check the imported mesh names and input-manager mappings; ensure the session is RUNNING and the control is visibly exposed for raycasting."
+    },
+    {
+      "title": "Gauge or panel stays blank",
+      "body": "Check names such as SPEED_Dial, BC_Dial, BP_Dial and TCMS_ScreenGraphic, and confirm each display surface has suitable UV coordinates."
+    },
+    {
+      "title": "Door lamp looks incorrect",
+      "body": "Read the authoritative doorState and allDoorsClosed fields; OPENING or CLOSING is not confirmed CLOSED."
+    },
+    {
+      "title": "Build fails in Vercel",
+      "body": "Confirm the Vite Root Directory is apps/web, outside-root workspace source access is enabled, and the root npm lockfile includes required workspaces."
+    },
+    {
+      "title": "Pairing fails",
+      "body": "Check relay availability, secure WebSocket URL, pairing ID, and session status."
+    }
+  ],
+  "notes": [
+    "Do not change artist geometry to compensate for a missing code mapping.",
+    "A simulated pressure reading requires a modeled pressure state; avoid treating a fabricated value as measured train pressure."
+  ],
+  "relatedLessonIds": [
+    "introduction",
+    "driverCabin"
+  ]
+}

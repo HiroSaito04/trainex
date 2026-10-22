@@ -1,0 +1,6 @@
+- [ ] All control pins are 3.3 V logic, referenced to GND, never 5 V.
+- [ ] Contacts are normally-open to ground / one selected rotary throw.
+- [ ] No input wiring shorted to power rail.
+- [ ] LED series resistors installed.
+- [ ] Correct USB cable and PC/power-bank supply.
+- [ ] Cab wiring insulated, strain relieved and secured.

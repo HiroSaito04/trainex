@@ -1,1 +1,30 @@
-
+{
+  "id": "ALL_DOORS_CLOSED_LAMP",
+  "slug": "all-doors-closed-lamp",
+  "title": "All Doors Closed Indicating Lamp",
+  "category": "Safety indications",
+  "summary": "An indication that the monitored passenger-door system is confirmed closed.",
+  "purpose": "Allow the driver to distinguish a completed door-closed state from the act of pressing a close button.",
+  "observations": [
+    "Lit when the monitored door system is confirmed closed.",
+    "Not a closure confirmation during opening, open or closing states.",
+    "Actual trains may use additional door-secured indications or departure checks."
+  ],
+  "interactions": [
+    "Observe the lamp before and after requesting door operation.",
+    "Compare the lamp status with the door state before considering a movement request."
+  ],
+  "safetyNotes": [
+    "A close request alone never proves the doors are closed.",
+    "Real departure procedures and required door indications vary by operator and rolling stock."
+  ],
+  "relatedLessonIds": [
+    "passengerDoorOperation",
+    "driverCabin",
+    "railwaySafety"
+  ],
+  "glossaryTerms": [
+    "All Doors Closed",
+    "Door Interlock"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "serviceBraking",
+  "title": "Service Brake Application",
+  "description": "Observe graduated B1, B2 and B3 requests and compare speed and brake indications.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "move",
+      "instruction": "Apply P2 to build speed before demonstrating service braking.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P2"
+      }
+    },
+    {
+      "id": "reach",
+      "instruction": "Confirm that the speedometer reads more than 2 km/h.",
+      "expect": {
+        "speedAtLeast": 2
+      }
+    },
+    {
+      "id": "brake1",
+      "instruction": "Select B1 and observe the initial service-brake request and brake indications.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "B1"
+      }
+    },
+    {
+      "id": "brake2",
+      "instruction": "Select B2. Compare the greater brake request with the current speed response.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "B2"
+      }
+    },
+    {
+      "id": "brake3",
+      "instruction": "Select B3. Explain how service braking differs from an emergency brake request.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "B3"
+      }
+    }
+  ],
+  "learningObjective": "Explain controlled service braking and the role of brake pipe and brake cylinder readings.",
+  "operatingConditions": [
+    "Begin with a moving train.",
+    "Braking steps are illustrative and not representative of a particular vehicle’s stopping performance."
+  ],
+  "expectedObservations": [
+    "The speedometer shows deceleration after service-braking requests.",
+    "Brake cylinder and brake pipe displays have different labels and meanings.",
+    "The displayed pressures are illustrative values and must not be used as real rolling-stock specifications."
+  ],
+  "debriefQuestions": [
+    "What is the difference between a service-brake request and emergency braking?",
+    "Why must brake-pressure readings be interpreted alongside speed?"
+  ]
+}

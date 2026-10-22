@@ -1,0 +1,60 @@
+{
+  "id": "stationStopping",
+  "title": "Approach and Stop at a Station",
+  "description": "Use power, then braking, to reach standstill and confirm the stopped indication.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "depart",
+      "instruction": "Apply P1 to begin a simulated approach under controlled conditions.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "P1"
+      }
+    },
+    {
+      "id": "reach",
+      "instruction": "Use the speedometer to confirm a speed of at least 2 km/h.",
+      "expect": {
+        "speedAtLeast": 2
+      }
+    },
+    {
+      "id": "brake",
+      "instruction": "Select B2 to make a service-brake request and watch train speed decrease.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "B2"
+      }
+    },
+    {
+      "id": "halt",
+      "instruction": "Observe the speedometer reaching standstill; do not assume the train stops immediately after selecting B2.",
+      "expect": {
+        "speedAtMost": 0.1
+      }
+    },
+    {
+      "id": "neutral",
+      "instruction": "Return the master handle to N at standstill and explain the checks that would precede door operation.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N"
+      }
+    }
+  ],
+  "learningObjective": "Understand controlled slowing and the need to verify standstill before door procedures.",
+  "operatingConditions": [
+    "A practice stop only: the simulator does not implement a validated stopping marker or real station approach authority.",
+    "No passenger door operation until stopped."
+  ],
+  "expectedObservations": [
+    "The train gains speed after P1.",
+    "B2 produces a service-braking request.",
+    "The speedometer eventually indicates standstill before any door activity."
+  ],
+  "debriefQuestions": [
+    "Why does braking have to begin before the desired stop?",
+    "Can this exercise verify exact stopping accuracy at a platform marker?"
+  ]
+}

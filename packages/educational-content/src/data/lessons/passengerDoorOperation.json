@@ -1,0 +1,60 @@
+{
+  "id": "passengerDoorOperation",
+  "title": "Passenger Doors and Departure Interlocks",
+  "level": "Beginner",
+  "estimatedMinutes": 10,
+  "summary": "Understand door opening, closing, indications and why traction is restricted when doors are not secured.",
+  "objectives": [
+    "Explain appropriate door operation at a station",
+    "Identify the difference between commands and indications",
+    "Explain the purpose of a door interlock"
+  ],
+  "sections": [
+    {
+      "heading": "Before opening the doors",
+      "body": "Passenger doors are operated under defined stop and platform conditions. In the training cab, the train must be at standstill with N selected before an opening request is accepted. Actual side selection, platform clearance and authorization procedures vary by railway."
+    },
+    {
+      "heading": "Opening and closing sequence",
+      "body": "An open request begins the door opening process. A close request begins closing after the doors have reached their open state. Neither request by itself proves that motion has completed; the driver observes the status indication."
+    },
+    {
+      "heading": "All Doors Closed indication",
+      "body": "A door-closed lamp reports that the monitored door system has reached the closed condition. During opening, open or closing states, the indication should not be interpreted as closed. In a real cab, required proof of door securing and safe departure can involve additional systems."
+    },
+    {
+      "heading": "Traction interlock",
+      "body": "A door interlock restricts traction when required closure conditions are not satisfied. It supports safe operations but does not remove the driver’s duty to observe all required indications and follow the operator’s rules."
+    }
+  ],
+  "componentIds": [
+    "PASSENGER_DOOR_CONTROLS",
+    "ALL_DOORS_CLOSED_LAMP",
+    "MASTER_CONTROL_HANDLE",
+    "FRONT_DISPLAY_PANEL"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Does pressing Close prove that every monitored door is closed?",
+      "choices": [
+        "Yes",
+        "No, observe the closure indication",
+        "Only while moving",
+        "Only after applying power"
+      ],
+      "answerIndex": 1,
+      "explanation": "A button issues a request; closure is established by an appropriate completed-state indication."
+    },
+    {
+      "question": "What is a principal purpose of the traction-door interlock?",
+      "choices": [
+        "Increase top speed",
+        "Prevent traction while required door conditions are unmet",
+        "Change brake pipe pressure",
+        "Make the display brighter"
+      ],
+      "answerIndex": 1,
+      "explanation": "A door interlock restricts traction until required door securing conditions are confirmed."
+    }
+  ]
+}

@@ -50,12 +50,6 @@ export default function SimulatorsPage() {
           </Button>
         </article>
       </div>
-
-      <p className="notice spaced">
-        These are website integration workspaces.
-        The independent simulation modules
-        are not included in this frontend-only build.
-      </p>
     </div>
   );
 }

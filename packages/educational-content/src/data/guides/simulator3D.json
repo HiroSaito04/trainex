@@ -1,0 +1,41 @@
+{
+  "id": "simulator3D",
+  "title": "Using the 3D Driver Cabin",
+  "summary": "Interact with imported cabin meshes without altering the author-created GLB structure.",
+  "prerequisites": [
+    "Modern browser with WebGL enabled",
+    "TRAINEX cabin GLB placed under apps/web/public/models/cabin/trainex_cabin.glb",
+    "Imported model includes identifiable interactive controls"
+  ],
+  "steps": [
+    {
+      "title": "Open the 3D cabin",
+      "body": "Navigate to Simulators → 3D and use Start to begin an active training session."
+    },
+    {
+      "title": "Look around",
+      "body": "Drag to look around the cab in 360°. Use the configured movement keys to move within the interior boundaries."
+    },
+    {
+      "title": "Operate the master handle",
+      "body": "Click or drag the imported lever. Positions are EB, B3, B2, B1, N, P1, P2, P3."
+    },
+    {
+      "title": "Operate in-cab buttons",
+      "body": "Click the original emergency and passenger-door control meshes. Use an emergency-reset mesh only if one is present and mapped."
+    },
+    {
+      "title": "Read instruments",
+      "body": "Inspect the speedometer, main display, brake indications, and door lamps. Display surfaces require correctly named and UV-mapped meshes."
+    }
+  ],
+  "notes": [
+    "The 3D code should never reconstruct the artist cabin geometry.",
+    "For missing controls or gauges, validate the exported node names, UV maps, and visibility; do not create substitute geometry.",
+    "Start, Stop, Reset and Full Screen are session controls outside the 3D cab."
+  ],
+  "relatedLessonIds": [
+    "driverCabin",
+    "tractionAndBraking"
+  ]
+}

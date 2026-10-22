@@ -1,0 +1,47 @@
+[
+  {
+    "term": "Driver Cab",
+    "slug": "driver-cab",
+    "category": "Railway operations",
+    "definition": "The compartment containing the train driver’s controls, instruments, indications and communications equipment.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  },
+  {
+    "term": "Speedometer",
+    "slug": "speedometer",
+    "category": "Railway operations",
+    "definition": "An instrument displaying the train’s current speed, often in km/h.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  },
+  {
+    "term": "TCMS",
+    "slug": "tcms",
+    "category": "Railway operations",
+    "definition": "Train Control and Management System: a vehicle-level system that supervises and displays selected train equipment and operational information.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  },
+  {
+    "term": "Operating Indication",
+    "slug": "operating-indication",
+    "category": "Railway operations",
+    "definition": "Displayed information or a lamp telling the driver about a train-system condition.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  },
+  {
+    "term": "Permitted Speed",
+    "slug": "permitted-speed",
+    "category": "Railway operations",
+    "definition": "The maximum speed permitted under the applicable route, signaling, protection and operating conditions.",
+    "relatedComponentIds": [
+      "FRONT_DISPLAY_PANEL"
+    ]
+  }
+]

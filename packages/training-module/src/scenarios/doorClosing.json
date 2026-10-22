@@ -1,0 +1,59 @@
+{
+  "id": "doorClosing",
+  "title": "Passenger Doors and Closure Confirmation",
+  "description": "Request door opening and closing at a stop, then verify that all monitored doors are closed.",
+  "category": "simulation",
+  "steps": [
+    {
+      "id": "neutral",
+      "instruction": "At standstill, select N and check that the cab is in the required door-operation condition.",
+      "expect": {
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "N"
+      }
+    },
+    {
+      "id": "open",
+      "instruction": "Request door opening. Watch for the opening transition rather than assuming immediate completion.",
+      "expect": {
+        "commandType": "DOOR_OPEN_REQUEST"
+      }
+    },
+    {
+      "id": "waitopen",
+      "instruction": "Observe and identify the fully OPEN door status.",
+      "expect": {
+        "doorState": "OPEN"
+      }
+    },
+    {
+      "id": "close",
+      "instruction": "Request door closing and observe the closing transition.",
+      "expect": {
+        "commandType": "DOOR_CLOSE_REQUEST"
+      }
+    },
+    {
+      "id": "waitclosed",
+      "instruction": "Confirm the completed CLOSED state and the All Doors Closed lamp before any traction request.",
+      "expect": {
+        "doorState": "CLOSED",
+        "doorsClosed": true
+      }
+    }
+  ],
+  "learningObjective": "Distinguish door button requests, transitions and a completed door-closed indication.",
+  "operatingConditions": [
+    "Train at standstill with N selected.",
+    "The teaching exercise models combined doors rather than vehicle-specific side selection."
+  ],
+  "expectedObservations": [
+    "Door state passes through opening and closing transitions.",
+    "All Doors Closed is not confirmed during transitions.",
+    "Closure confirmation appears only when the monitored doors have finished closing."
+  ],
+  "debriefQuestions": [
+    "Does pressing Close prove every door is secured?",
+    "What purpose does the door/traction interlock serve?"
+  ]
+}

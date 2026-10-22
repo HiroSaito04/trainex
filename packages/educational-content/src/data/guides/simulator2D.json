@@ -1,0 +1,40 @@
+{
+  "id": "simulator2D",
+  "title": "Using the 2D Driver Console",
+  "summary": "Start a session, operate controls, and observe the shared engine state in the 2D simulator.",
+  "prerequisites": [
+    "Modern browser",
+    "TRAINEX website accessible"
+  ],
+  "steps": [
+    {
+      "title": "Open the 2D simulator",
+      "body": "Navigate to Simulators → 2D and start a session."
+    },
+    {
+      "title": "Identify the controls",
+      "body": "Find the eight-position master handle, passenger-door buttons and emergency-brake input."
+    },
+    {
+      "title": "Practice door closure",
+      "body": "At standstill with handle N, open the doors, close them and wait for All Doors Closed confirmation."
+    },
+    {
+      "title": "Apply power or braking",
+      "body": "Request P1–P3 or B1–B3 and observe the simulated speed and handle indication."
+    },
+    {
+      "title": "Review safety response",
+      "body": "Activate EB in a suitable practice session, stop, return to N, and request reset."
+    }
+  ],
+  "notes": [
+    "Control inputs can be rejected by the Simulation Engine.",
+    "The 2D and 3D interfaces reflect the same active browser simulation session."
+  ],
+  "relatedLessonIds": [
+    "driverCabin",
+    "tractionAndBraking",
+    "passengerDoorOperation"
+  ]
+}

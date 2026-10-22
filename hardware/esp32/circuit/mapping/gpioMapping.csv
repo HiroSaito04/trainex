@@ -1,0 +1,15 @@
+control,GPIO,logic,role
+MASTER_EB,13,LOW=selected,rotary contact
+MASTER_B3,14,LOW=selected,rotary contact
+MASTER_B2,16,LOW=selected,rotary contact
+MASTER_B1,17,LOW=selected,rotary contact
+MASTER_N,18,LOW=selected,rotary contact
+MASTER_P1,19,LOW=selected,rotary contact
+MASTER_P2,21,LOW=selected,rotary contact
+MASTER_P3,22,LOW=selected,rotary contact
+EMERGENCY_BRAKE,23,LOW=pressed,momentary input
+EMERGENCY_BRAKE_RESET,25,LOW=pressed,momentary input
+DOOR_OPEN,26,LOW=pressed,momentary input
+DOOR_CLOSE,27,LOW=pressed,momentary input
+ALL_DOORS_CLOSED_LED,32,HIGH=ON,optional output via 330R
+EMERGENCY_BRAKE_LED,33,HIGH=ON,optional output via 330R

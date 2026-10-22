@@ -1,0 +1,75 @@
+{
+  "id": "introduction",
+  "title": "Introduction to the Train Driver Cab",
+  "level": "Beginner",
+  "estimatedMinutes": 10,
+  "summary": "Discover what a train driver monitors and controls from the cab before, during, and after a journey.",
+  "objectives": [
+    "Describe the primary functions of a driving cab",
+    "Distinguish driver controls from instruments and safety indications",
+    "Explain why operating rules and equipment vary between train types"
+  ],
+  "sections": [
+    {
+      "heading": "The cab as a working environment",
+      "body": "A train driver uses the cab to control movement, monitor the train and respond to the route. The principal working area is the driving desk, with a master controller, instruments, communications and safety equipment.",
+      "points": [
+        "Controls request actions; indications show operating conditions.",
+        "The driver cross-checks relevant indications rather than relying on a single switch position.",
+        "Cab layouts differ between types of rolling stock."
+      ]
+    },
+    {
+      "heading": "Preparing, moving and stopping",
+      "body": "Before movement, the driver checks required operating conditions. While moving, the driver observes speed and route requirements, applies power or braking as appropriate, and maintains awareness of passenger doors and safety systems.",
+      "points": [
+        "Before departure: verify required departure conditions and door status.",
+        "During movement: monitor speed and indications while operating the controller.",
+        "At a stop: confirm standstill before appropriate passenger-door operations."
+      ]
+    },
+    {
+      "heading": "What makes an indication useful",
+      "body": "A speedometer shows speed, pressure gauges show relevant pneumatic measurements where fitted, and lamps or messages draw attention to conditions such as door closure or warnings. An indicated request is not necessarily confirmation of completion.",
+      "points": [
+        "A close command does not by itself prove every door is secured.",
+        "An emergency command is different from an indication that the emergency brake is active."
+      ]
+    },
+    {
+      "heading": "Vehicle-specific differences",
+      "body": "Railway equipment and procedures depend on the train design and operator. The combined EB–B3–B2–B1–N–P1–P2–P3 controller used in these exercises is a teaching configuration, not a universal railway standard."
+    }
+  ],
+  "componentIds": [
+    "FRONT_DISPLAY_PANEL",
+    "ALL_DOORS_CLOSED_LAMP",
+    "MASTER_CONTROL_HANDLE",
+    "EMERGENCY_BRAKE_SWITCH",
+    "PASSENGER_DOOR_CONTROLS"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Which item tells the driver the train’s current speed?",
+      "choices": [
+        "Master controller",
+        "Speedometer",
+        "Door Open button",
+        "Emergency brake switch"
+      ],
+      "answerIndex": 1,
+      "explanation": "The speedometer is a driver instrument; the controller requests power or braking."
+    },
+    {
+      "question": "Why check a door-closed indication after issuing a close command?",
+      "choices": [
+        "A command always guarantees closure",
+        "A command and confirmed completion are different",
+        "It changes train speed",
+        "It resets the emergency brake"
+      ],
+      "answerIndex": 1,
+      "explanation": "A completed door-closure indication helps verify the door system state rather than assuming the command succeeded."
+    }
+  ]
+}

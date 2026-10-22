@@ -1,0 +1,60 @@
+{
+  "id": "driverDisplayPanel",
+  "title": "Driver Display Panel and Instruments",
+  "level": "Beginner",
+  "estimatedMinutes": 11,
+  "summary": "Interpret speed, operating state, brake-pressure gauges and warning indications at the driving desk.",
+  "objectives": [
+    "Identify the speedometer and its units",
+    "Differentiate brake pipe from brake cylinder labels",
+    "Interpret door and emergency indications"
+  ],
+  "sections": [
+    {
+      "heading": "Speedometer",
+      "body": "The speedometer reports train speed, usually in km/h on the configured display. The driver uses it alongside operating restrictions and route instructions. Any permitted-speed display is meaningful only when an appropriate source provides that value."
+    },
+    {
+      "heading": "Brake pressure gauges",
+      "body": "Where fitted, the brake cylinder gauge and brake pipe gauge report different parts of the braking system. A gauge should be interpreted by its label, units, normal range and the vehicle’s braking arrangement; one gauge cannot substitute for the other."
+    },
+    {
+      "heading": "Operating indications and warning lamps",
+      "body": "The display can show a selected controller detent, passenger-door status and emergency-brake activity. Warning lamps and messages draw attention to conditions requiring the driver’s awareness, not to software processes."
+    },
+    {
+      "heading": "Cross-checking instruments",
+      "body": "If power is requested, monitor speed and other relevant indications; if braking is requested, monitor deceleration and the brake response. Do not infer a successful result from the control position alone."
+    }
+  ],
+  "componentIds": [
+    "FRONT_DISPLAY_PANEL",
+    "ALL_DOORS_CLOSED_LAMP",
+    "EMERGENCY_BRAKE_SWITCH",
+    "MASTER_CONTROL_HANDLE"
+  ],
+  "reviewQuestions": [
+    {
+      "question": "Which instruments would you compare when practicing a braking request?",
+      "choices": [
+        "Speedometer and appropriate brake indications",
+        "Clock and seat adjuster",
+        "Cab light and horn",
+        "Door-open button only"
+      ],
+      "answerIndex": 0,
+      "explanation": "Speed change and brake-related indications together help a learner observe the response."
+    },
+    {
+      "question": "Do brake pipe and brake cylinder labels mean the same measurement?",
+      "choices": [
+        "Yes",
+        "No, they refer to different parts of braking systems",
+        "Only on diesel trains",
+        "Only in neutral"
+      ],
+      "answerIndex": 1,
+      "explanation": "Where both are fitted, they are separate measurements and require system-specific interpretation."
+    }
+  ]
+}

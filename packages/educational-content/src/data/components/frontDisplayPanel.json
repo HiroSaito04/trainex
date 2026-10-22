@@ -1,0 +1,34 @@
+{
+  "id": "FRONT_DISPLAY_PANEL",
+  "slug": "front-display-panel",
+  "title": "Front Display Panel",
+  "category": "Driver instruments",
+  "summary": "Driver instruments reporting speed, operating status and relevant train-system indications.",
+  "purpose": "Provide the driver with information for observing train speed, traction/braking response, doors and warning conditions.",
+  "observations": [
+    "Current speed indication, in km/h for this teaching cab.",
+    "Master control handle position and active emergency indications.",
+    "Passenger-door and All Doors Closed status.",
+    "Brake cylinder and brake pipe values where the modeled brake instruments provide them."
+  ],
+  "interactions": [
+    "Compare speed changes after power, coasting and braking requests.",
+    "Observe brake-pressure indications and read their labels and units.",
+    "Confirm door and emergency states from relevant indications."
+  ],
+  "safetyNotes": [
+    "The configured cab is an educational representation; instruments and normal values vary by train.",
+    "Brake pressure and permitted-speed values in the simulator are illustrative unless validated against a specified train type."
+  ],
+  "relatedLessonIds": [
+    "driverDisplayPanel",
+    "serviceBraking",
+    "driverCabin"
+  ],
+  "glossaryTerms": [
+    "Speedometer",
+    "TCMS",
+    "Brake Cylinder",
+    "Brake Pipe"
+  ]
+}

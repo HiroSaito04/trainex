@@ -9,14 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.0",
     "@trainex/contracts": "*",
+    "@trainex/educational-content": "*",
+    "@trainex/hardware-client": "*",
     "@trainex/input-manager": "*",
     "@trainex/simulation-engine": "*",
     "@trainex/simulator-2d": "*",
-    "@trainex/simulator-3d": "*"
+    "@trainex/simulator-3d": "*",
+    "@trainex/training-module": "*",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
