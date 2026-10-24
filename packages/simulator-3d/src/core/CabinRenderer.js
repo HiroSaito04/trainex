@@ -33,6 +33,8 @@ export function createCabinRenderer({container,modelUrl,onPicked,onReady,onMaste
   setTrainState(next){state=next;sync?.update(next)},
   previewMaster(position){sync?.previewMaster(position)},
   resetCamera(){look.reset()},
+  setMoveDirection(direction,active){look.setMoveDirection(direction,active)},
+  step(direction){look.step(direction)},
   // Previous integration API: both views stay inside the physical cab.
   setCameraMode(){look.reset()},
   dispose(){if(disposed)return;disposed=true;observer?.disconnect();window.removeEventListener('resize',resize);stopRender();cleanupPicking();sync?.dispose();look.dispose();if(model){scene.remove(model);disposeModel(model);model=null;}renderer.dispose();renderer.domElement.remove()},

@@ -1,46 +1,42 @@
-# @trainex/simulator-3d — artist model build
+# TRAINEX 3D Simulator — In-Frame Game HUD + Mobile Controls
 
-Browser Three.js driver-cab viewer using the *unchanged artist-authored* GLB
-at `/models/cabin/trainex_cabin.glb`. This is the same binary file the user
-uploaded as `Trainex-Driver Cabin Model 01.glb`.
+Complete `@trainex/simulator-3d` workspace based on the supplied simulator-3d.zip.
+
+## UI
+
+- Same simulator-style layout as 2D: six shared-state readings, in-frame session toolbar, and fullscreen viewer.
+- The HUD has Start/Resume, Pause, Reset, End and Expand controls with icons and disabled states.
+- No component information popups, guide notifications, or out-of-frame operating button bank.
+- Your imported GLB remains the cabin's source; this update adds no GLB model files.
 
 ## Interaction
 
-- Master handle: drag the real mesh, or click the eight small plaques beside it.
-  EB → B3 → B2 → B1 → N → P1 → P2 → P3. Brake pulls rearward;
-  traction pushes forward; neutral is upright.
-- Emergency Brake activates using original red cap. A separate yellow in-cab
-  reset cap is added at runtime beside it.
-- Left and right in-cab Open/Close caps submit shared engine door commands.
-- Main TCMS surface, speedometer, brake-cylinder gauge and brake-pipe gauge
-  receive texture overlays fitted to their real visible source mesh bounds.
-- All Doors Closed and runtime-added All Doors Open lamps respond to train
-  state. No fake pressure readings are produced.
+Desktop: click original in-cab controls, drag to look, WASD/arrows to move inside the authored cab envelope, mouse wheel to move forward/back.
 
-## View
+Touch: tap operating meshes without simultaneously rotating the camera; one finger swipe to look, two-finger pinch to move forward/back, hold the on-screen D-pad to walk, View button to reset camera.
 
-Use the current driver-eye camera preset as the default. Pointer drag freely
-rotates through 360 degrees. WASD/arrows/scroll movement is limited to an
-interior bounding box. No camera control moves the user outside the cabin.
-Session Start, Stop, Reset and Full Screen are the only external controls.
+The D-pad controls **only the viewpoint**. It cannot apply train power, brakes, or doors; those still require operating the cabin meshes.
 
-## Source preservation
+The original 3D input mapping, gauge animation, and artist GLB loading remain in place.
 
-The original GLB has extra duplicate/archive root objects. The browser hides
-those roots, does **not** delete or transform them, and `findSceneObjects`
-selects only visible nodes. The original `.blend`, `.blend1` and `.glb` remain
-in `models/blender/cabin/`.
+## Files
 
-Runtime coloration is conservative, retains the source's embedded textures,
-and never changes the material texture maps' UVs or the mesh positions.
+- `src/components/Simulator3D.jsx` — 3D simulator UI composition, no notifications.
+- `src/components/CabSessionHUD.jsx` — icon HUD inside the game frame.
+- `src/components/TrainReadings.jsx` — 2D-matching live train readings.
+- `src/components/MobileCabControls.jsx` — hold movement controls and reset view.
+- `src/interactions/FirstPersonController.js` — touch and keyboard navigation.
+- `src/interactions/RaycastSelector.js` — control tap separation from camera gestures.
+- `src/styles/simulator3d.css` — all 3D simulator HUD/mobile/fullscreen styles, self-contained.
 
-## Test
+## Build
 
-`npm run test --workspace=@trainex/simulator-3d`
+```powershell
+cd D:\trainex
+npm install --include=optional
+npm run test --workspace=@trainex/simulator-3d
+npm run build --workspace=./apps/web
+npm run dev --workspace=./apps/web
+```
 
-For integration test, run at monorepo root:
-
-`node --test tests/integration/3dEngineFlow.test.js`
-
-Actual visual placement, occlusion, font legibility and the original Blender
-camera are not verified by Node tests. The uploaded GLB has no exported camera.
+`apps/web/src/components/simulation/Trainex3DConnected.jsx` connects all session buttons to the same runtime as 2D. The supplied app navigation CSS updates improve sidebar interaction on phones. Do not overwrite unrelated website files.

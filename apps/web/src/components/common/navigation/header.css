@@ -119,3 +119,10 @@
     transform: translateY(4px);
   }
 }
+
+/* Larger mobile touch target and proper safe-area padding. */
+@media(max-width:1120px){
+ .site-header .nav-inner{min-height:66px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));gap:.65rem}
+ .site-header .menu-toggle{min-width:48px;min-height:48px;touch-action:manipulation}
+ .site-header .nav-brand{transform:none;min-width:0}
+}
