@@ -8,7 +8,7 @@
   --footer-surface: #ffffff;
   --footer-text: #18212c;
   --footer-muted: #4c596a;
-  --footer-border: #aebac8;
+  --footer-border: var(--border-strong);
   --footer-hover: #800000;
   --footer-notice-bg: #e4e9ef;
 
@@ -27,7 +27,7 @@
   --footer-surface: #181c23;
   --footer-text: #f6f7f9;
   --footer-muted: #b4bdc9;
-  --footer-border: #3e4653;
+  --footer-border: var(--border-strong);
   --footer-hover: #ffd700;
   --footer-notice-bg: #1c222b;
 }
@@ -355,3 +355,7 @@
     transition: none !important;
   }
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+.site-footer :is(p,small),.footer-meta { color: var(--muted); }

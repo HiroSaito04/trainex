@@ -1,57 +1,17 @@
+# @trainex/simulator-2d
 
-# TRAINEX 2D Simulator
+Complete TRAINEX 2D driver-cab workspace using the user's original `TRAINEX-Driver-Cab-2D.svg`. The SVG geometry is not modified by the simulator.
 
-Interactive railway driver console implemented
-as an independent React package.
+The 2D cab overlays authoritative state indications and SVG-coordinate-space hit shapes over the existing art; physical control inputs use the shared input manager. Unsupported radio, vigilance and electrical controls are inspect-only.
 
-## Scope
+The in-frame HUD provides Start, Pause, Reset and End session actions and expandable fullscreen. The component details and context-sensitive driver guide are two separate, small notices at the upper-right of the artwork. The guide includes warnings for door operation while traction is selected or while moving, traction with unconfirmed closed doors, and premature emergency reset. The Simulation Engine remains authoritative and may reject other commands; rejected reasons are presented to the operator.
 
-The package contains:
+The component-search panel and Fit/zoom buttons are intentionally removed. Mobile starts with the complete cab fitted to the page width and uses a collapsible accessible master-handle selector beneath it.
 
-- Front Display Panel
-- All Doors Closed Indicating Lamp
-- Master Control Handle
-- Emergency Brake Switch
-- Passenger Door Controls
-- Component Explorer
-- Educational Control Diagram
+### Web integration
 
-## Architecture
+Use `Trainex2DConnected.jsx` from the ZIP to pass `sessionStatus`, `sessionActions`, and the centralized `sendTrainexInput` dispatcher to `Simulator2D`.
 
-The simulator is a presentation and input module.
+### Tests
 
-It does not calculate train movement, determine
-operating interlocks, or maintain authoritative
-simulation state.
-
-## Component API
-
-Simulator2D accepts:
-
-- trainState: engine state snapshot
-- sendInput: standardized command callback
-- ready: engine connection/readiness
-- sessionId: active simulation session ID
-
-## Integration
-
-Import Simulator2D from
-@trainex/simulator-2d.
-
-Connect sendInput to Centralized Input Management.
-
-Pass trainState from the shared Train Simulation
-Engine.
-
-## Development
-
-npm install
-npm test
-
-## Important
-
-The present console layout is provisional.
-
-Exact control geometry, detents, labels, and
-indication colors must be checked against
-the approved TRAINEX driver console reference.
+Run `npm run test --workspace=@trainex/simulator-2d` from the root monorepo.

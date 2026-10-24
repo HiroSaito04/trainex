@@ -1,3 +1,4 @@
+import "../assets/styles/pages/hardware.css";
 
 import PageHeader from "../components/common/PageHeader.jsx";
 

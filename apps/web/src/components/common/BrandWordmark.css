@@ -1,0 +1,98 @@
+/* =========================================
+   TRAINEX TYPOGRAPHIC WORDMARK
+========================================= */
+
+.nav-brand,
+.sidebar-brand,
+.footer-brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: fit-content;
+
+  text-decoration: none;
+}
+
+.nav-brand {
+  gap: 0.55rem;
+}
+
+/* Brand text */
+
+.brand-wordmark {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1;
+
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+/* TRAIN */
+
+.brand-wordmark-train {
+  color: var(--text);
+}
+
+/* EX */
+
+.brand-wordmark-ex {
+  display: inline-block;
+
+  margin-left: 2px;
+  padding: 0.18em 0.25em 0.2em;
+
+  background: var(--brand-maroon);
+  color: var(--brand-gold);
+
+  border-radius: 4px;
+
+  font-weight: 900;
+  letter-spacing: -0.045em;
+}
+
+/* Railway-inspired double underline */
+
+.brand-wordmark::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -9px;
+
+  width: 100%;
+  height: 3px;
+
+  border-radius: 4px;
+
+  background: linear-gradient(
+    90deg,
+    var(--brand-maroon) 0%,
+    var(--brand-maroon) 68%,
+    var(--brand-gold) 68%,
+    var(--brand-gold) 100%
+  );
+}
+
+/* Small institutional tagline */
+
+.brand-tagline {
+  margin-top: 7px;
+
+  color: var(--muted);
+
+  font-size: 0.55rem;
+  font-weight: 750;
+
+  letter-spacing: 0.19em;
+  line-height: 1.5;
+}
+
+

@@ -1,3 +1,4 @@
+import "../assets/styles/pages/simulation.css";
 
 import Button from "../components/common/Button.jsx";
 

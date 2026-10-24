@@ -85,3 +85,28 @@
 .spaced {
   margin-top: 1.7rem;
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+@media (max-width: 900px) {
+.card-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+.card-grid,
+  .card-grid.two-cols {
+    grid-template-columns: 1fr;
+  }
+.page {
+    padding-block: 2.4rem 3rem;
+  }
+}
+
+@media (max-width: 420px) {
+.container {
+    width: calc(100% - 1.5rem);
+  }
+}

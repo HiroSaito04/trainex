@@ -80,3 +80,18 @@
 
   gap: 0.75rem;
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+.btn-secondary,.btn-ghost { color: var(--text); border-color: var(--border); }
+
+.btn-secondary { background: var(--raised); }
+
+.btn-ghost { background: transparent; }
+
+.btn-secondary:hover,.btn-ghost:hover { background: var(--surface-alt); border-color: var(--border-strong); }
+
+:root:not([data-theme="dark"]) :is(.btn-secondary,.btn-ghost,.btn-outline),
+[data-theme="light"] :is(.btn-secondary,.btn-ghost,.btn-outline) {
+  border: 1.5px solid var(--trainex-line);
+}

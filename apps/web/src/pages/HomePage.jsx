@@ -1,3 +1,4 @@
+import "../assets/styles/pages/home.css";
 
 import HeroSection from "../components/home/HeroSection.jsx";
 

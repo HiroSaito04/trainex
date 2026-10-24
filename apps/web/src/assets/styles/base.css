@@ -148,3 +148,26 @@ p {
 .text-muted {
   color: var(--muted);
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+body { background: var(--bg); color: var(--text); }
+
+.text-muted,.lead,.tiny-note,.results-count { color: var(--muted); }
+
+@media (prefers-reduced-motion:reduce) {
+*,*::before,*::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+html {
+    scroll-behavior: auto;
+  }
+*,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

@@ -91,3 +91,14 @@ input::placeholder {
   color: var(--danger) !important;
   margin-top: 0.7rem !important;
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+:is(a,button,input,select,textarea,summary,[role="button"]):focus-visible {
+  outline: 3px solid var(--trainex-focus); outline-offset: 3px;
+}
+
+:root:not([data-theme="dark"]) :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select),
+[data-theme="light"] :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select) {
+  border-color: var(--trainex-line-strong);
+}

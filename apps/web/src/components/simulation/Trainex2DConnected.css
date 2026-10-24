@@ -1,0 +1,2 @@
+.t2d-connected { width:100%; min-width:0; }
+/* Session controls live inside the simulator frame, not in this web adapter. */

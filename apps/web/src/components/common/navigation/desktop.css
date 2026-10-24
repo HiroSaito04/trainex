@@ -1,0 +1,164 @@
+/* TRAINEX navigation: desktop styles and responsive states */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 0.25rem;
+
+  padding: 0.35rem;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 100px;
+
+  box-shadow:
+    0 3px 14px rgba(0, 0, 0, 0.035);
+}
+
+.desktop-nav .nav-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 39px;
+
+  padding: 0.55rem 0.82rem;
+
+  border-radius: 100px;
+
+  color: var(--muted);
+
+  font-size: 0.8rem;
+  font-weight: 650;
+
+  white-space: nowrap;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.desktop-nav .nav-link:hover {
+  background: var(--raised);
+  color: var(--text);
+}
+
+.desktop-nav .nav-link.active {
+  background: var(--raised);
+
+  color: var(--accent-text);
+
+  font-weight: 800;
+
+  box-shadow:
+    inset 0 0 0 1px var(--border);
+}
+
+.desktop-nav .nav-link.active::before {
+  content: "";
+
+  width: 5px;
+  height: 5px;
+
+  margin-right: 0.45rem;
+
+  flex-shrink: 0;
+
+  background: var(--accent);
+
+  border-radius: 50%;
+}
+
+.desktop-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 0.65rem;
+}
+
+.icon-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.6rem;
+
+  min-height: 43px;
+
+  padding: 0.65rem 1rem;
+
+  background: var(--accent);
+  color: var(--contrast);
+
+  border-radius: 12px;
+
+  font-size: 0.8rem;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.nav-cta:hover {
+  background: var(--accent-hover);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 23px var(--maroon-glow);
+}
+
+.nav-cta svg {
+  flex-shrink: 0;
+}
+
+.desktop-nav { background: var(--surface); border-color: var(--border); }
+
+.desktop-nav .nav-link { color: var(--muted); }
+
+.desktop-nav .nav-link:hover { background: var(--raised); color: var(--text); }
+
+.desktop-nav .nav-link.active {
+  background: var(--raised); color: var(--accent-text);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.desktop-nav .nav-link.active::before { background: var(--accent); }
+
+.nav-cta,.btn-primary {
+  background: #ffd700; color: #14171c; border: 1px solid #ffd700;
+}
+
+.nav-cta:hover,.btn-primary:not(:disabled):hover { background: #ffe34d; color: #14171c; }
+
+:root:not([data-theme="dark"]) .desktop-nav,
+[data-theme="light"] .desktop-nav {
+  border-color: var(--border-strong);
+}
+
+:root:not([data-theme="dark"]) .desktop-nav .nav-link.active,
+[data-theme="light"] .desktop-nav .nav-link.active {
+  border: 1px solid var(--trainex-line);
+  box-shadow: inset 0 0 0 1px rgba(92,112,135,.13);
+}
+
+@media (max-width: 1120px) {
+.desktop-nav,
+  .desktop-actions {
+    display: none;
+  }
+}

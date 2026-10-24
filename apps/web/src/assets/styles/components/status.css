@@ -48,3 +48,18 @@
 .status-error {
   color: var(--danger);
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+.status-badge,.metric { background: var(--raised); color: var(--text); border: 1px solid var(--border); }
+
+.metric span,.status-badge:not(.status-connected):not(.status-error) { color: var(--muted); }
+
+.status-connected { color: var(--success); border-color: var(--success); }
+
+.status-error { color: var(--danger); border-color: var(--danger); }
+
+:root:not([data-theme="dark"]) :is(.feature-icon,.metric,.status-badge),
+[data-theme="light"] :is(.feature-icon,.metric,.status-badge) {
+  border: 1px solid var(--trainex-line);
+}

@@ -115,3 +115,79 @@
 .callout p {
   color: var(--muted);
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+.panel,.feature-card,.callout,.notice,.list-panel { color: var(--text); border-color: var(--border); }
+
+.feature-card { background: var(--surface); }
+
+.feature-card:nth-child(even) { background: var(--surface-alt); }
+
+.feature-card:nth-child(3) { border-top: 3px solid #800000; }
+
+.feature-card p,.card-stack p:not(.eyebrow) { color: var(--muted); }
+
+.feature-icon { background: var(--soft); color: var(--accent-text); border-color: var(--border); }
+
+.notice { background: var(--raised); border-left-color: #800000; }
+
+.card-link,.text-link { color: var(--accent-text); }
+
+:root:not([data-theme="dark"]) .panel,
+[data-theme="light"] .panel {
+  border-color: var(--border);
+  box-shadow: 0 5px 20px rgba(22,32,47,.08);
+}
+
+:root:not([data-theme="dark"]) .feature-card:nth-child(even),
+[data-theme="light"] .feature-card:nth-child(even) { background: #e0e5ec; }
+
+:root:not([data-theme="dark"]) :is(.panel,.feature-card,.notice,.callout,.list-panel),
+[data-theme="light"] :is(.panel,.feature-card,.notice,.callout,.list-panel) {
+  border-color: var(--trainex-line);
+  box-shadow: var(--trainex-card-shadow);
+}
+
+:root:not([data-theme="dark"]) .feature-card,
+[data-theme="light"] .feature-card {
+  border: 1.5px solid var(--trainex-line);
+}
+
+:root:not([data-theme="dark"]) .feature-card:hover,
+[data-theme="light"] .feature-card:hover {
+  border-color: #800000;
+  box-shadow: var(--trainex-card-hover-shadow);
+}
+
+:root:not([data-theme="dark"]) .feature-card:nth-child(even),
+[data-theme="light"] .feature-card:nth-child(even) {
+  background: #dfe5ec;
+}
+
+:root:not([data-theme="dark"]) :is(.numbered-row,.list-row),
+[data-theme="light"] :is(.numbered-row,.list-row) {
+  border-bottom-color: var(--trainex-section-separator);
+}
+
+@media (max-width: 650px) {
+:root:not([data-theme="dark"]) .feature-card,
+  [data-theme="light"] .feature-card {
+    box-shadow: 0 2px 7px rgba(24,37,53,.08);
+  }
+}
+
+@media (max-width: 760px) {
+.metric-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+.card-stack {
+    padding: 1.15rem;
+  }
+.metric-grid {
+    gap: 0.45rem;
+  }
+}

@@ -1,0 +1,121 @@
+/* TRAINEX navigation: header styles and responsive states */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+
+  background: var(--header);
+
+  border-bottom: 1px solid var(--border);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.055);
+}
+
+.site-header::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    var(--brand-maroon) 0%,
+    var(--brand-maroon) 65%,
+    var(--brand-gold) 100%
+  );
+}
+
+.nav-inner {
+  min-height: 86px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(185px, 1fr)
+    auto
+    minmax(185px, 1fr);
+
+  align-items: center;
+  column-gap: 1.5rem;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 0.65rem;
+}
+
+.site-header { background: var(--header); border-bottom: 1px solid var(--border); }
+
+.site-header::before { background: linear-gradient(90deg,#800000 0%,#800000 65%,#ffd700 100%); }
+
+:root:not([data-theme="dark"]) .site-header,
+[data-theme="light"] .site-header { border-color: var(--trainex-line); }
+
+:root:not([data-theme="dark"]) .site-header,
+[data-theme="light"] .site-header {
+  box-shadow: 0 2px 9px rgba(24,37,53,.10);
+}
+
+@media (max-width: 1120px) {
+.nav-inner {
+    min-height: 72px;
+
+    grid-template-columns:
+      minmax(0, 1fr) auto;
+
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+.nav-inner {
+    min-height: 66px;
+  }
+.brand-wordmark {
+    font-size: 1.3rem;
+  }
+.brand-tagline {
+    font-size: 0.49rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (max-width: 1120px) {
+.site-header .nav-inner {
+    width: 100%;
+    max-width: var(--container-width);
+
+    min-height: 80px;
+
+    
+    padding-inline: clamp(22px, 4vw, 36px);
+
+    margin-inline: auto;
+  }
+.site-header .nav-brand {
+    
+    transform: translateY(5px);
+  }
+}
+
+@media (max-width: 420px) {
+.site-header .nav-inner {
+    min-height: 74px;
+    padding-inline: 24px;
+  }
+.site-header .nav-brand {
+    transform: translateY(4px);
+  }
+}

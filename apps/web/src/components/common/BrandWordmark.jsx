@@ -1,3 +1,4 @@
+import "./BrandWordmark.css";
 
 export default function BrandWordmark({
   className = "",

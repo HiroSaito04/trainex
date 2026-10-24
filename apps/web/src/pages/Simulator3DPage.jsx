@@ -1,3 +1,4 @@
+import "../assets/styles/pages/simulation.css";
 import PageHeader from '../components/common/PageHeader.jsx';
 import Trainex3DConnected from '../components/simulation/Trainex3DConnected.jsx';
 export default function Simulator3DPage(){

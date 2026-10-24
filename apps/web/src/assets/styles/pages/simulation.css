@@ -164,3 +164,23 @@
   box-shadow: none;
   overflow: visible;
 }
+
+
+/* TRAINEX palette alignment and local responsive states */
+@media (max-width: 900px) {
+.simulator-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+.simulator-canvas {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 420px) {
+.toolbar-actions .btn {
+    flex: 1;
+  }
+}

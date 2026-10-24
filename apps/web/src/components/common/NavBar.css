@@ -1,0 +1,55 @@
+/* TRAINEX navbar stylesheet composition.
+ * Each navigation region owns its layout and responsive rules.
+ */
+@import "./navigation/header.css";
+@import "./navigation/desktop.css";
+@import "./navigation/mobile.css";
+
+/* Common button styling shared by desktop actions and the mobile drawer. */
+.icon-button,
+.menu-toggle,
+.sidebar-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  padding: 0;
+
+  background: var(--surface);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.icon-button:hover,
+.menu-toggle:hover,
+.sidebar-close:hover {
+  background: var(--raised);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.icon-button,.menu-toggle,.sidebar-close { background: var(--surface); color: var(--text); border-color: var(--border); }
+
+.icon-button:hover,.menu-toggle:hover,.sidebar-close:hover { background: var(--raised); color: var(--accent-text); border-color: var(--trainex-gold-border); }
+
+:root:not([data-theme="dark"]) :is(.desktop-nav,.mobile-sidebar),
+[data-theme="light"] :is(.desktop-nav,.mobile-sidebar) {
+  border-color: var(--trainex-line-strong);
+  box-shadow: 0 2px 8px rgba(24,37,53,.07);
+}
+
+:root:not([data-theme="dark"]) :is(.icon-button,.menu-toggle,.sidebar-close),
+[data-theme="light"] :is(.icon-button,.menu-toggle,.sidebar-close) {
+  border: 1.5px solid var(--trainex-line);
+}
