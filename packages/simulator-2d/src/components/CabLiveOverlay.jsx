@@ -91,7 +91,12 @@ export default function CabLiveOverlay({state,previewDetent}){
     <Needle cx={780} cy={107} value={state.speed} max={120} color="#8ae27b"/>
     <BrakeBar value={state.brakeCylinderPressureKpa}/>
     {state.allDoorsClosed!==null&&<circle cx="871" cy="95" r="11" fill={state.allDoorsClosed?'#ffe364':'#20252a'} opacity={state.allDoorsClosed?.28:.5}/>}
-    {state.emergencyBrake===true&&<circle cx="1076" cy="346" r="18" fill="#ff484f" opacity=".25" className="t2d-emergency-pulse"/>}
+    {/* The round desk push button is EB RESET, not a second emergency activator. */}
+    <rect x="1041" y="368" width="74" height="17" rx="3" fill="#14191d" opacity=".96"/>
+    <text x="1078" y="380" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#ffda72">EB RESET</text>
+    {(state.vigilanceWarning || state.vigilanceTrip)&&<circle cx="946" cy="95" r="13" fill={state.vigilanceTrip?'#ff515b':'#ffdb4b'} opacity=".8" className="t2d-emergency-pulse"/>}
+    <rect x="736" y="430" width="81" height="18" rx="3" fill="#14191d" opacity=".95"/>
+    <text x="776" y="443" textAnchor="middle" fontWeight="bold" fontSize="10" fill="#ffda72">VIGILANCE</text>
     <MasterLever state={state} previewDetent={previewDetent}/>
     <ActiveDetentText state={state} previewDetent={previewDetent}/>
     <TcmsValues state={state}/>

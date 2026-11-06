@@ -12,6 +12,9 @@ const MOVING_THRESHOLD_KMH=0.5;
 export function contextualDriverGuide({state={},sessionStatus='IDLE',ready=false}={}){
  if(sessionStatus==='PAUSED') return NOTICE('resume','Simulation paused','Press Resume to continue. Press Resume when you are ready to continue driving.');
  if(!ready || sessionStatus!=='RUNNING') return NOTICE('start','Start your driving session','Press Start in the simulator HUD. Begin with the master handle at N and check the passenger-door indications.');
+ if(state.vigilanceTrip===true)return NOTICE('vigilance-trip','Vigilance trip — emergency brake applied','Acknowledge vigilance, stop the train, set master handle to N, then press Emergency Brake Reset.','warning');
+ if(state.vigilanceBuzzer===true)return NOTICE('vigilance-buzzer','Vigilance buzzer active','Acknowledge the vigilance control now; a penalty emergency brake will apply at 35 seconds.','warning');
+ if(state.vigilanceWarning===true)return NOTICE('vigilance-warning','Acknowledge vigilance now','Press the vigilance switch before its deadline to avoid automatic emergency braking.','warning');
  if(state.emergencyBrake===true){
   return NOTICE('emergency','Emergency brake active','Return the master handle to N. Bring the train to a standstill before requesting an emergency-brake reset.','warning');
  }
@@ -54,6 +57,7 @@ export function driverControlWarning(type,{state={},ready=false,value=null}={}){
   if(POWER.has(value)&&state.allDoorsClosed===false)return NOTICE('traction-doors','Traction inhibited: doors not closed','Close the passenger doors and wait for the All Doors Closed indication before applying traction.','warning');
  }
  if(type==='EMERGENCY_BRAKE_RESET'){
+  if(state.vigilanceTrip)return NOTICE('reset-vigilance','Acknowledge vigilance first','Press the vigilance acknowledgement control before resetting a vigilance-triggered emergency brake.','warning');
   if(moving)return NOTICE('reset-moving','Emergency reset requires standstill','Stop the train before requesting the emergency-brake reset.','warning');
   if(state.masterHandle!==null&&state.masterHandle!=='N')return NOTICE('reset-neutral','Set master handle to N','Return the master handle to neutral before requesting emergency-brake reset.','warning');
  }

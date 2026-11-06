@@ -7,7 +7,7 @@ function Action({icon,label,variant,disabled,onClick}){
    <HudIcon name={icon}/><span>{label}</span>
  </button>;
 }
-export default function CabSessionHUD({status,busy,onAction,expanded,onExpand}){
+export default function CabSessionHUD({status,busy,onAction,expanded,onExpand,onVigilance,vigilanceWarning,vigilanceBuzzer,vigilanceTrip}){
  const s=getHudState(status);
  return <div className="t3d-game-hud" role="toolbar" aria-label="3D simulator session controls">
    <div className={`t3d-session-indicator ${s.running?'is-live':s.paused?'is-paused':''}`} role="status">
@@ -21,6 +21,10 @@ export default function CabSessionHUD({status,busy,onAction,expanded,onExpand}){
      <Action icon="reset" label="Reset" variant="reset" disabled={busy} onClick={()=>onAction('reset')}/>
      <Action icon="end" label="End" variant="end" disabled={busy||!s.canEnd} onClick={()=>onAction('end')}/>
    </div>
+   <button type="button" className={`t3d-hud-action t3d-vigilance-ack ${vigilanceWarning||vigilanceTrip?'t3d-vigilance-alert':''}`}
+     disabled={busy||!s.running} onClick={onVigilance} aria-label="Acknowledge vigilance" title="Acknowledge vigilance">
+     <span>VIG</span><span>{vigilanceTrip?'TRIPPED':vigilanceBuzzer?'BUZZER':vigilanceWarning?'ACK NOW':'ACK'}</span>
+   </button>
    <button type="button" className="t3d-hud-action t3d-expand" onClick={onExpand} aria-label={expanded?'Exit fullscreen':'Expand simulator'}>
      <HudIcon name={expanded?'collapse':'expand'}/><span>{expanded?'Exit':'Expand'}</span>
    </button>

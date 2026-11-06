@@ -96,3 +96,9 @@
  .t3d-view-reset{min-height:38px}
 }
 @media(prefers-reduced-motion:reduce){.trainex-3d *{animation:none!important;transition:none!important}}
+
+/* In-frame vigilance acknowledgement remains reachable on touchscreen. */
+.trainex-3d .t3d-vigilance-ack{background:#233b43;border-color:#5898ab;color:#e9fcff}
+.trainex-3d .t3d-vigilance-alert{background:#8c5322;border-color:#ffc767;color:#fff4dc;animation:t3d-vigilance-pulse 1s ease-in-out infinite alternate}
+@keyframes t3d-vigilance-pulse{from{filter:brightness(1)}to{filter:brightness(1.3)}}
+@media(prefers-reduced-motion:reduce){.trainex-3d .t3d-vigilance-alert{animation:none}}

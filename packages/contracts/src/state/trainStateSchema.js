@@ -10,6 +10,9 @@ export function validateTrainState(state) {
     return { valid: false, reason: 'Invalid door state.' };
   if (typeof state.allDoorsClosed !== 'boolean' || state.allDoorsClosed !== (state.doorState === 'CLOSED'))
     return { valid: false, reason: 'Door indication disagrees with modeled doors.' };
+  if (typeof state.vigilanceWarning !== 'boolean' || typeof state.vigilanceBuzzer !== 'boolean' || typeof state.vigilanceTrip !== 'boolean' ||
+      !Number.isFinite(state.vigilanceElapsedSeconds) || state.vigilanceElapsedSeconds < 0)
+    return { valid: false, reason: 'Invalid vigilance state.' };
   if (typeof state.emergencyBrake !== 'boolean')
     return { valid: false, reason: 'Invalid emergency brake state.' };
   return { valid: true };

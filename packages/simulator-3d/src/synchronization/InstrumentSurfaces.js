@@ -89,6 +89,7 @@ function mainFace(ctx,w,h,s){
  ctx.fillStyle='#28333c';ctx.fillRect(0,h-95,w,95);
  const emergency=s.emergencyBrake===true;
  text(ctx,emergency?'EMERGENCY BRAKE ACTIVE':'EMERGENCY BRAKE CLEAR',w*.5,h-48,32,emergency?'#ff7474':'#8addaf',700);
+ if(s.vigilanceWarning||s.vigilanceTrip)text(ctx,s.vigilanceTrip?'VIGILANCE PENALTY EB':s.vigilanceBuzzer?'VIGILANCE BUZZER':'ACKNOWLEDGE VIGILANCE',w*.5,h-110,27,'#ffd15f',700);
 }
 const specs=[
  {node:TARGET_OBJECTS.SPEED_DIAL,w:768,h:768,draw:readSpeed},
@@ -155,7 +156,7 @@ function useOriginalFace(node,spec,cameraPosition){
   update(state){
    const signature=JSON.stringify([
     state.speed,state.permittedSpeedKmh,state.masterHandle,state.doorState,
-    state.allDoorsClosed,state.emergencyBrake,state.brakeCylinderPressureKpa,
+    state.allDoorsClosed,state.emergencyBrake,state.vigilanceWarning,state.vigilanceBuzzer,state.vigilanceTrip,state.brakeCylinderPressureKpa,
     state.brakePipePressureKpa
    ]);
    if(signature===previous)return;

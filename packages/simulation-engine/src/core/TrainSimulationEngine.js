@@ -1,6 +1,8 @@
 import { TRAIN_DYNAMICS } from '../config/trainDynamics.js';
 import { DOOR_CONFIGURATION } from '../config/doorConfiguration.js';
 import { OPERATING_RULES } from '../config/operatingRules.js';
+import { VIGILANCE_CONFIGURATION } from '../config/vigilanceConfiguration.js';
+import { advanceVigilance } from '../systems/vigilanceSystem.js';
 import { createInitialState } from '../state/createInitialState.js';
 import { createStateStore } from './stateStore.js';
 import { processCommand } from './commandProcessor.js';
@@ -29,11 +31,16 @@ export class TrainSimulationEngine {
   #dynamics;
   #doors;
   #rules;
+  #vigilance;
 
-  constructor({ autoTick = false, dynamics = {}, doors = {}, rules = {} } = {}) {
+  constructor({ autoTick = false, dynamics = {}, doors = {}, rules = {}, vigilance = {} } = {}) {
     this.#dynamics = numericConfig(TRAIN_DYNAMICS, dynamics, 'dynamics');
     this.#doors = numericConfig(DOOR_CONFIGURATION, doors, 'doors');
     this.#rules = Object.freeze({ ...OPERATING_RULES, ...rules });
+    this.#vigilance = numericConfig(VIGILANCE_CONFIGURATION, vigilance, 'vigilance');
+    if (!(this.#vigilance.warningAfterSeconds < this.#vigilance.buzzerAfterSeconds &&
+          this.#vigilance.buzzerAfterSeconds < this.#vigilance.tripAfterSeconds))
+      throw new RangeError('Vigilance timing must be visual warning < buzzer < trip.');
     this.#store = createStateStore(createInitialState());
     this.#events = createSimulationEventPublisher();
     this.#sessions = new SessionManager();
@@ -113,6 +120,9 @@ export class TrainSimulationEngine {
     const before = this.getState();
     const next = updateIndications(result.nextState);
     this.#store.setState(next);
+    if (before.vigilanceTrip && !next.vigilanceTrip) {
+      this.#events.emit({ type: 'VIGILANCE_ACKNOWLEDGED' });
+    }
     if (next.doorState !== before.doorState) {
       this.#events.emit({ type: 'DOOR_STATE_CHANGED', doorState: next.doorState });
     }
@@ -129,15 +139,26 @@ export class TrainSimulationEngine {
     // Fixed maximum substeps make large manual steps behave like small ones.
     let remaining = seconds;
     const initialDoorState = this.getState().doorState;
+    const initialVigilanceWarning = this.getState().vigilanceWarning;
+    const initialVigilanceBuzzer = this.getState().vigilanceBuzzer;
+    const initialVigilanceTrip = this.getState().vigilanceTrip;
     let state = this.getState();
+    let sawWarning = false, sawBuzzer = false, sawTrip = false;
     while (remaining > 0) {
       const dt = Math.min(0.05, remaining);
       const withDoors = updateIndications(advancePassengerDoors(state, dt, this.#doors));
-      const moved = advanceMotion(withDoors, dt, this.#dynamics, this.#rules);
+      const guarded = advanceVigilance(withDoors, dt, this.#vigilance);
+      sawWarning ||= guarded.vigilanceWarning;
+      sawBuzzer ||= guarded.vigilanceBuzzer;
+      sawTrip ||= guarded.vigilanceTrip;
+      const moved = advanceMotion(guarded, dt, this.#dynamics, this.#rules);
       state = { ...moved, elapsedSeconds: moved.elapsedSeconds + dt };
       remaining = Math.max(0, remaining - dt);
     }
     this.#store.setState(state);
+    if (!initialVigilanceWarning && sawWarning) this.#events.emit({ type: 'VIGILANCE_WARNING' });
+    if (!initialVigilanceBuzzer && sawBuzzer) this.#events.emit({ type: 'VIGILANCE_BUZZER' });
+    if (!initialVigilanceTrip && sawTrip) this.#events.emit({ type: 'VIGILANCE_TRIPPED' });
     if (state.doorState !== initialDoorState) {
       this.#events.emit({ type: 'DOOR_STATE_CHANGED', doorState: state.doorState });
     }

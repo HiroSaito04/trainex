@@ -12,12 +12,12 @@ test('3D door click forwards normalized command into Input Manager', async () =>
  assert.equal(result.accepted,true);
  assert.deepEqual(calls,[{type:'DOOR_OPEN_REQUEST',value:null,source:'3d',sessionId:'S-1'}]);
 });
-test('3D emergency cap sends activation; reset is explicit',async()=>{
+test('3D emergency cap is reset; vigilance cap acknowledges',async()=>{
  const calls=[];
  const handler=createControlInteractionHandler({getState:()=>({emergencyBrake:false}),getSessionId:()=> 'S-2',sendInput:async command=>{calls.push(command);return {accepted:true}}});
  await handler.activate(node('05_Driver_Controls__INTERACTIVE_EmergencyBrake_Cap.001'));
- await handler.submit('EMERGENCY_BRAKE_RESET');
- assert.deepEqual(calls.map(x=>x.type),['EMERGENCY_BRAKE_ACTIVATE','EMERGENCY_BRAKE_RESET']);
+ await handler.activate(node('05_Driver_Controls__INTERACTIVE_Vigilance_Cap.001'));
+ assert.deepEqual(calls.map(x=>x.type),['EMERGENCY_BRAKE_RESET','VIGILANCE_ACKNOWLEDGE']);
 });
 test('3D master shaft selection sends no unauthorized handle command',async()=>{
  const calls=[];const inspected=[];

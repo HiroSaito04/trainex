@@ -11,5 +11,9 @@ export function createInitialState() {
     doorProgress: 0,       // 0=closed, 1=open
     allDoorsClosed: true,
     emergencyBrake: false,
+    vigilanceElapsedSeconds: 0,
+    vigilanceWarning: false,
+    vigilanceBuzzer: false,
+    vigilanceTrip: false,
   };
 }

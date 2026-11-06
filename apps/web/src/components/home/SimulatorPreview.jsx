@@ -5,7 +5,7 @@ const controls = [
   "Front Display Panel",
   "All Doors Closed Lamp",
   "Master Control Handle",
-  "Emergency Brake Switch",
+  "Emergency Brake Reset",
   "Passenger Door Controls",
 ];
 

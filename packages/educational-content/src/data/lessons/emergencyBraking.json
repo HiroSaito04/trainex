@@ -16,7 +16,7 @@
     },
     {
       "heading": "Commands and indications",
-      "body": "The teaching cab supports emergency activation by EB on the master controller or a separate emergency-brake switch. An active indication confirms the system’s modeled emergency state; speed indication shows deceleration and eventual standstill."
+      "body": "The teaching cab supports emergency activation through the EB detent of the master controller; the separate desk button is for emergency-brake reset. An active indication confirms the system’s modeled emergency state; speed indication shows deceleration and eventual standstill."
     },
     {
       "heading": "Observe the response",

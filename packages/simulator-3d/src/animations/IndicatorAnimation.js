@@ -27,7 +27,7 @@ function canvasSurface(root,name,width,height,painter){
   node.material=Array.isArray(old)?materials:materials[0];return {node,old,materials};
  });
  let key='';
- return {count:nodes.length,update(state){const next=JSON.stringify([state?.speed,state?.masterHandle,state?.doorState,state?.allDoorsClosed,state?.emergencyBrake,state?.brakeCylinderPressureKpa,state?.brakePipePressureKpa]);if(key===next)return;key=next;painter(ctx,width,height,state??{});tex.needsUpdate=true;},dispose(){for(const {node,old,materials} of records){node.material=old;materials.forEach(m=>m.dispose());}tex.dispose()}};
+ return {count:nodes.length,update(state){const next=JSON.stringify([state?.speed,state?.masterHandle,state?.doorState,state?.allDoorsClosed,state?.emergencyBrake,state?.vigilanceWarning,state?.vigilanceBuzzer,state?.vigilanceTrip,state?.brakeCylinderPressureKpa,state?.brakePipePressureKpa]);if(key===next)return;key=next;painter(ctx,width,height,state??{});tex.needsUpdate=true;},dispose(){for(const {node,old,materials} of records){node.material=old;materials.forEach(m=>m.dispose());}tex.dispose()}};
 }
 function text(ctx,content,x,y,font,color){ctx.font=font;ctx.fillStyle=color;ctx.fillText(content,x,y)}
 function drawMain(ctx,w,h,state){
@@ -41,6 +41,7 @@ function drawMain(ctx,w,h,state){
  text(ctx,'MASTER HANDLE  '+(state.masterHandle??'---'),46,348,'bold 23px monospace','#e9eef4');
  text(ctx,'DOORS: '+(state.doorState??'---'),46,389,'bold 23px monospace',state.allDoorsClosed?'#86f5ae':'#e9eef4');
  text(ctx,'EB: '+(state.emergencyBrake?'ACTIVE':'CLEAR'),485,389,'bold 21px monospace',state.emergencyBrake?'#ff7e82':'#eff3f8');
+ if(state.vigilanceWarning||state.vigilanceTrip)text(ctx,state.vigilanceTrip?'VIGILANCE PENALTY EB':state.vigilanceBuzzer?'VIGILANCE BUZZER':'ACKNOWLEDGE VIGILANCE',46,443,'bold 24px monospace','#ffdd65');
 }
 function drawReadout(ctx,w,h,title,value,unit){
  ctx.fillStyle='#081218';ctx.fillRect(0,0,w,h);

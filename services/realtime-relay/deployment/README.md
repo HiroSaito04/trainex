@@ -1,13 +1,20 @@
-# TRAINEX realtime-relay deployment
+# Deploy the TRAINEX relay separately from Vercel
 
-Run this as a long-running Node.js service (e.g. a dedicated VM, container host, or a WebSocket-capable PaaS), NOT as a Vercel serverless function. The Vercel-hosted UI establishes an outbound `wss://` connection.
+The Vercel website remains the frontend. The relay must run as a persistent WebSocket Node.js service (e.g., Railway), not as an ordinary short-lived serverless handler.
 
-1. Set `RELAY_ALLOWED_ORIGINS` to the exact deployed Vercel origin(s).
-2. Set `RELAY_BROWSER_TOKENS` and `RELAY_DEVICES_JSON` via deployment secrets management. Tokens should be long, random, unique and rotated. Do not commit `.env` or ESP32 `Secrets.h`.
-3. Expose the Node HTTP service through a TLS-terminating reverse proxy. The public route is `wss://relay.example.com/ws`. The relay itself listens on plain HTTP behind the trusted proxy, not on the public Internet.
-4. Ensure reverse proxy forwards the WebSocket Upgrade and Connection headers; use active health checks `/health`.
-5. Have a secure authenticated service issue short-lived browser tokens; **this demo uses a configured bearer-token allowlist and does not implement issuance/expiry. Do not embed the bearer token in a Vite build**, localStorage, or a public frontend bundle.
-6. There is no horizontally distributed pairing registry. Run ONE relay instance until you add shared persistence and coordination.
-7. This prototype pair code authenticates pairing to a device but the browser's claimed `sessionId` is not cryptographically bound to your website identity. Production security requires auth integration and backend session authorization.
+1. Push `services/realtime-relay/` files to your TRAINEX GitHub repository.
+2. Create a Railway service from the same repository. Choose the repository root as build context if `@trainex/contracts` is in the npm workspaces. In Railway, set the **Root Directory** to the repository root, not `services/realtime-relay`, when workspace links are needed.
+3. Set build command `npm ci` and start command `npm run start --workspace=@trainex/realtime-relay`.
+4. Configure Railway Variables (never GitHub):
+   - `RELAY_ALLOWED_ORIGINS=https://trainex-six.vercel.app`
+   - `RELAY_ALLOW_PAIR_CODE_BROWSER_AUTH=true` for supervised prototype only.
+   - `RELAY_DEVICES_JSON={"trainex-esp32-01":{"token":"<long-random-token>","pairingCode":"<long-random-code>"}}`
+   - `RELAY_HEARTBEAT_TIMEOUT_MS=90000`.
+   - `PORT` is supplied by Railway; server accepts `PORT` or `RELAY_PORT`.
+5. Enable a public HTTPS service domain. Health endpoint: `https://<hostname>/health` should return `{"status":"ok"}`. WebSocket endpoint: `wss://<hostname>/ws`.
+6. Configure `hardware/esp32/include/Secrets.h` with `RELAY_HOST` as `<hostname>`, and `RELAY_DEVICE_TOKEN` equal to the server's device token. Paste correct Wi-Fi credentials. Check the CA certificate matches your HTTPS domain chain before uploading firmware.
+7. The ESP32 should authenticate in VS Code's PlatformIO Serial Monitor. Open the deployed TRAINEX website, begin a simulator session and connect with the new public WSS endpoint, the real session ID and matching device pairing code.
 
-Check that firmware trusts the relay's TLS certificate (see WiFiManager/WebSocketClient) and that WebSocket traffic never downgrades to ws:// over the Internet.
+Check this project's `integration-examples/browser-relay-client` if your deployed UI's existing WebSocket implementation sends a different handshake. The uploaded ZIP contains only `services/`, so `apps/web` wasn't patched.
+
+**Hardening required before unrestricted public use:** backend authorization of real simulator session ownership; per-session short-lived browser access; device key rotation; rate limits at the reverse proxy; audit logging; shared registry for multi-instance deployment. The prototype code is not a verified production security solution.

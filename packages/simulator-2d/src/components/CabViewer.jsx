@@ -106,7 +106,7 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
   const [guideOverride,setGuideOverride]=useState(null);
   const [dismissedContextKey,setDismissedContextKey]=useState(null);
   const contextGuide=useMemo(()=>contextualDriverGuide({state,sessionStatus,ready}),
-    [state.speed,state.masterHandle,state.emergencyBrake,state.doorState,state.allDoorsClosed,sessionStatus,ready]);
+    [state.speed,state.masterHandle,state.emergencyBrake,state.doorState,state.allDoorsClosed,state.vigilanceWarning,state.vigilanceBuzzer,state.vigilanceTrip,sessionStatus,ready]);
   const guide=guideOverride || (contextGuide.key===dismissedContextKey?null:contextGuide);
   const url=loadError?bundledCabSvg:svgUrl;
 
@@ -139,7 +139,7 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
     if(type==='MASTER_HANDLE_SET')result=await controls.setMasterHandle(value);
     else if(type==='DOOR_OPEN_REQUEST')result=await controls.openDoors();
     else if(type==='DOOR_CLOSE_REQUEST')result=await controls.closeDoors();
-    else if(type==='EMERGENCY_BRAKE_ACTIVATE')result=await controls.activateEmergency();
+    else if(type==='VIGILANCE_ACKNOWLEDGE')result=await controls.acknowledgeVigilance();
     else if(type==='EMERGENCY_BRAKE_RESET')result=await controls.resetEmergency();
     const rejected=guideFromRejection(result);
     if(rejected)showGuide(rejected);
@@ -263,12 +263,6 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
           <CabGuideNotice guide={guide} onDismiss={dismissGuide}/>
         </div>
       </div>
-      {state.emergencyBrake===true&&<div className="t2d-recovery">
-        <button type="button" disabled={!ready} onClick={()=>{
-          onInspect('emergencyBrake','Emergency brake reset requested.');
-          void sendWithGuide('EMERGENCY_BRAKE_RESET');
-        }}>Reset emergency brake</button>
-      </div>}
       <div className="t2d-game-footer">Tap a cab component for its function. Driver guidance appears at the top-right.</div>
     </div>
     <details className="t2d-mobile-handle"><summary>Master handle · Eight positions</summary>

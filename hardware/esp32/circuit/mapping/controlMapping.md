@@ -1,11 +1,11 @@
-# Physical control to TRAINEX contract
+# TRAINEX physical controls to software commands
 
-| Physical control | Control ID | Value | Engine command |
+| Physical control | Hardware `controlId` | `value` | Engine command |
 |---|---|---|---|
-| Eight-stop master lever | `MASTER_HANDLE` | `EB`, `B3`, `B2`, `B1`, `N`, `P1`, `P2`, `P3` | `MASTER_HANDLE_SET` |
-| Emergency brake | `EMERGENCY_BRAKE` | — | `EMERGENCY_BRAKE_ACTIVATE` |
-| Emergency reset | `EMERGENCY_BRAKE_RESET` | — | `EMERGENCY_BRAKE_RESET` |
-| Open doors | `DOORS_OPEN` | — | `DOOR_OPEN_REQUEST` |
-| Close doors | `DOORS_CLOSE` | — | `DOOR_CLOSE_REQUEST` |
+| 8-position master lever | `MASTER_HANDLE` | `EB`, `B3`, `B2`, `B1`, `N`, `P1`, `P2`, `P3` | `MASTER_HANDLE_SET` |
+| Vigilance acknowledge (GPIO23) | `VIGILANCE_ACKNOWLEDGE` | none | `VIGILANCE_ACKNOWLEDGE` |
+| Emergency Brake Reset (GPIO25) | `EMERGENCY_BRAKE_RESET` | none | `EMERGENCY_BRAKE_RESET` |
+| Door Open (GPIO26) | `DOORS_OPEN` | none | `DOOR_OPEN_REQUEST` |
+| Door Close (GPIO27) | `DOORS_CLOSE` | none | `DOOR_CLOSE_REQUEST` |
 
-The software InputManager enforces 2D/3D/hardware session and command validation. Door control currently operates the combined system, not individual side selection.
+**No physical emergency-brake activation button.** Select `EB` on the master handle to trigger it. No physical LED controls or LED output pins are assigned. The buzzer is not wired or programmed yet; agree on sound rules and the buzzer electrical specifications first.

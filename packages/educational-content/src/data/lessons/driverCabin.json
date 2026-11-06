@@ -25,7 +25,7 @@
     },
     {
       "heading": "Door and safety controls",
-      "body": "Passenger door controls request opening and closing at suitable stops. A separate emergency-brake switch requests emergency braking. All Doors Closed indication reports the status of the monitored door system rather than simply showing that a button was pressed."
+      "body": "Passenger door controls request opening and closing at suitable stops. The EB detent on the master handle applies emergency braking, and a separate button requests emergency-brake reset. A vigilance acknowledgement switch monitors driver responsiveness during movement. All Doors Closed indication reports the status of the monitored door system rather than simply showing that a button was pressed."
     },
     {
       "heading": "Reading the front panel",

@@ -36,6 +36,7 @@ export default function Simulator2D({trainState=null,sendInput,ready=false,sessi
      {data('BRAKE PIPE',displayNumber(state.brakePipePressureKpa),'kPa')}
      {data('DOORS',state.doorState??'—',null,state.allDoorsClosed===true?'t2d-good':'')}
      {data('EMERGENCY BRAKE',state.emergencyBrake===null?'—':state.emergencyBrake?'ACTIVE':'CLEAR',null,state.emergencyBrake===true?'t2d-alert':'t2d-good')}
+     {data('VIGILANCE',state.vigilanceTrip?'PENALTY EB':state.vigilanceBuzzer?'BUZZER + VISUAL':state.vigilanceWarning?'VISUAL WARNING':'NORMAL',null,state.vigilanceWarning||state.vigilanceTrip?'t2d-alert':'t2d-good')}
    </div>
    <CabViewer state={state} ready={ready} controls={controls} svgUrl={svgUrl}
       sessionStatus={sessionStatus} sessionActions={sessionActions}

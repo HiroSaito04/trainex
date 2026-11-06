@@ -40,9 +40,11 @@ test('SVG coordinate mapping includes centering (viewBox letterboxing)',()=>{
   assert.equal(CAB_ZOOM_LEVELS[0],1);
 });
 test('interactive shapes dispatch only supported engine controls',()=>{
-  const supported=new Set(['MASTER_HANDLE_SET','EMERGENCY_BRAKE_ACTIVATE','DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST']);
+  const supported=new Set(['MASTER_HANDLE_SET','EMERGENCY_BRAKE_RESET','VIGILANCE_ACKNOWLEDGE','DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST']);
   for(const part of CAB_PARTS){if(part.command)assert.ok(supported.has(part.command),part.id);}
   assert.equal(PART_BY_ID.radio.command,null);
   assert.equal(PART_BY_ID.reverser.command,null);
   assert.equal(PART_BY_ID.horn.command,null);
+  assert.equal(PART_BY_ID.emergencyBrake.command,'EMERGENCY_BRAKE_RESET');
+  assert.equal(PART_BY_ID.vigilanceButton.command,'VIGILANCE_ACKNOWLEDGE');
 });

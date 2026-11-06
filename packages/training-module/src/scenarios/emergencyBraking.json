@@ -21,9 +21,10 @@
     },
     {
       "id": "eb",
-      "instruction": "Activate the separate emergency brake switch and observe the emergency indication.",
+      "instruction": "Select EB on the master control handle and observe the emergency indication.",
       "expect": {
-        "commandType": "EMERGENCY_BRAKE_ACTIVATE",
+        "commandType": "MASTER_HANDLE_SET",
+        "value": "EB",
         "emergencyBrake": true
       }
     },

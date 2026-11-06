@@ -1,7 +1,7 @@
 const HANDLE_POSITIONS = new Set(['EB','B3','B2','B1','N','P1','P2','P3']);
 const COMMANDS = new Set([
   'MASTER_HANDLE_SET', 'EMERGENCY_BRAKE_ACTIVATE', 'EMERGENCY_BRAKE_RESET',
-  'DOOR_OPEN_REQUEST', 'DOOR_CLOSE_REQUEST',
+  'DOOR_OPEN_REQUEST', 'DOOR_CLOSE_REQUEST', 'VIGILANCE_ACKNOWLEDGE',
 ]);
 
 export function processCommand(state, command, { doors, rules }) {
@@ -22,7 +22,13 @@ export function processCommand(state, command, { doors, rules }) {
       if (command.value.startsWith('P') && rules.requireDoorsClosedForTraction && !state.allDoorsClosed) {
         return reject('Cannot apply traction unless all doors are confirmed closed.');
       }
+      const changed = command.value !== state.masterHandle;
       nextState = { ...state, masterHandle: command.value, emergencyBrake: command.value === 'EB' ? true : state.emergencyBrake };
+      if (changed && !state.vigilanceTrip) {
+        nextState.vigilanceElapsedSeconds = 0;
+        nextState.vigilanceWarning = false;
+        nextState.vigilanceBuzzer = false;
+      }
       break;
     }
     case 'EMERGENCY_BRAKE_ACTIVATE': {
@@ -38,7 +44,12 @@ export function processCommand(state, command, { doors, rules }) {
       if (rules.requireCoastForEmergencyReset && state.masterHandle !== 'N') {
         return reject('Set master handle to N before emergency reset.');
       }
+      if (state.vigilanceTrip) return reject('Acknowledge the vigilance trip before resetting the emergency brake.');
       nextState = { ...state, emergencyBrake: false };
+      break;
+    }
+    case 'VIGILANCE_ACKNOWLEDGE': {
+      nextState = { ...state, vigilanceElapsedSeconds: 0, vigilanceWarning: false, vigilanceBuzzer: false, vigilanceTrip: false };
       break;
     }
     case 'DOOR_OPEN_REQUEST': {

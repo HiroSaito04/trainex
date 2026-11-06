@@ -1,4 +1,3 @@
-firmware/TrainexConsole/src/config/Secrets.h
-*.bin
-*.elf
-*.map
+.pio/
+.vscode/.browse.c_cpp.db*
+include/Secrets.h

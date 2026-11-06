@@ -37,20 +37,15 @@ export function addInCabAttachments(root,viewCamera){
    root.add(plaque);owned.push(plaque);
   }
  }
- // Original file may have no reset cap; append in-scene reset next to existing EB.
- if(!find(root,TARGET_OBJECTS.EMERGENCY_RESET)){
-  const eb=find(root,TARGET_OBJECTS.EMERGENCY_CAP);
-  if(eb){const b=boundsOf(eb);const p=b.getCenter(new THREE.Vector3());
-   const radius=Math.max(.023,Math.min(.058,b.getSize(new THREE.Vector3()).x*.45));
-   const reset=new THREE.Mesh(new THREE.CylinderGeometry(radius,radius,.014,32),new THREE.MeshStandardMaterial({color:'#2d8c65',metalness:.24,roughness:.48}));
-   reset.name=TARGET_OBJECTS.EMERGENCY_RESET;reset.position.copy(localFromWorld(root,new THREE.Vector3(p.x+Math.max(.14,radius*3),b.max.y+.016,p.z)));
-   root.add(reset);owned.push(reset);
-   const tex=canvasText('EB RESET',{width:220,height:90,bg:'#18352d',accent:'#74bb96'});
-   const label=labelMesh('DETAIL_EB_Reset_Label',tex,.14,.045);
-   label.position.copy(localFromWorld(root,new THREE.Vector3(p.x+Math.max(.14,radius*3),b.max.y+.035,p.z-.09)));
-   label.quaternion.copy(root.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,0,0))));
-   root.add(label);owned.push(label);
-  }
+ // Reuse the original emergency cap as the EB RESET button; no duplicate cap.
+ const resetCap=find(root,TARGET_OBJECTS.EMERGENCY_CAP);
+ if(resetCap){
+  const b=boundsOf(resetCap),c=b.getCenter(new THREE.Vector3()),size=b.getSize(new THREE.Vector3());
+  const label=labelMesh('DETAIL_EB_Reset_Label',canvasText('EB RESET',{width:240,height:90,bg:'#18352d',accent:'#74bb96'}),
+    Math.max(.12,size.x*1.8),.043);
+  label.position.copy(localFromWorld(root,new THREE.Vector3(c.x,b.max.y+.028,c.z-size.z*.85-.075)));
+  label.quaternion.copy(root.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI/2,0,0))));
+  root.add(label);owned.push(label);
  }
  // The user's source may not include a separate OPEN lamp. Add only the display overlay,
  // within the existing front panel, without changing the uploaded mesh.

@@ -14,7 +14,6 @@ export function createControlInteractionHandler({getState,getSessionId,sendInput
   if(!action)return {accepted:false,reason:'Not a simulator control.'};
   if(action.kind==='select')return {accepted:false,reason:'Drag the existing master handle to select a detent.'};
   const state=getState?.();const data=state?.display??state??{};
-  if(action.type==='EMERGENCY_BRAKE_ACTIVATE' && data.emergencyBrake)return {accepted:false,reason:'Emergency already active.'};
   return submit(action.type,action.value??null);
  }
  return {activate,submit,getState};

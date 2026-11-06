@@ -7,9 +7,8 @@ MASTER_N,18,LOW=selected,rotary contact
 MASTER_P1,19,LOW=selected,rotary contact
 MASTER_P2,21,LOW=selected,rotary contact
 MASTER_P3,22,LOW=selected,rotary contact
-EMERGENCY_BRAKE,23,LOW=pressed,momentary input
-EMERGENCY_BRAKE_RESET,25,LOW=pressed,momentary input
-DOOR_OPEN,26,LOW=pressed,momentary input
-DOOR_CLOSE,27,LOW=pressed,momentary input
-ALL_DOORS_CLOSED_LED,32,HIGH=ON,optional output via 330R
-EMERGENCY_BRAKE_LED,33,HIGH=ON,optional output via 330R
+VIGILANCE_ACKNOWLEDGE,23,LOW=pressed,normally-open pushbutton
+EMERGENCY_BRAKE_RESET,25,LOW=pressed,normally-open pushbutton
+DOORS_OPEN,26,LOW=pressed,normally-open pushbutton
+DOORS_CLOSE,27,LOW=pressed,normally-open pushbutton
+VIGILANCE_BUZZER,32,PWM 2200Hz output,low-current passive piezo (verify rating or use driver)

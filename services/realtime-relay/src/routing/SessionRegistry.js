@@ -1,13 +1,25 @@
 export class SessionRegistry {
- constructor(){this.byDevice=new Map();this.byBrowser=new Map()}
- pair({deviceId,sessionId,browserSocket,deviceSocket}){
-  const old=this.byDevice.get(deviceId);if(old)this.byBrowser.delete(old.browserSocket);
-  const current=this.byBrowser.get(browserSocket);if(current)this.byDevice.delete(current.deviceId);
-  const pair={deviceId,sessionId,browserSocket,deviceSocket,lastSequence:-1};
-  this.byDevice.set(deviceId,pair);this.byBrowser.set(browserSocket,pair);return pair;
- }
- devicePair(deviceId){return this.byDevice.get(deviceId)}
- browserPair(ws){return this.byBrowser.get(ws)}
- removeDevice(deviceId){const pair=this.byDevice.get(deviceId);if(pair){this.byDevice.delete(deviceId);this.byBrowser.delete(pair.browserSocket)}return pair}
- removeBrowser(ws){const pair=this.byBrowser.get(ws);if(pair){this.byBrowser.delete(ws);this.byDevice.delete(pair.deviceId)}return pair}
+  constructor() { this.byDevice=new Map(); this.byBrowser=new Map(); }
+  pair({deviceId,sessionId,browserSocket,deviceSocket}) {
+    const previous=this.byDevice.get(deviceId);
+    if (previous) this.byBrowser.delete(previous.browserSocket);
+    const current=this.byBrowser.get(browserSocket);
+    if (current) this.byDevice.delete(current.deviceId);
+    const pair={deviceId,sessionId,browserSocket,deviceSocket,lastSequence:-1};
+    this.byDevice.set(deviceId,pair);
+    this.byBrowser.set(browserSocket,pair);
+    return pair;
+  }
+  devicePair(id) { return this.byDevice.get(id); }
+  browserPair(socket) { return this.byBrowser.get(socket); }
+  removeDevice(id) {
+    const pair=this.byDevice.get(id);
+    if (pair) { this.byDevice.delete(id); this.byBrowser.delete(pair.browserSocket); }
+    return pair;
+  }
+  removeBrowser(socket) {
+    const pair=this.byBrowser.get(socket);
+    if (pair) { this.byBrowser.delete(socket); this.byDevice.delete(pair.deviceId); }
+    return pair;
+  }
 }

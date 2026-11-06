@@ -27,6 +27,7 @@ export default function Simulator3D({
  }),[]);
  const picked=useCallback(object=>{void handler.activate(object)},[handler]);
  const detent=useCallback(pos=>handler.submit('MASTER_HANDLE_SET',pos),[handler]);
+ const acknowledgeVigilance=useCallback(()=>{void handler.submit('VIGILANCE_ACKNOWLEDGE')},[handler]);
  const sessions={
   start:sessionActions?.start??onStartSession,
   pause:sessionActions?.pause??onPauseSession,
@@ -78,7 +79,8 @@ export default function Simulator3D({
    </div>
    <TrainReadings trainState={trainState}/>
    <div className={`t3d-game ${fallbackFullscreen?'t3d-fallback-fullscreen':''}`} ref={stageRef} data-expanded={expanded}>
-     <CabSessionHUD status={sessionStatus} busy={busy} onAction={doSession} expanded={expanded} onExpand={expand}/>
+     <CabSessionHUD status={sessionStatus} busy={busy} onAction={doSession} expanded={expanded} onExpand={expand}
+       onVigilance={acknowledgeVigilance} vigilanceWarning={trainState?.vigilanceWarning} vigilanceBuzzer={trainState?.vigilanceBuzzer} vigilanceTrip={trainState?.vigilanceTrip}/>
      <div className="t3d-stage">
        <CabinViewport modelUrl={modelUrl} state={trainState} onPicked={picked} onMasterDetent={detent}
          cameraResetToken={cameraResetToken} onCameraApi={api=>{cameraApi.current=api;}}/>

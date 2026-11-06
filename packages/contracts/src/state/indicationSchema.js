@@ -5,5 +5,8 @@ export function readIndications(state) {
     doorState: state.doorState,
     allDoorsClosed: state.allDoorsClosed,
     emergencyBrake: state.emergencyBrake,
+    vigilanceWarning: state.vigilanceWarning,
+    vigilanceBuzzer: state.vigilanceBuzzer,
+    vigilanceTrip: state.vigilanceTrip,
   });
 }

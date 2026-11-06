@@ -15,7 +15,7 @@ export function useCabControls({sendInput,sessionId,ready}){
    setMasterHandle:position=>execute('MASTER_HANDLE_SET',position),
    openDoors:()=>execute('DOOR_OPEN_REQUEST'),
    closeDoors:()=>execute('DOOR_CLOSE_REQUEST'),
-   activateEmergency:()=>execute('EMERGENCY_BRAKE_ACTIVATE'),
+   acknowledgeVigilance:()=>execute('VIGILANCE_ACKNOWLEDGE'),
    resetEmergency:()=>execute('EMERGENCY_BRAKE_RESET'),
  };
 }

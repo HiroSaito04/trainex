@@ -1,19 +1,19 @@
 {
   "id": "EMERGENCY_BRAKE_SWITCH",
   "slug": "emergency-brake-switch",
-  "title": "Emergency Brake Switch",
+  "title": "Emergency Brake Reset Button",
   "category": "Safety controls",
-  "summary": "A safety-critical control that requests emergency braking.",
-  "purpose": "Initiate an emergency-braking response for abnormal situations that require urgent deceleration.",
+  "summary": "A reset button used to clear a latched emergency brake after operating conditions are met. Emergency braking is activated through the EB position of the master control handle.",
+  "purpose": "Request an emergency brake reset at standstill with the master handle at N, after acknowledging a vigilance trip if one occurred.",
   "observations": [
-    "An emergency-brake-active indication is displayed when the emergency request is accepted.",
+    "Selecting EB on the master handle activates the emergency brake indication.",
     "Train speed should decrease over time; an emergency command does not instantly stop a moving train.",
     "Traction may be inhibited while the emergency state remains active."
   ],
   "interactions": [
-    "Identify the separate emergency brake switch.",
-    "Observe the emergency state and speedometer response during a practice exercise.",
-    "Discuss why reset must follow applicable train-specific instructions."
+    "Select EB on the master handle to request emergency braking.",
+    "Observe the emergency indication and deceleration until standstill.",
+    "Return the master handle to N, acknowledge vigilance if tripped, then use the separate emergency brake reset button."
   ],
   "safetyNotes": [
     "Emergency braking is not used as a substitute for routine service braking.",

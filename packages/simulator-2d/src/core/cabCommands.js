@@ -1,6 +1,6 @@
 import {MASTER_POSITIONS} from '../config/consoleParts.js';
 
-const CONTROL_TYPES=new Set(['MASTER_HANDLE_SET','DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST','EMERGENCY_BRAKE_ACTIVATE','EMERGENCY_BRAKE_RESET']);
+const CONTROL_TYPES=new Set(['MASTER_HANDLE_SET','DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST','EMERGENCY_BRAKE_RESET','VIGILANCE_ACKNOWLEDGE']);
 
 export function createCabCommand(type,{value=null,sessionId=null}={}){
   if(!CONTROL_TYPES.has(type))throw new RangeError(`Unsupported 2D simulator command: ${type}`);

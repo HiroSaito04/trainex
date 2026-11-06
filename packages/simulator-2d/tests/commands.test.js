@@ -26,6 +26,6 @@ test('accepted and rejected engine responses are preserved',async()=>{
  assert.equal(sent.length,2);assert.equal(sent[0].source,'2d');assert.equal(sent[1].sessionId,'active');
 });
 test('dispatcher exceptions become rejection feedback, not unhandled errors',async()=>{
- const response=await dispatchCabCommand(()=>{throw new Error('connection lost');},'EMERGENCY_BRAKE_ACTIVATE',{sessionId:'active',ready:true});
+ const response=await dispatchCabCommand(()=>{throw new Error('connection lost');},'VIGILANCE_ACKNOWLEDGE',{sessionId:'active',ready:true});
  assert.equal(response.accepted,false);assert.match(response.reason,/connection lost/);
 });

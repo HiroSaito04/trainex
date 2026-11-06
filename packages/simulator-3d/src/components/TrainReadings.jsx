@@ -4,6 +4,7 @@ export function normalize3DDisplayState(trainState){
  return {
   speed:d.speed,masterHandle:d.masterHandle,doorState:d.doorState,
   allDoorsClosed:d.allDoorsClosed,emergencyBrake:d.emergencyBrake,
+  vigilanceWarning:d.vigilanceWarning,vigilanceBuzzer:d.vigilanceBuzzer,vigilanceTrip:d.vigilanceTrip,
   brakeCylinderPressureKpa:d.brakeCylinderPressureKpa??trainState?.brakeCylinderPressureKpa,
   brakePipePressureKpa:d.brakePipePressureKpa??trainState?.brakePipePressureKpa,
  };
@@ -17,6 +18,7 @@ export default function TrainReadings({trainState}){
   ['BRAKE PIPE',textNum(s.brakePipePressureKpa),'kPa'],
   ['DOORS',s.doorState??'—',''],
   ['EMERGENCY BRAKE',s.emergencyBrake==null?'—':s.emergencyBrake?'ACTIVE':'CLEAR',''],
+  ['VIGILANCE',s.vigilanceTrip?'PENALTY EB':s.vigilanceBuzzer?'BUZZER + VISUAL':s.vigilanceWarning?'VISUAL WARNING':'NORMAL',''],
  ];
  return <div className="t3d-instruments" aria-label="Live train operating readings">
   {values.map(([name,value,unit])=><div key={name} className="t3d-reading">
