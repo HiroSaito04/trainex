@@ -1,6 +1,5 @@
 import {createMasterHandleAnimation} from '../animations/MasterHandleAnimation.js';
 import {createEmergencySwitchAnimation} from '../animations/EmergencySwitchAnimation.js';
-import {createVigilanceLampAnimation} from '../animations/VigilanceLampAnimation.js';
 import {createDoorControlAnimation} from '../animations/DoorControlAnimation.js';
 import {createIndicatorAnimation} from '../animations/IndicatorAnimation.js';
 import {createInstrumentSurfaces} from './InstrumentSurfaces.js';
@@ -9,7 +8,6 @@ export function createTrainStateSynchronizer(root,cameraPosition){
  const components={
   handle:createMasterHandleAnimation(root),
   emergency:createEmergencySwitchAnimation(root),
-  vigilance:createVigilanceLampAnimation(root),
   doors:createDoorControlAnimation(root),
   lamps:createIndicatorAnimation(root),
   instruments:createInstrumentSurfaces(root,cameraPosition),
@@ -30,7 +28,6 @@ export function createTrainStateSynchronizer(root,cameraPosition){
    };
    if(!preview)components.handle.setState(last.masterHandle);
    components.emergency.setState(false);
-   components.vigilance.setState(last);
    components.doors.setState(last.doorState);
    components.lamps.setState(last.allDoorsClosed,last.doorState);
    components.instruments.setState(last);

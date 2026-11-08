@@ -1,5 +1,5 @@
 export { COMMAND_TYPES, VALID_COMMAND_TYPES } from './commands/commandTypes.js';
-export { MASTER_HANDLE_POSITIONS, DOOR_STATES, COMMAND_SOURCES } from './commands/commandValues.js';
+export { MASTER_HANDLE_POSITIONS, DOOR_STATES, DOOR_SIDES, COMMAND_SOURCES } from './commands/commandValues.js';
 export { validateCommand } from './commands/commandSchema.js';
 export { COMPONENT_IDS } from './components/componentIds.js';
 export { EVENT_TYPES } from './events/eventTypes.js';

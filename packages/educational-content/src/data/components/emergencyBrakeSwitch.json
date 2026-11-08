@@ -1,23 +1,23 @@
 {
   "id": "EMERGENCY_BRAKE_SWITCH",
   "slug": "emergency-brake-switch",
-  "title": "Emergency Brake Reset Button",
+  "title": "Security Brake and Emergency Brake Release",
   "category": "Safety controls",
-  "summary": "A reset button used to clear a latched emergency brake after operating conditions are met. Emergency braking is activated through the EB position of the master control handle.",
-  "purpose": "Request an emergency brake reset at standstill with the master handle at N, after acknowledging a vigilance trip if one occurred.",
+  "summary": "The master handle EB detent and separate Security Brake button activate emergency braking. The emergency brake release control clears the modeled emergency state after release conditions are met.",
+  "purpose": "Demonstrate emergency activation and the distinct emergency-brake release action at standstill with the master handle at N.",
   "observations": [
     "Selecting EB on the master handle activates the emergency brake indication.",
     "Train speed should decrease over time; an emergency command does not instantly stop a moving train.",
     "Traction may be inhibited while the emergency state remains active."
   ],
   "interactions": [
-    "Select EB on the master handle to request emergency braking.",
+    "Select EB on the master handle or press the Security Brake control to request emergency braking.",
     "Observe the emergency indication and deceleration until standstill.",
-    "Return the master handle to N, acknowledge vigilance if tripped, then use the separate emergency brake reset button."
+    "Return the master handle to N and request emergency brake release; the simulator completes release after three seconds."
   ],
   "safetyNotes": [
     "Emergency braking is not used as a substitute for routine service braking.",
-    "The teaching exercise permits reset at standstill with N selected; this is not a universal railway procedure."
+    "Emergency release at standstill and N is a TRAINEX teaching procedure, not a universal railway procedure."
   ],
   "relatedLessonIds": [
     "emergencyBraking",
@@ -26,6 +26,6 @@
   ],
   "glossaryTerms": [
     "Emergency Brake",
-    "Emergency Brake Reset"
+    "Emergency Brake Release"
   ]
 }

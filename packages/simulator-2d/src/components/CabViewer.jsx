@@ -1,8 +1,8 @@
 import {useCallback,useEffect,useMemo,useRef,useState} from 'react';
 import bundledCabSvg from '../assets/TRAINEX-Driver-Cab-2D.svg?url';
-import CabLiveOverlay from './CabLiveOverlay.jsx';
-import {CAB_PARTS,DISPLAY_DETENTS} from '../config/consoleParts.js';
-import {getSvgPoint,masterDetentFromY} from '../core/cabGeometry.js';
+import {CAB_PARTS,DISPLAY_DETENTS,CAB_VIEWBOX} from '../config/consoleParts.js';
+import {getSvgPoint,masterDetentFromY,detentBaselineForArt} from '../core/cabGeometry.js';
+import {applyCabSvgLayers,findCabLayerBounds} from '../core/cabSvgLayers.js';
 import {contextualDriverGuide,driverControlWarning,guideFromRejection} from '../core/driverGuide.js';
 import {useCabViewport} from '../hooks/useCabViewport.js';
 
@@ -92,9 +92,14 @@ function CabSessionHUD({status='IDLE',busy=false,onAction}){
 }
 
 export default function CabViewer({state,ready,controls,selection,onInspect,onDismiss,
-  svgUrl=DEFAULT_CAB_SVG_URL,sessionStatus='IDLE',sessionActions=null}){
+  svgUrl=DEFAULT_CAB_SVG_URL,sessionStatus='IDLE',sessionActions=null,sessionId=null}){
   const viewport=useCabViewport();
   const svgRef=useRef(null);
+  const artRef=useRef(null);
+  const [artLoaded,setArtLoaded]=useState(false);
+  const [layerBindingUnavailable,setLayerBindingUnavailable]=useState(false);
+  const [layerBounds,setLayerBounds]=useState({});
+  const [clock,setClock]=useState(()=>new Date());
   const dragRef=useRef(null);
   const suppressClickRef=useRef(false);
   const pressTimeoutRef=useRef(null);
@@ -106,13 +111,32 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
   const [guideOverride,setGuideOverride]=useState(null);
   const [dismissedContextKey,setDismissedContextKey]=useState(null);
   const contextGuide=useMemo(()=>contextualDriverGuide({state,sessionStatus,ready}),
-    [state.speed,state.masterHandle,state.emergencyBrake,state.doorState,state.allDoorsClosed,state.vigilanceWarning,state.vigilanceBuzzer,state.vigilanceTrip,sessionStatus,ready]);
+    [state.speed,state.masterHandle,state.emergencyBrake,state.doorState,state.allDoorsClosed,state.leftDoorState,state.rightDoorState,state.leftDoorEnabled,state.rightDoorEnabled,sessionStatus,ready]);
   const guide=guideOverride || (contextGuide.key===dismissedContextKey?null:contextGuide);
   const url=loadError?bundledCabSvg:svgUrl;
 
   useEffect(()=>()=>{if(pressTimeoutRef.current)clearTimeout(pressTimeoutRef.current);},[]);
   useEffect(()=>setPreviewDetent(null),[state.masterHandle]);
-  useEffect(()=>setLoadError(false),[svgUrl]);
+  useEffect(()=>{setLoadError(false);setArtLoaded(false);setLayerBindingUnavailable(false);setLayerBounds({});},[svgUrl]);
+  useEffect(()=>{
+    const timer=setInterval(()=>setClock(new Date()),1000);
+    return ()=>clearInterval(timer);
+  },[]);
+  useEffect(()=>{
+    if(!artLoaded)return;
+    applyCabSvgLayers(artRef.current?.contentDocument,{
+      state,previewDetent,sessionId,sessionStatus,clock,
+    });
+  },[artLoaded,state,previewDetent,sessionId,sessionStatus,clock]);
+  const onArtLoad=useCallback(()=>{
+    const doc=artRef.current?.contentDocument;
+    if(!doc?.getElementById){setLayerBindingUnavailable(true);setArtLoaded(true);return;}
+    setLayerBindingUnavailable(false);
+    setLayerBounds(findCabLayerBounds(doc));
+    // Bind all indicator visibility before revealing the source artwork.
+    applyCabSvgLayers(doc,{state,previewDetent,sessionId,sessionStatus,clock});
+    setArtLoaded(true);
+  },[state,previewDetent,sessionId,sessionStatus,clock]);
   useEffect(()=>{
     if(!guideOverride)return undefined;
     const timeout=setTimeout(()=>setGuideOverride(null),8500);
@@ -137,10 +161,12 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
     if(preflight){showGuide(preflight);return {accepted:false,reason:preflight.description};}
     let result;
     if(type==='MASTER_HANDLE_SET')result=await controls.setMasterHandle(value);
-    else if(type==='DOOR_OPEN_REQUEST')result=await controls.openDoors();
-    else if(type==='DOOR_CLOSE_REQUEST')result=await controls.closeDoors();
+    else if(type==='DOOR_ENABLE_SET')result=await controls.enableDoors(value);
+    else if(type==='DOOR_OPEN_REQUEST')result=await controls.openDoors(value);
+    else if(type==='DOOR_CLOSE_REQUEST')result=await controls.closeDoors(value);
+    else if(type==='EMERGENCY_BRAKE_ACTIVATE')result=await controls.activateEmergency();
+    else if(type==='EMERGENCY_BRAKE_RELEASE')result=await controls.releaseEmergency();
     else if(type==='VIGILANCE_ACKNOWLEDGE')result=await controls.acknowledgeVigilance();
-    else if(type==='EMERGENCY_BRAKE_RESET')result=await controls.resetEmergency();
     const rejected=guideFromRejection(result);
     if(rejected)showGuide(rejected);
     return result;
@@ -155,11 +181,11 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
   const clickPart=useCallback(part=>{
     pulse(part.id);
     if(part.id==='masterHandle'){
-      onInspect(part.id,'Drag the handle vertically or tap one of the eight printed detents.');
+      onInspect(part.id,'Drag the handle vertically or select one of the thirteen detents.');
       return;
     }
     onInspect(part.id);
-    if(part.command)void sendWithGuide(part.command);
+    if(part.command)void sendWithGuide(part.command,part.value);
   },[onInspect,pulse,sendWithGuide]);
 
   const executeSession=useCallback(async action=>{
@@ -215,7 +241,7 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
         if(part.id==='masterHandle'&&['ArrowUp','ArrowDown'].includes(e.key)){
           e.preventDefault();
           const i=Math.max(0,DISPLAY_DETENTS.indexOf(previewDetent??state.masterHandle));
-          const next=DISPLAY_DETENTS[Math.max(0,Math.min(7,i+(e.key==='ArrowDown'?1:-1)))];
+          const next=DISPLAY_DETENTS[Math.max(0,Math.min(DISPLAY_DETENTS.length-1,i+(e.key==='ArrowDown'?1:-1)))];
           commitDetent(next);
         }else if(e.key==='Enter'||e.key===' '){e.preventDefault();clickPart(part);}
       },
@@ -240,17 +266,18 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
         <div className="t2d-scroller" ref={viewport.scrollRef}
           aria-label="Interactive train cab. Touch or click a component to inspect it.">
           <div className="t2d-scene">
-            <svg className="t2d-integrated-svg" ref={svgRef} viewBox="0 0 1540 798"
+            <object ref={artRef} className="t2d-cab-art-object" data={url} type="image/svg+xml"
+              aria-label="TRAINEX driver cab artwork with live named SVG layers"
+              style={{opacity:artLoaded?1:0}} onLoad={onArtLoad}
+              onError={()=>{if(!loadError){setLoadError(true);setArtLoaded(false);}}}/>
+            <svg className="t2d-integrated-svg" ref={svgRef} viewBox="0 0 1800 863.7295081967"
               preserveAspectRatio="xMidYMid meet" role="group"
               aria-label="Interactive 2D train cab with precisely aligned SVG controls">
-              <image href={url} x="0" y="0" width="1540" height="798" preserveAspectRatio="none"
-                pointerEvents="none" onError={()=>setLoadError(true)}/>
-              <CabLiveOverlay state={state} previewDetent={previewDetent}/>
-              {CAB_PARTS.map(part=><HitGeometry key={part.id} shape={part.shape}
+              {CAB_PARTS.map(part=><HitGeometry key={part.id} shape={layerBounds[part.id]??part.shape}
                 className={`t2d-svg-hit ${part.command?'t2d-svg-action':''} ${pressed===part.id?'is-pressed':''} ${keyboardFocus===part.id?'is-focused':''} ${part.group==='Cab Structure'?'t2d-svg-structure':''}`}
                 role="button" tabIndex="0" aria-label={part.label} data-part-id={part.id}
                 pointerEvents="all" {...shapeEvents(part)}/>)}
-              {DISPLAY_DETENTS.map((pos,i)=><rect key={pos} x="702" y={324+i*14.3} width="26" height="14.3"
+              {DISPLAY_DETENTS.map((pos,i)=><rect key={pos} x="860" y={detentBaselineForArt(i)-8} width="41" height="12"
                 className="t2d-svg-hit t2d-svg-detent" role="button" tabIndex="0"
                 aria-label={`Master handle ${pos}`} aria-pressed={(previewDetent??state.masterHandle)===pos}
                 onClick={()=>commitDetent(pos)}
@@ -261,11 +288,12 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
         <div className="t2d-notification-stack" aria-label="Cab information and driving guidance">
           <CabPartNotice selection={selection} onDismiss={onDismiss}/>
           <CabGuideNotice guide={guide} onDismiss={dismissGuide}/>
+          {layerBindingUnavailable&&<aside className="t2d-part-notice is-warning" role="alert"><div className="t2d-part-copy"><h3>SVG layer controls unavailable</h3><p>The SVG is visible, but this browser could not access its named layers. Use a same-origin SVG URL and allow SVG object loading.</p></div></aside>}
         </div>
       </div>
       <div className="t2d-game-footer">Tap a cab component for its function. Driver guidance appears at the top-right.</div>
     </div>
-    <details className="t2d-mobile-handle"><summary>Master handle · Eight positions</summary>
+    <details className="t2d-mobile-handle"><summary>Master handle · Thirteen positions</summary>
       <div className="t2d-detent-buttons">{DISPLAY_DETENTS.map(pos=><button key={pos} type="button"
         disabled={!ready} aria-pressed={state.masterHandle===pos} onClick={()=>commitDetent(pos)}>{pos}</button>)}</div>
     </details>

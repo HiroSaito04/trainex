@@ -1,7 +1,7 @@
 // Names exported by models/blender/scripts/rebuild_interior.py.
-export const DETENTS = Object.freeze(['EB','B3','B2','B1','N','P1','P2','P3']);
+export const DETENTS = Object.freeze(['EB','B7','B6','B5','B4','B3','B2','B1','N','P1','P2','P3','P4']);
 export const COMPONENTS = Object.freeze({ MASTER:'MASTER_CONTROL_HANDLE', EMERGENCY:'EMERGENCY_BRAKE_SWITCH', DOORS:'PASSENGER_DOOR_CONTROLS', VIGILANCE:'VIGILANCE_ACKNOWLEDGE', DISPLAY:'FRONT_DISPLAY_PANEL', LAMP:'ALL_DOORS_CLOSED_LAMP' });
-export const COMPONENT_LABELS = Object.freeze({MASTER_CONTROL_HANDLE:'Master Control Handle',EMERGENCY_BRAKE_SWITCH:'Emergency Brake Reset',PASSENGER_DOOR_CONTROLS:'Passenger Door Controls',VIGILANCE_ACKNOWLEDGE:'Vigilance Acknowledgement',FRONT_DISPLAY_PANEL:'Front Display Panel',ALL_DOORS_CLOSED_LAMP:'Door Indications'});
+export const COMPONENT_LABELS = Object.freeze({MASTER_CONTROL_HANDLE:'Master Control Handle',EMERGENCY_BRAKE_SWITCH:'Security Brake / Emergency Brake Release',PASSENGER_DOOR_CONTROLS:'Passenger Door Controls',VIGILANCE_ACKNOWLEDGE:'Vigilance Acknowledgement',FRONT_DISPLAY_PANEL:'Front Display Panel',ALL_DOORS_CLOSED_LAMP:'Door Indications'});
 export const TARGET_OBJECTS = Object.freeze({
  MASTER_SHAFT:'INTERACTIVE_Master_Controller_Shaft', MASTER_GRIP:'INTERACTIVE_Master_Controller_ShaftHandhandle',
  EMERGENCY_CAP:'INTERACTIVE_EmergencyBrake_Cap', EMERGENCY_RESET:'INTERACTIVE_EmergencyBrake_Reset_Cap',
@@ -15,13 +15,13 @@ export const TARGET_OBJECTS = Object.freeze({
 const actions = {
  [TARGET_OBJECTS.MASTER_SHAFT]:{kind:'select',componentId:COMPONENTS.MASTER},
  [TARGET_OBJECTS.MASTER_GRIP]:{kind:'select',componentId:COMPONENTS.MASTER},
- [TARGET_OBJECTS.EMERGENCY_CAP]:{kind:'command',componentId:COMPONENTS.EMERGENCY,type:'EMERGENCY_BRAKE_RESET'},
- [TARGET_OBJECTS.VIGILANCE_CAP]:{kind:'command',type:'VIGILANCE_ACKNOWLEDGE',componentId:COMPONENTS.VIGILANCE},
- [TARGET_OBJECTS.EMERGENCY_RESET]:{kind:'command',componentId:COMPONENTS.EMERGENCY,type:'EMERGENCY_BRAKE_RESET'},
- [TARGET_OBJECTS.LEFT_DOOR_OPEN]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_OPEN_REQUEST'},
- [TARGET_OBJECTS.RIGHT_DOOR_OPEN]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_OPEN_REQUEST'},
- [TARGET_OBJECTS.LEFT_DOOR_CLOSE]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_CLOSE_REQUEST'},
- [TARGET_OBJECTS.RIGHT_DOOR_CLOSE]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_CLOSE_REQUEST'},
+ [TARGET_OBJECTS.EMERGENCY_CAP]:{kind:'command',componentId:COMPONENTS.EMERGENCY,type:'EMERGENCY_BRAKE_ACTIVATE'},
+ 
+ [TARGET_OBJECTS.EMERGENCY_RESET]:{kind:'command',componentId:COMPONENTS.EMERGENCY,type:'EMERGENCY_BRAKE_RELEASE'},
+ [TARGET_OBJECTS.LEFT_DOOR_OPEN]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_OPEN_REQUEST',value:'LEFT'},
+ [TARGET_OBJECTS.RIGHT_DOOR_OPEN]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_OPEN_REQUEST',value:'RIGHT'},
+ [TARGET_OBJECTS.LEFT_DOOR_CLOSE]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_CLOSE_REQUEST',value:'LEFT'},
+ [TARGET_OBJECTS.RIGHT_DOOR_CLOSE]:{kind:'command',componentId:COMPONENTS.DOORS,type:'DOOR_CLOSE_REQUEST',value:'RIGHT'},
 };
 for(const pos of DETENTS) actions[`INTERACTIVE_Master_Detent_${pos}`]={kind:'detent',componentId:COMPONENTS.MASTER,type:'MASTER_HANDLE_SET',value:pos};
 const indicators=new Set(Object.values(TARGET_OBJECTS).filter(n=>n.startsWith('INDICATOR_') || n===TARGET_OBJECTS.DISPLAY_GRAPHIC));
@@ -45,7 +45,7 @@ function canonicalName(name) {
 export function resolveObjectAction(object){
  for(let node=object;node;node=node.parent){
   const explicit=node.userData?.trainex_action_type;
-  if(['DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST','EMERGENCY_BRAKE_RESET','VIGILANCE_ACKNOWLEDGE'].includes(explicit))return {kind:'command',type:explicit,componentId:explicit.startsWith('DOOR_')?COMPONENTS.DOORS:explicit==='VIGILANCE_ACKNOWLEDGE'?COMPONENTS.VIGILANCE:COMPONENTS.EMERGENCY};
+  if(['DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST','EMERGENCY_BRAKE_ACTIVATE','EMERGENCY_BRAKE_RELEASE'].includes(explicit))return {kind:'command',type:explicit,componentId:explicit.startsWith('DOOR_')?COMPONENTS.DOORS:COMPONENTS.EMERGENCY};
   if(node.userData?.trainex_select_only==='MASTER_CONTROL_HANDLE')return actions[TARGET_OBJECTS.MASTER_SHAFT];
   const action=actions[canonicalName(node.name || node.userData?.trainex_original_name)];
   if(action)return action;

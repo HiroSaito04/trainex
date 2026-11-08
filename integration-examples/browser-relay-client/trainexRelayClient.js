@@ -1,3 +1,4 @@
+//D:\trainex\integration-examples\browser-relay-client\trainexRelayClient.js
 /** TRAINEX browser pairing-code prototype client.
  * Match onInput with the centralized TRAINEX input management API.
  * No long-lived server/device secret is placed in browser code.

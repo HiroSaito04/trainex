@@ -1,7 +1,7 @@
 {
   "id": "emergencyBraking",
   "title": "Emergency Brake Response",
-  "description": "Request emergency braking while moving, observe deceleration and examine conditions for a training reset.",
+  "description": "Apply emergency braking while moving, observe deceleration, then request release after stopping.",
   "category": "simulation",
   "steps": [
     {
@@ -44,10 +44,16 @@
       }
     },
     {
-      "id": "reset",
-      "instruction": "Use the teaching cab’s emergency reset input and verify that the emergency indication clears.",
+      "id": "release",
+      "instruction": "With train stopped and master handle at N, request EMERGENCY BRAKE RELEASE; observe the three-second release interval.",
       "expect": {
-        "commandType": "EMERGENCY_BRAKE_RESET",
+        "commandType": "EMERGENCY_BRAKE_RELEASE"
+      }
+    },
+    {
+      "id": "release-complete",
+      "instruction": "Observe that the emergency brake indication clears after the specified three-second release interval.",
+      "expect": {
         "emergencyBrake": false
       }
     }
@@ -55,12 +61,12 @@
   "learningObjective": "Differentiate emergency from service braking and observe the emergency state through standstill.",
   "operatingConditions": [
     "Begin at low simulated speed.",
-    "Reset steps apply only to this training configuration, not universal railway operating instructions."
+    "Emergency release is simulated at standstill with the master handle at N; this is a TRAINEX training rule, not a universal railway operating instruction."
   ],
   "expectedObservations": [
     "The emergency indicator becomes active.",
     "Speed decreases over time; emergency activation does not produce instantaneous standstill.",
-    "Emergency remains active until the modeled reset conditions are satisfied."
+    "Emergency remains active until the separate release command is accepted and the modeled three-second release completes."
   ],
   "debriefQuestions": [
     "Why is emergency braking different from B1–B3 service braking?",

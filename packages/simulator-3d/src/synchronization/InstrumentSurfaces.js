@@ -86,10 +86,22 @@ function mainFace(ctx,w,h,s){
  text(ctx,'PASSENGER DOORS',w*.75,h*.62,27,'#c4d1d7',600);
  text(ctx,s.allDoorsClosed===true?'CLOSED':(s.doorState??'UNKNOWN'),w*.75,h*.75,43,
    s.allDoorsClosed?'#63e0a3':'#ffca73',700);
+ // Diagram: the upper strip is LEFT doors; the lower strip is RIGHT doors.
+ // Colors match the original TCMS legend: closed white, open yellow, fault red, unknown dark.
+ const doorColors={CLOSED:'#e3edf0',OPEN:'#ffcf38',OPENING:'#ffcf38',CLOSING:'#ffcf38',FAULT:'#f7535d',UNKNOWN:'#283137'};
+ for(const [side,y] of [['leftDoorState',410],['rightDoorState',448]]){
+   ctx.fillStyle='#d0dce2';ctx.font='bold 15px Arial';ctx.textAlign='left';
+   ctx.fillText(side==='leftDoorState'?'L':'R',31,y+23);
+   for(let i=0;i<8;i++){
+     const x=60+i*85;ctx.strokeStyle='#8fa3b0';ctx.lineWidth=1.5;ctx.strokeRect(x,y,78,32);
+     ctx.fillStyle=doorColors[s[side]??'UNKNOWN']??doorColors.UNKNOWN;
+     for(let j=0;j<3;j++)ctx.fillRect(x+7+j*24,y+7,16,17);
+   }
+ }
+ 
  ctx.fillStyle='#28333c';ctx.fillRect(0,h-95,w,95);
  const emergency=s.emergencyBrake===true;
  text(ctx,emergency?'EMERGENCY BRAKE ACTIVE':'EMERGENCY BRAKE CLEAR',w*.5,h-48,32,emergency?'#ff7474':'#8addaf',700);
- if(s.vigilanceWarning||s.vigilanceTrip)text(ctx,s.vigilanceTrip?'VIGILANCE PENALTY EB':s.vigilanceBuzzer?'VIGILANCE BUZZER':'ACKNOWLEDGE VIGILANCE',w*.5,h-110,27,'#ffd15f',700);
 }
 const specs=[
  {node:TARGET_OBJECTS.SPEED_DIAL,w:768,h:768,draw:readSpeed},
@@ -156,7 +168,7 @@ function useOriginalFace(node,spec,cameraPosition){
   update(state){
    const signature=JSON.stringify([
     state.speed,state.permittedSpeedKmh,state.masterHandle,state.doorState,
-    state.allDoorsClosed,state.emergencyBrake,state.vigilanceWarning,state.vigilanceBuzzer,state.vigilanceTrip,state.brakeCylinderPressureKpa,
+    state.allDoorsClosed,state.emergencyBrake,state.leftDoorState,state.rightDoorState,state.brakeCylinderPressureKpa,
     state.brakePipePressureKpa
    ]);
    if(signature===previous)return;

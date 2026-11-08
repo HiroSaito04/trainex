@@ -1,30 +1,21 @@
-import { tractionAcceleration } from './tractionSystem.js';
-import { coastingAcceleration } from './coastingSystem.js';
-import { serviceBrakeAcceleration } from './brakingSystem.js';
-import { emergencyBrakeAcceleration } from './emergencyBrakeSystem.js';
-
-export function advanceMotion(state, deltaSeconds, dynamics, rules) {
-  const previousSpeedMps = state.speed / 3.6;
-  let acceleration = 0;
-  if (state.emergencyBrake) {
-    acceleration = emergencyBrakeAcceleration(state, dynamics);
-  } else if (['B1','B2','B3'].includes(state.masterHandle)) {
-    acceleration = serviceBrakeAcceleration(state, dynamics);
-  } else if (['P1','P2','P3'].includes(state.masterHandle) && (!rules.requireDoorsClosedForTraction || state.allDoorsClosed)) {
-    acceleration = tractionAcceleration(state, dynamics, rules);
-  } else {
-    acceleration = coastingAcceleration(state, dynamics);
-  }
-
-  const maxSpeedMps = dynamics.maxSpeedKmh / 3.6;
-  const speedMps = Math.max(0, Math.min(maxSpeedMps,
-    previousSpeedMps + acceleration * deltaSeconds));
-  const actualAcceleration = (speedMps - previousSpeedMps) / deltaSeconds;
-  const traveled = (previousSpeedMps + speedMps) * 0.5 * deltaSeconds;
-  return {
-    ...state,
-    speed: speedMps * 3.6,
-    accelerationMps2: actualAcceleration,
-    distanceMeters: state.distanceMeters + traveled,
-  };
+import {tractionAcceleration} from './tractionSystem.js';
+import {coastingAcceleration} from './coastingSystem.js';
+import {serviceBrakeAcceleration} from './brakingSystem.js';
+import {emergencyBrakeAcceleration} from './emergencyBrakeSystem.js';
+export function advanceMotion(state,dt,dynamics,rules){
+ const prev=state.speed/3.6;
+ let target=0;
+ if(state.emergencyBrake)target=emergencyBrakeAcceleration(state,dynamics);
+ else if(/^B[1-7]$/.test(state.masterHandle))target=serviceBrakeAcceleration(state,dynamics);
+ else if(/^P[1-4]$/.test(state.masterHandle)&&(!rules.requireDoorsClosedForTraction||state.allDoorsClosed))target=tractionAcceleration(state,dynamics,rules);
+ else target=coastingAcceleration(state,dynamics);
+ // Jerk applies to traction and service braking, never compromises emergency effort.
+ let accel=target;
+ if(!state.emergencyBrake){
+  const delta=dynamics.jerkLimitMps3*dt;
+  accel=Math.max(state.accelerationMps2-delta,Math.min(state.accelerationMps2+delta,target));
+ }
+ const speed=Math.max(0,Math.min(dynamics.maxSpeedKmh/3.6,prev+accel*dt));
+ const traveled=(prev+speed)*0.5*dt;
+ return {...state,speed:speed*3.6,accelerationMps2:(speed-prev)/dt,distanceMeters:state.distanceMeters+traveled};
 }

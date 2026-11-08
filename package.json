@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspace=./apps/web",
-    "test:2d": "npm run test --workspace=@trainex/simulator-2d"
+    "test:2d": "npm run test --workspace=@trainex/simulator-2d",
+    "test:revision": "node --test tests/revision2026.spec.mjs packages/simulator-2d/tests/figmaSvgLayers.test.js"
   }
 }

@@ -4,6 +4,8 @@ import PageHeader from "../components/common/PageHeader.jsx";
 
 import PairingPanel from "../components/hardware/PairingPanel.jsx";
 
+import HardwareSessionControls from "../components/hardware/HardwareSessionControls.jsx";
+
 import ConnectionStatus from "../components/hardware/ConnectionStatus.jsx";
 
 export default function HardwarePage() {
@@ -14,6 +16,8 @@ export default function HardwarePage() {
         title="Physical Console Connection"
         description="Monitor and connect optional TRAINEX hardware without making the website dependent on the console."
       />
+
+      <HardwareSessionControls />
 
       <div className="card-grid two-cols align-start">
         <PairingPanel />

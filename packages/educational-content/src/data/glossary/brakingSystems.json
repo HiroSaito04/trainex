@@ -3,7 +3,7 @@
     "term": "Service Brake",
     "slug": "service-brake",
     "category": "Braking",
-    "definition": "A controllable braking function used to reduce train speed during normal operation; the exercise controller represents graduated requests with B1, B2 and B3.",
+    "definition": "A controllable braking function used during routine operation; TRAINEX models seven service brake notches, B1–B7.",
     "relatedComponentIds": [
       "MASTER_CONTROL_HANDLE"
     ]
@@ -18,10 +18,10 @@
     ]
   },
   {
-    "term": "Emergency Brake Reset",
-    "slug": "emergency-brake-reset",
+    "term": "Emergency Brake Release",
+    "slug": "emergency-brake-release",
     "category": "Braking",
-    "definition": "Restoring an emergency braking system to a releasable state under the applicable train and operator procedures, after its cause has been addressed.",
+    "definition": "A separate TRAINEX simulation command issued after standstill with master handle N; the modeled emergency release lasts three seconds.",
     "relatedComponentIds": [
       "EMERGENCY_BRAKE_SWITCH"
     ]

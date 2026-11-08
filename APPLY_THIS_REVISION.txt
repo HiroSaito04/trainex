@@ -1,25 +1,19 @@
-TRAINEX — PNR Vigilance Timing Revision
+TRAINEX — 2026-11-08 Driver Cab, Doors, Braking and Hardware Update
 
-REFERENCE: user-provided PNR Train Sets – Technical Specifications excerpt.
+CURRENT REVISION: Read TRAINEX_FIGMA_LAYER_BINDING_2026-11-08.md first.
+The original 2026-11-08 revision document is retained only as the historical base.
 
-INSTALL FULL PROJECT:
-1. Back up your existing TRAINEX repository and uncommitted changes.
-2. Extract TRAINEX_PNR_Vigilance_Complete.zip; the source is inside trainex/.
-3. Replace or merge the necessary source files into your checked-out repo.
-4. From the repo root, npm install; then npm run dev for local testing.
-5. In Arduino IDE, open hardware/esp32/firmware/TrainexConsole/TrainexConsole.ino.
-   Copy Secrets.example.h to Secrets.h before compiling. Use correct board/libs.
-6. Test the online pairing and real ESP32 hardware separately; neither was
-   verified or deployed automatically.
+1. Back up your existing GitHub working tree and local changes.
+2. Extract this project ZIP into a separate folder; repository source is inside trainex/.
+3. Merge or replace source files in your TRAINEX checkout as appropriate.
+4. From project root, run: npm install
+5. Run: npm run test:revision
+6. Run: npm run dev
+7. Check the 2D simulator, then open Hardware tab and Start a Session there.
+8. Connect actual ESP32 only after correct firmware/relay setup described in
+   hardware/esp32/AS5600_AND_RELEASE_SETUP.md.
+9. Run: npm run build --workspace=./apps/web and deploy your own Vercel project.
 
-INSTALL HARDWARE-ONLY PATCH:
-1. Back up and replace hardware/esp32/ with the hardware folder included here.
-2. This patch alone does NOT implement the PNR simulation countdown; to get
-   that timing use the complete project revision as well.
-3. Verify your piezo rating before connecting GPIO32.
-
-VIGILANCE: >=10 km/h; visual at 30s; buzzer at 32.5s; EB penalty at 35s.
-Resets upon actual master detent movement or Vigilance ACK. No physical LEDs.
-Master handle EB remains active; separate push button is EB Reset.
-
-Refer to PNR_VIGILANCE_REVISION.md for full implementation notes.
+IMPORTANT: No automatic Vercel deployment or physical-device firmware flashing
+was done. The previous PNR vigilance/Emergency Brake Reset documents in this
+archive are historical and superseded, NOT instructions for this revision.

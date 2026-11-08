@@ -18,11 +18,10 @@ const sessionActions=Object.freeze({
 });
 export default function Trainex2DConnected({svgUrl}){
   const snapshot=useSyncExternalStore(subscribeTrainex,getTrainexSnapshot,getTrainexSnapshot);
-  const buzzer=snapshot.ready&&snapshot.trainState?.vigilanceBuzzer===true;
   useEffect(()=>{
-    audioService.setVigilanceAlert(buzzer);
+    audioService.setVigilanceAlert(snapshot.ready && snapshot.trainState?.vigilanceBuzzer===true);
     return ()=>audioService.setVigilanceAlert(false);
-  },[buzzer]);
+  },[snapshot.ready,snapshot.trainState?.vigilanceBuzzer]);
   return <div className="t2d-connected">
     <Simulator2D trainState={snapshot.trainState} ready={snapshot.ready}
       sessionId={snapshot.sessionId} sessionStatus={snapshot.sessionStatus}

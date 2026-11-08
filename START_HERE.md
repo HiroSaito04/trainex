@@ -1,3 +1,5 @@
+> **HISTORICAL HARDWARE INTEGRATION NOTES:** For the current 2026-11-08 version start with `APPLY_THIS_REVISION.txt` and `TRAINEX_REVISION_2026-11-08.md`. The old vigilance/EB reset section below is superseded.
+
 # TRAINEX ESP32 + deployed website connection kit
 
 Prepared from the uploaded `services.zip` while preserving the `services/realtime-relay` folder layout and adding hardware and browser integration examples.

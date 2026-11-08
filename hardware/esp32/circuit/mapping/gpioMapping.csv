@@ -1,14 +1,16 @@
 control,GPIO,logic,role
-MASTER_EB,13,LOW=selected,rotary contact
-MASTER_B3,14,LOW=selected,rotary contact
-MASTER_B2,16,LOW=selected,rotary contact
-MASTER_B1,17,LOW=selected,rotary contact
-MASTER_N,18,LOW=selected,rotary contact
-MASTER_P1,19,LOW=selected,rotary contact
-MASTER_P2,21,LOW=selected,rotary contact
-MASTER_P3,22,LOW=selected,rotary contact
-VIGILANCE_ACKNOWLEDGE,23,LOW=pressed,normally-open pushbutton
-EMERGENCY_BRAKE_RESET,25,LOW=pressed,normally-open pushbutton
-DOORS_OPEN,26,LOW=pressed,normally-open pushbutton
-DOORS_CLOSE,27,LOW=pressed,normally-open pushbutton
-VIGILANCE_BUZZER,32,PWM 2200Hz output,low-current passive piezo (verify rating or use driver)
+MASTER_EB,13,LOW=selected,legacy 8-contact prototype
+MASTER_B3,14,LOW=selected,legacy 8-contact prototype
+MASTER_B2,16,LOW=selected,legacy 8-contact prototype
+MASTER_B1,17,LOW=selected,legacy 8-contact prototype
+MASTER_N,18,LOW=selected,legacy 8-contact prototype
+MASTER_P1,19,LOW=selected,legacy 8-contact prototype
+MASTER_P2,21,LOW=selected,legacy 8-contact prototype
+MASTER_P3,22,LOW=selected,legacy 8-contact prototype
+UNUSED_PREVIOUS_VIGILANCE,23,NOT POLLED,retired
+EMERGENCY_BRAKE_RELEASE,25,LOW=pressed,momentary button
+DOORS_OPEN,26,LOW=pressed,momentary button (selected bank must be enabled)
+DOORS_CLOSE,27,LOW=pressed,momentary button
+UNUSED_HORN,32,NOT POLLED,disabled until horn hardware is installed
+AS5600_SDA,21,I2C,planned 13-detent angle sensor (requires rewiring)
+AS5600_SCL,22,I2C,planned 13-detent angle sensor (requires rewiring)

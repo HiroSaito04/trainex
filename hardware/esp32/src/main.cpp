@@ -3,6 +3,7 @@
 #include <WebSocketsClient.h>
 #include <ArduinoJson.h>
 #include <time.h>
+#include <Wire.h>
 #include <Secrets.h>
 #include <TrainexRootCA.h>
 
@@ -11,10 +12,19 @@
 // Match rotary physical positions to these pins before wiring.
 static const uint8_t MASTER_PINS[8] = {13,14,16,17,18,19,21,22};
 static const char *MASTER_VALUES[8] = {"EB","B3","B2","B1","N","P1","P2","P3"};
-static const uint8_t BUTTON_PINS[5] = {23,25,26,27,32};
-static const char *BUTTON_IDS[5] = {
-  "EMERGENCY_BRAKE_RESET", "DOORS_OPEN", "DOORS_CLOSE", "HORN", "VIGILANCE_ACK"
+static const uint8_t BUTTON_PINS[3] = {25,26,27};
+static const char *BUTTON_IDS[3] = {
+  "EMERGENCY_BRAKE_RELEASE", "DOORS_OPEN", "DOORS_CLOSE"
 };
+// Enable after connecting AS5600 SDA=21 / SCL=22, and calibrating raw neutral.
+// 0 = existing eight-contact prototype, 1 = AS5600 13-notch master handle.
+#ifndef TRAINEX_USE_AS5600
+#define TRAINEX_USE_AS5600 0
+#endif
+static constexpr int AS5600_NEUTRAL_RAW = 0; // CALIBRATE while handle is at N
+static constexpr bool AS5600_REVERSE = false; // Change if physical direction is reversed
+static const char* ANGLE_VALUES[13] = {"EB","B7","B6","B5","B4","B3","B2","B1","N","P1","P2","P3","P4"};
+static const float ANGLES_DEG[13] = {-96,-84,-72,-60,-48,-36,-24,-12,0,12,24,36,48};
 static constexpr uint32_t DEBOUNCE_MS = 45;
 static constexpr uint32_t HEARTBEAT_MS = 20000;
 static constexpr uint32_t WIFI_RETRY_MS = 5000;
@@ -33,7 +43,7 @@ struct Button {
   bool pendingHigh=true;
   uint32_t changedAt=0;
 };
-Button buttonStates[5];
+Button buttonStates[3];
 
 void sendObject(JsonDocument &doc) {
   if (!authenticated || !socketClient.isConnected()) return;
@@ -62,27 +72,45 @@ void sendInput(const char *controlId, bool value) {
 }
 
 void sendMaster(int index) {
-  if(sessionId.isEmpty() || index<0 || index>=8) return;
+  if(sessionId.isEmpty() || index<0 || index>=(TRAINEX_USE_AS5600 ? 13 : 8)) return;
   JsonDocument msg;
   msg["type"]="input";
   msg["deviceId"]=RELAY_DEVICE_ID;
   msg["sessionId"]=sessionId;
   msg["sequence"]=sequence++;
   msg["controlId"]="MASTER_HANDLE";
-  msg["value"]=MASTER_VALUES[index];
+  msg["value"]=TRAINEX_USE_AS5600 ? ANGLE_VALUES[index] : MASTER_VALUES[index];
   sendObject(msg);
-  Serial.printf("Master handle: %s\n",MASTER_VALUES[index]);
+  Serial.printf("Master handle: %s\n",TRAINEX_USE_AS5600 ? ANGLE_VALUES[index] : MASTER_VALUES[index]);
 }
 
 int readDetent() {
+#if TRAINEX_USE_AS5600
+  // AS5600 raw angle: register 0x0C/0x0D, 12-bit position, 0..4095.
+  Wire.beginTransmission(0x36);
+  Wire.write(0x0C);
+  if(Wire.endTransmission(false)!=0 || Wire.requestFrom(0x36,2)!=2)return -1;
+  const int raw=((Wire.read()<<8)|Wire.read()) & 0x0FFF;
+  int difference=raw-AS5600_NEUTRAL_RAW;
+  while(difference>2048)difference-=4096;
+  while(difference<-2048)difference+=4096;
+  const float degrees=(AS5600_REVERSE?-1.f:1.f)*difference*360.f/4096.f;
+  int nearest=-1;float smallest=1000;
+  for(int i=0;i<13;i++) {
+    const float distance=fabsf(degrees-ANGLES_DEG[i]);
+    if(distance<smallest){smallest=distance;nearest=i;}
+  }
+  return smallest<=5.0f?nearest:-1; // Ignore handle between detents.
+#else
   int index=-1;
   for(int i=0;i<8;i++) {
     if(digitalRead(MASTER_PINS[i])==LOW) {
-      if(index!=-1) return -1; // Multiple positions active: ignore.
+      if(index!=-1)return -1; // Multiple positions active: ignore.
       index=i;
     }
   }
   return index;
+#endif
 }
 
 void pollInputs() {
@@ -93,15 +121,13 @@ void pollInputs() {
     stableDetent=pendingDetent;
     if(stableDetent>=0) sendMaster(stableDetent);
   }
-  for(int i=0;i<5;i++) {
+  for(int i=0;i<3;i++) {
     const bool high=digitalRead(BUTTON_PINS[i])==HIGH;
     auto &b=buttonStates[i];
     if(high!=b.pendingHigh) {b.pendingHigh=high;b.changedAt=now;}
     if(now-b.changedAt>=DEBOUNCE_MS && high==b.pendingHigh && high!=b.stableHigh) {
       b.stableHigh=high;
-      // Horn has a release event; other controls are momentary press events.
-      if(i==3) sendInput(BUTTON_IDS[i],!high);
-      else if(!high) sendInput(BUTTON_IDS[i],true);
+      if(!high) sendInput(BUTTON_IDS[i],true);
     }
   }
 }
@@ -140,7 +166,7 @@ void onSocketEvent(WStype_t event,uint8_t *payload,size_t length) {
       } else if(type=="error") {
         Serial.println(String("Relay error: ")+(msg["reason"] | "unknown"));
       } else if(type=="state_feedback") {
-        // Feedback is informational. Simulation engine owns braking/vigilance timing.
+        // Feedback is informational. Simulation engine owns braking timing.
         Serial.println("Simulator state feedback received");
       }
       break;
@@ -164,8 +190,12 @@ void connectWiFi() {
 void setup() {
   Serial.begin(115200);
   delay(300);
+#if TRAINEX_USE_AS5600
+  Wire.begin(21,22); // SDA GPIO21; SCL GPIO22. Do not share with rotary contacts.
+#else
   for(int i=0;i<8;i++) pinMode(MASTER_PINS[i],INPUT_PULLUP);
-  for(int i=0;i<5;i++) {
+#endif
+  for(int i=0;i<3;i++) {
     pinMode(BUTTON_PINS[i],INPUT_PULLUP);
     buttonStates[i].stableHigh=digitalRead(BUTTON_PINS[i])==HIGH;
     buttonStates[i].pendingHigh=buttonStates[i].stableHigh;

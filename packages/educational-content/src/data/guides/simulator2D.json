@@ -13,19 +13,19 @@
     },
     {
       "title": "Identify the controls",
-      "body": "Find the eight-position master handle, passenger-door buttons and emergency-brake input."
+      "body": "Find the 13-position master handle, left/right passenger door banks with ENABLE, OPEN and CLOSE buttons, Security Brake and emergency-release control."
     },
     {
       "title": "Practice door closure",
-      "body": "At standstill with handle N, open the doors, close them and wait for All Doors Closed confirmation."
+      "body": "At standstill with handle N, enable one door bank, open it, close it, and confirm the All Doors Closed indication when both sides are secured."
     },
     {
       "title": "Apply power or braking",
-      "body": "Request P1–P3 or B1–B3 and observe the simulated speed and handle indication."
+      "body": "Request P1–P4 or B1–B7 and observe the simulated speed and handle indication."
     },
     {
       "title": "Review safety response",
-      "body": "Activate EB in a suitable practice session, stop, return to N, and request reset."
+      "body": "Activate EB, stop, return the handle to N, request emergency release and observe the three-second release."
     }
   ],
   "notes": [

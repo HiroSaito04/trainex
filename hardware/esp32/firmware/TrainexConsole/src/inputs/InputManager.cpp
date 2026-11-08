@@ -6,8 +6,8 @@ void HardwareInputManager::begin(){handle_.begin();vigilance_.begin();reset_.beg
 void HardwareInputManager::poll(void(*emit)(const char*,const char*)){
  uint32_t now=millis(); const int handle=handle_.poll(now);
  if(handle>=0)emit("MASTER_HANDLE",kHandleValues[handle]);
- if(vigilance_.pressed(now))emit("VIGILANCE_ACKNOWLEDGE","");
- if(reset_.pressed(now))emit("EMERGENCY_BRAKE_RESET","");
+ 
+ if(reset_.pressed(now))emit("EMERGENCY_BRAKE_RELEASE","");
  if(doorOpen_.pressed(now))emit("DOORS_OPEN","");
  if(doorClose_.pressed(now))emit("DOORS_CLOSE","");
 }

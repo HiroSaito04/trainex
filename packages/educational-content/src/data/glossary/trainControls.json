@@ -3,7 +3,7 @@
     "term": "Master Control Handle",
     "slug": "master-control-handle",
     "category": "Train controls",
-    "definition": "A driving-desk controller used to request traction and/or braking; this teaching layout has EB, B3, B2, B1, N, P1, P2 and P3 positions.",
+    "definition": "A driving-desk controller used to request traction and braking; TRAINEX uses P1–P4, N, B1–B7 and EB (13 positions).",
     "relatedComponentIds": [
       "MASTER_CONTROL_HANDLE"
     ]

@@ -1,3 +1,5 @@
+> **HISTORICAL / SUPERSEDED:** This document describes the previous vigilance and EB Reset implementation. Do NOT follow it for the 2026-11-08 TRAINEX revision. Refer to `TRAINEX_REVISION_2026-11-08.md` instead.
+
 # TRAINEX — Vigilance & Emergency Brake Reset changes
 
 ## Operating behavior (prototype, not railway-certified)

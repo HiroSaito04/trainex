@@ -16,7 +16,7 @@
     },
     {
       "heading": "Commands and indications",
-      "body": "The teaching cab supports emergency activation through the EB detent of the master controller; the separate desk button is for emergency-brake reset. An active indication confirms the system’s modeled emergency state; speed indication shows deceleration and eventual standstill."
+      "body": "The master-controller EB detent and separate Security Brake pushbutton initiate emergency braking. The Emergency Brake Release control is distinct from these activation controls. Monitor the EB indication and the speedometer to confirm deceleration."
     },
     {
       "heading": "Observe the response",
@@ -24,7 +24,7 @@
     },
     {
       "heading": "Recovery is not automatic",
-      "body": "After the train stops, real-world reset and movement authority depend on the operator, train type and the event that caused the braking. The teaching cab permits reset at standstill with N selected; this must not be generalized as a real fleet procedure."
+      "body": "After standstill, the TRAINEX simulation requires master handle N and a deliberate Emergency Brake Release command; its release period is modeled as three seconds. Actual recovery follows the train operator’s rules and is not necessarily equivalent."
     }
   ],
   "componentIds": [

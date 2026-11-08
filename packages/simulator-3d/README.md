@@ -42,4 +42,4 @@ npm run dev --workspace=./apps/web
 `apps/web/src/components/simulation/Trainex3DConnected.jsx` connects all session buttons to the same runtime as 2D. The supplied app navigation CSS updates improve sidebar interaction on phones. Do not overwrite unrelated website files.
 
 ## Vigilance / emergency controls
-The master handle EB detent activates emergency braking; the separate desk cap resets it when permitted. A functioning vigilance acknowledgement button resets the engine-owned driver vigilance timer, with PNR-reference timings at speeds >= 10 km/h: a visual warning at 30 seconds, an additional buzzer at 32.5 seconds, and a penalty emergency brake at 35 seconds. These timings are reference-based but the complete vigilance system is not railway-certified.
+The master handle EB detent and separate Security Brake button activate emergency braking. A separate release command clears the emergency condition after standstill with N selected and a three-second release interval. The vigilance timer is disabled for this revision.

@@ -1,51 +1,34 @@
 # @trainex/simulation-engine
 
-Standalone, browser-compatible, pure-JavaScript authoritative train simulation engine.
-Does not depend on React, Three.js, hardware transports, or the input-manager internals.
+Authoritative browser-compatible TRAINEX train simulation engine, independent of the React/3D interfaces and ESP32 transport. All inputs go through the centralized input manager.
 
-## Usage
+## Quick example
 
 ```js
 import { createEngine } from '@trainex/simulation-engine';
-
-const engine = createEngine({ autoTick: true });
-const start = engine.startSession();
-const unsubscribe = engine.subscribe((snapshot) => console.log(snapshot.display));
-engine.sendCommand({ type: 'MASTER_HANDLE_SET', value: 'TRACTION', sessionId: start.sessionId });
-// ...
-unsubscribe();
+const engine = createEngine({autoTick:false});
+const session = engine.startSession();
+engine.sendCommand({type:'MASTER_HANDLE_SET',value:'P1',sessionId:session.sessionId});
+engine.step(1);
+console.log(engine.getState());
 engine.destroy();
 ```
 
-Use `autoTick: false` (default) and `step(seconds)` for deterministic tests or
-when a higher-level session coordinator owns the update loop.
-
 ## Command types
 
-- `MASTER_HANDLE_SET`, value `BRAKE` | `COAST` | `TRACTION`
-- `EMERGENCY_BRAKE_ACTIVATE`
-- `EMERGENCY_BRAKE_RESET`
-- `DOOR_OPEN_REQUEST`
-- `DOOR_CLOSE_REQUEST`
+- `MASTER_HANDLE_SET`, one of EB, B1–B7, N, P1–P4.
+- `EMERGENCY_BRAKE_ACTIVATE`, from the separate Security Brake control.
+- `EMERGENCY_BRAKE_RELEASE`, accepted at standstill with N selected; takes 3 seconds to clear.
+- `VIGILANCE_ACKNOWLEDGE` resets the vigilance warning/timer; it never acts as an EB release.
+- `DOOR_ENABLE_SET`, value `LEFT` or `RIGHT`.
+- `DOOR_OPEN_REQUEST` / `DOOR_CLOSE_REQUEST`, value `LEFT`, `RIGHT`, or omitted (enabled side/default bank).
 
-`sendCommand` returns `{ accepted: boolean, reason?: string }`.
-Rejected commands do not change train state. Session IDs are checked when provided.
-All software and ESP32-originated commands must go through the centralized input manager
-before reaching `sendCommand`.
+Vigilance is active for the latest named-SVG-layer revision; the engine owns the 30 s visual / 32.5 s audible / 35 s penalty sequence at speeds >= 10 km/h.
 
-## Operating rules (prototype)
+## Rules and limits
 
-- Traction needs all doors confirmed closed and emergency brake inactive.
-- Opening doors needs the train stopped and handle in COAST.
-- Emergency braking overrides all other motion states.
-- Reset requires stopped train and COAST handle.
-- Door transitions take configured durations.
-- `allDoorsClosed` is calculated from actual modeled door state, not from a button press.
-- Paused or ended sessions do not accept control commands.
-- `resetSession` stops ticking, resets train data and leaves the session PAUSED.
+Traction requires all passenger doors secured and emergency brake inactive. Door enable/open requires standstill and N. The door banks are simulated independently, with ALL DOORS CLOSED true only when both are closed. Kinematic targets are supplied by TRAINEX's 2026 train specification. Brake-pressure gauge readings are illustrative approximations rather than verified NSCR pressure calibrations. High-speed acceleration above 30 km/h is provisional.
 
-## IMPORTANT
+Use `node --test tests/revision2026.spec.mjs` from the repository root. Historical tests may still describe the previous architecture; see TRAINEX_REVISION_2026-11-08.md.
 
-Acceleration/deceleration, top speed, and door timings are illustrative **prototype** values.
-They have not been validated against the TRAINEX approved console/rolling-stock references.
-The code is for an educational simulator, not operational railway control or safety.
+Educational simulation only; not safety-rated railway software.

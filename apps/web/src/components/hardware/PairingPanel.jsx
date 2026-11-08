@@ -1,21 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connectHardware, disconnectHardware } from "../../integrations/hardwareAdapter.js";
 import { useHardwareStatus } from "../../context/useHardwareStatus.js";
 import { useTrainState } from "../../context/useTrainState.js";
 
 export default function PairingPanel() {
-  const { status } = useHardwareStatus();
+  const { status, error: hardwareError } = useHardwareStatus();
   const { sessionId } = useTrainState();
   const [endpoint, setEndpoint] = useState(import.meta.env.VITE_TRAINEX_RELAY_URL ?? "");
   const [pairingCode, setPairingCode] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (status === "connected") setPairingCode("");
+  }, [status]);
 
   function connect(event) {
     event.preventDefault();
     try {
       setError("");
       connectHardware({ endpoint, sessionId, pairingCode });
-      setPairingCode("");
+      // Retain the code on failure so the user can retry; clear only on success.
     } catch (err) {
       setError(err?.message ?? "Unable to start pairing.");
     }
@@ -31,7 +35,7 @@ export default function PairingPanel() {
       <form className="form-stack" onSubmit={connect}>
         <label>
           Secure WebSocket endpoint
-          <input type="url" placeholder="wss://relay.example.com"
+          <input type="url" placeholder="wss://relay.example.com/ws"
             value={endpoint} onChange={(e) => setEndpoint(e.target.value)} required />
         </label>
         <label>
@@ -54,9 +58,9 @@ export default function PairingPanel() {
             Disconnect
           </button>
         </div>
-        {error && <p className="feedback-error" role="alert">{error}</p>}
+        {(error || hardwareError) && <p className="feedback-error" role="alert">{error || hardwareError}</p>}
       </form>
-      <p className="tiny-note">An ESP32 and authenticated WebSocket relay are optional and not included in these four ZIPs.</p>
+      <p className="tiny-note">A compatible ESP32 firmware and authenticated WebSocket relay are required for hardware pairing.</p>
     </section>
   );
 }

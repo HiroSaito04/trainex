@@ -34,12 +34,12 @@ export default function Simulator2D({trainState=null,sendInput,ready=false,sessi
      {data('MASTER HANDLE',state.masterHandle??'—')}
      {data('BRAKE CYLINDER',displayNumber(state.brakeCylinderPressureKpa),'kPa')}
      {data('BRAKE PIPE',displayNumber(state.brakePipePressureKpa),'kPa')}
-     {data('DOORS',state.doorState??'—',null,state.allDoorsClosed===true?'t2d-good':'')}
+     {data('LEFT DOORS',state.leftDoorState??'—',null,state.leftDoorState==='CLOSED'?'t2d-good':'')}
+     {data('RIGHT DOORS',state.rightDoorState??'—',null,state.rightDoorState==='CLOSED'?'t2d-good':'')}
      {data('EMERGENCY BRAKE',state.emergencyBrake===null?'—':state.emergencyBrake?'ACTIVE':'CLEAR',null,state.emergencyBrake===true?'t2d-alert':'t2d-good')}
-     {data('VIGILANCE',state.vigilanceTrip?'PENALTY EB':state.vigilanceBuzzer?'BUZZER + VISUAL':state.vigilanceWarning?'VISUAL WARNING':'NORMAL',null,state.vigilanceWarning||state.vigilanceTrip?'t2d-alert':'t2d-good')}
    </div>
    <CabViewer state={state} ready={ready} controls={controls} svgUrl={svgUrl}
-      sessionStatus={sessionStatus} sessionActions={sessionActions}
+      sessionStatus={sessionStatus} sessionId={sessionId} sessionActions={sessionActions}
       selection={selection} onInspect={onInspect} onDismiss={onDismiss}/>
    <p className="t2d-disclaimer">Cab indications follow available train-state data. Unavailable readings are shown as —.</p>
  </section>;

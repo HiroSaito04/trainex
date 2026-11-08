@@ -1,22 +1,14 @@
-export const selectSpeed = (state) => state.speed;
-export const selectMasterHandle = (state) => state.masterHandle;
-export const selectDoorState = (state) => state.doorState;
-export const selectAllDoorsClosed = (state) => state.allDoorsClosed;
-export const selectEmergencyBrake = (state) => state.emergencyBrake;
-export const selectVigilanceWarning = (state) => state.vigilanceWarning;
-export const selectVigilanceBuzzer = (state) => state.vigilanceBuzzer;
-export const selectVigilanceTrip = (state) => state.vigilanceTrip;
-
-export function selectDisplayState(state) {
-  return Object.freeze({
-    speed: state.speed,
-    masterHandle: state.masterHandle,
-    doorState: state.doorState,
-    allDoorsClosed: state.allDoorsClosed,
-    emergencyBrake: state.emergencyBrake,
-    vigilanceWarning: state.vigilanceWarning,
-    vigilanceBuzzer: state.vigilanceBuzzer,
-    vigilanceTrip: state.vigilanceTrip,
-    vigilanceElapsedSeconds: state.vigilanceElapsedSeconds,
-  });
-}
+export const selectSpeed=s=>s.speed;
+export const selectMasterHandle=s=>s.masterHandle;
+export const selectDoorState=s=>s.doorState;
+export const selectAllDoorsClosed=s=>s.allDoorsClosed;
+export const selectEmergencyBrake=s=>s.emergencyBrake;
+export function selectDisplayState(s){return Object.freeze({
+ speed:s.speed,masterHandle:s.masterHandle,doorState:s.doorState,
+ leftDoorState:s.leftDoorState,rightDoorState:s.rightDoorState,
+ leftDoorEnabled:s.leftDoorEnabled,rightDoorEnabled:s.rightDoorEnabled,
+ allDoorsClosed:s.allDoorsClosed,emergencyBrake:s.emergencyBrake,
+ emergencyBrakeReleasing:s.emergencyBrakeReleasing,
+ brakeCylinderPressureKpa:s.brakeCylinderPressureKpa??null,
+ brakePipePressureKpa:s.brakePipePressureKpa??null,
+});}
