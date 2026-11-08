@@ -1,7 +1,7 @@
 import {useCallback,useEffect,useMemo,useRef,useState} from 'react';
 import bundledCabSvg from '../assets/TRAINEX-Driver-Cab-2D.svg?url';
 import {CAB_PARTS,DISPLAY_DETENTS,CAB_VIEWBOX} from '../config/consoleParts.js';
-import {getSvgPoint,masterDetentFromY,detentBaselineForArt} from '../core/cabGeometry.js';
+import {getSvgPoint,masterDetentFromY,detentBaselineForArt,partBounds} from '../core/cabGeometry.js';
 import {applyCabSvgLayers,findCabLayerBounds} from '../core/cabSvgLayers.js';
 import {contextualDriverGuide,driverControlWarning,guideFromRejection} from '../core/driverGuide.js';
 import {useCabViewport} from '../hooks/useCabViewport.js';
@@ -15,13 +15,13 @@ function HitGeometry({shape,...rest}){
   return null;
 }
 
-/** The existing component-info notification: no panel below the artwork. */
-function CabPartNotice({selection,onDismiss}){
+/** Details are an inline information card normally, and a temporary toast in fullscreen. */
+function CabPartNotice({selection,onDismiss,autoDismiss=false}){
   useEffect(()=>{
-    if(!selection)return undefined;
+    if(!selection||!autoDismiss)return undefined;
     const timeout=setTimeout(onDismiss,8500);
     return ()=>clearTimeout(timeout);
-  },[selection,onDismiss]);
+  },[selection,onDismiss,autoDismiss]);
   if(!selection)return null;
   return <aside className="t2d-part-notice" role="status" aria-live="polite" aria-atomic="true">
     <div className="t2d-part-copy">
@@ -108,12 +108,24 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
   const [pressed,setPressed]=useState(null);
   const [keyboardFocus,setKeyboardFocus]=useState(null);
   const [sessionBusy,setSessionBusy]=useState(false);
+  const [guideEnabled,setGuideEnabled]=useState(true);
+  const [explanationsEnabled,setExplanationsEnabled]=useState(true);
   const [guideOverride,setGuideOverride]=useState(null);
   const [dismissedContextKey,setDismissedContextKey]=useState(null);
   const contextGuide=useMemo(()=>contextualDriverGuide({state,sessionStatus,ready}),
     [state.speed,state.masterHandle,state.emergencyBrake,state.doorState,state.allDoorsClosed,state.leftDoorState,state.rightDoorState,state.leftDoorEnabled,state.rightDoorEnabled,sessionStatus,ready]);
   const guide=guideOverride || (contextGuide.key===dismissedContextKey?null:contextGuide);
   const url=loadError?bundledCabSvg:svgUrl;
+  const orderedParts=useMemo(()=>[...CAB_PARTS].sort((a,b)=>{
+    const area=part=>{const bounds=partBounds(layerBounds[part.id]??part.shape);return bounds.w*bounds.h;};
+    return area(b)-area(a); // Larger panels below their individual buttons.
+  }),[layerBounds]);
+  const showNotices=(guideEnabled&&!!guide)||(explanationsEnabled&&!!selection)||layerBindingUnavailable;
+  const renderNotices=(floating=false)=><>
+    {explanationsEnabled&&<CabPartNotice selection={selection} onDismiss={onDismiss} autoDismiss={floating}/>}
+    {guideEnabled&&<CabGuideNotice guide={guide} onDismiss={dismissGuide}/>}
+    {layerBindingUnavailable&&<aside className="t2d-part-notice is-warning" role="alert"><div className="t2d-part-copy"><h3>SVG layer controls unavailable</h3><p>The SVG is visible, but this browser could not access its named layers. Use a same-origin SVG URL and allow SVG object loading.</p></div></aside>}
+  </>;
 
   useEffect(()=>()=>{if(pressTimeoutRef.current)clearTimeout(pressTimeoutRef.current);},[]);
   useEffect(()=>setPreviewDetent(null),[state.masterHandle]);
@@ -258,6 +270,16 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
       ref={viewport.viewerRef} data-expanded={viewport.expanded}>
       <div className="t2d-game-hud" role="toolbar" aria-label="In-cab session controls">
         <CabSessionHUD status={sessionStatus} busy={sessionBusy} onAction={executeSession}/>
+        <div className="t2d-notice-preferences" role="group" aria-label="Cab help display options">
+          <button type="button" className="t2d-pref-toggle" aria-pressed={guideEnabled}
+            onClick={()=>setGuideEnabled(value=>!value)} title="Show or hide driver guide notifications">
+            <span className="t2d-pref-indicator" aria-hidden="true"/>Guide {guideEnabled?'On':'Off'}
+          </button>
+          <button type="button" className="t2d-pref-toggle" aria-pressed={explanationsEnabled}
+            onClick={()=>setExplanationsEnabled(value=>!value)} title="Show or hide cab component descriptions">
+            <span className="t2d-pref-indicator" aria-hidden="true"/>Explanations {explanationsEnabled?'On':'Off'}
+          </button>
+        </div>
         <GameHUDButton icon={viewport.expanded?'collapse':'expand'}
           label={viewport.expanded?'Exit Fullscreen':'Expand'} variant="t2d-expand"
           onClick={()=>void viewport.toggleExpanded()}/>
@@ -273,7 +295,7 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
             <svg className="t2d-integrated-svg" ref={svgRef} viewBox="0 0 1800 863.7295081967"
               preserveAspectRatio="xMidYMid meet" role="group"
               aria-label="Interactive 2D train cab with precisely aligned SVG controls">
-              {CAB_PARTS.map(part=><HitGeometry key={part.id} shape={layerBounds[part.id]??part.shape}
+              {orderedParts.map(part=><HitGeometry key={part.id} shape={layerBounds[part.id]??part.shape}
                 className={`t2d-svg-hit ${part.command?'t2d-svg-action':''} ${pressed===part.id?'is-pressed':''} ${keyboardFocus===part.id?'is-focused':''} ${part.group==='Cab Structure'?'t2d-svg-structure':''}`}
                 role="button" tabIndex="0" aria-label={part.label} data-part-id={part.id}
                 pointerEvents="all" {...shapeEvents(part)}/>)}
@@ -285,14 +307,15 @@ export default function CabViewer({state,ready,controls,selection,onInspect,onDi
             </svg>
           </div>
         </div>
-        <div className="t2d-notification-stack" aria-label="Cab information and driving guidance">
-          <CabPartNotice selection={selection} onDismiss={onDismiss}/>
-          <CabGuideNotice guide={guide} onDismiss={dismissGuide}/>
-          {layerBindingUnavailable&&<aside className="t2d-part-notice is-warning" role="alert"><div className="t2d-part-copy"><h3>SVG layer controls unavailable</h3><p>The SVG is visible, but this browser could not access its named layers. Use a same-origin SVG URL and allow SVG object loading.</p></div></aside>}
-        </div>
+        {viewport.expanded&&showNotices&&<div className="t2d-notification-stack t2d-notification-floating" aria-label="Fullscreen cab notifications">
+          {renderNotices(true)}
+        </div>}
       </div>
-      <div className="t2d-game-footer">Tap a cab component for its function. Driver guidance appears at the top-right.</div>
+      <div className="t2d-game-footer">Select a cab control for details. Guide and explanations can be turned on or off above.</div>
     </div>
+    {!viewport.expanded&&showNotices&&<div className="t2d-notification-stack t2d-info-below" aria-label="Cab component information and driver guide">
+      {renderNotices(false)}
+    </div>}
     <details className="t2d-mobile-handle"><summary>Master handle · Thirteen positions</summary>
       <div className="t2d-detent-buttons">{DISPLAY_DETENTS.map(pos=><button key={pos} type="button"
         disabled={!ready} aria-pressed={state.masterHandle===pos} onClick={()=>commitDetent(pos)}>{pos}</button>)}</div>

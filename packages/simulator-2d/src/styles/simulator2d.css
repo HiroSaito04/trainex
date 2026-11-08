@@ -190,3 +190,35 @@
 /* Original Figma SVG is loaded unchanged as a same-origin, layer-addressable document. */
 .t2d-cab-art-object{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;border:0;z-index:0}
 .t2d-integrated-svg{position:relative;z-index:1}
+
+/* Cab help preferences: compact controls that stay available in fullscreen. */
+.t2d-notice-preferences{display:flex;gap:.34rem;align-items:center;flex-wrap:wrap;margin-left:auto}
+.trainex-simulator-2d .t2d-pref-toggle{display:inline-flex;align-items:center;justify-content:center;gap:.37rem;
+  min-height:34px;padding:.33rem .53rem;border-radius:8px;border:1px solid #4c5768;
+  background:#252d37;color:#cbd5df;font-size:.69rem;font-weight:750;white-space:nowrap}
+.trainex-simulator-2d .t2d-pref-toggle[aria-pressed='true']{border-color:#668878;color:#e2fbed;background:#1d302b}
+.t2d-pref-indicator{width:7px;height:7px;border-radius:50%;background:#89919d;flex:0 0 7px}
+.t2d-pref-toggle[aria-pressed='true'] .t2d-pref-indicator{background:#39d79b;box-shadow:0 0 7px #39d79b88}
+.trainex-simulator-2d .t2d-pref-toggle:focus-visible{outline:2px solid #ffe45d;outline-offset:2px}
+/* Normal mode: the artwork stays unobstructed; readable cards sit BELOW it. */
+.t2d-info-below{position:relative;inset:auto;width:100%;max-height:none;overflow:visible;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:.65rem;
+  padding:.8rem 0 .15rem;margin:0;pointer-events:auto}
+.t2d-info-below .t2d-part-notice{max-height:none;min-height:96px;height:100%;box-shadow:none;animation:none;
+  padding:.85rem .92rem;background:var(--t2d-raised);border-color:var(--t2d-line)}
+.t2d-info-below .t2d-part-copy h3{font-size:.95rem}
+.t2d-info-below .t2d-part-copy p{font-size:.8rem;line-height:1.55}
+/* Fullscreen: nonblocking floating notices; do not shift the cab art. */
+.t2d-notification-floating{position:absolute;z-index:15;top:12px;right:12px;display:flex;
+  flex-direction:column;align-items:flex-end;gap:.5rem;width:min(344px,calc(100% - 24px));
+  pointer-events:none;max-height:min(500px,65dvh);overflow-y:auto}
+@media(max-width:700px){
+  .t2d-info-below{grid-template-columns:minmax(0,1fr)}
+  .t2d-info-below .t2d-part-notice{min-height:0}
+  .t2d-notice-preferences{order:3;flex-basis:100%;justify-content:flex-end}
+  .t2d-notification-floating{top:8px;right:8px;max-height:50dvh}
+}
+@media(max-width:430px){
+  .t2d-notice-preferences{justify-content:center;gap:.4rem}
+  .trainex-simulator-2d .t2d-pref-toggle{flex:1;font-size:.67rem}
+}

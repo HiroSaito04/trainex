@@ -25,16 +25,75 @@ export const CAB_LAYER_IDS = Object.freeze({
   releaseOn:'EMERGENCY_BREAK_RELEASE_ON', releaseOff:'EMERGENCY_BREAK_RELEASE_OFF',
 });
 
+/** Prefer the actual clickable _DESIGN layer rather than its larger enclosing board.
+ * Some older exports do not include the separate bypass DESIGN children; when
+ * those are missing, we use their named parent groups without changing the SVG.
+ */
 export const CAB_HIT_LAYERS = Object.freeze({
   masterHandle:'MASTER_CONTROL_DESIGN',
   vigilanceButton:'VIGILANCE_BUTTON_DESIGN',
+  leftDoors:'LEFT_DOOR_BUTTONS_BOARD', rightDoors:'RIGHT_DOOR_BUTTONS_BOARD',
   leftDoorClose:'LEFT_DOOR_CLOSE_BUTTON_DESIGN',
   leftDoorEnable:'LEFT_DOOR_ENABLE_OPEN_BUTTON_DESIGN',
   leftDoorOpen:'LEFT_DOOR_OPEN_BUTTON_DESIGN',
   rightDoorClose:'RIGHT_DOOR_CLOSE_BUTTON_DESIGN',
   rightDoorEnable:'RIGHT_DOOR_ENABLE_OPEN_BUTTON_DESIGN',
   rightDoorOpen:'RIGHT_DOOR_OPEN_BUTTON_DESIGN',
+  bypass:'BYPASS_SWITCHES_BOARD_DESIGN',
+  bypassATP:'ATP BYPASS SWITCH_DESIGN',
+  bypassZS:'SPEEDMETER/ZERO SPEED BYPASS SWITCH_DESIGN',
+  bypassADC:'ALL DOORS CLOSED BYPASS SWITCH_DESIGN',
+  bypassTCMS:'TCMS BYPASS SWITCH_DESIGN',
+  bypassDSD:'DRIVER SAFETY DEVICE BYPASS SWITCH_DESIGN',
+  bypassMR:'MAIN RESERVOIR PRESSURE BYPASS SWITCH_DESIGN',
+  securityBrake:'SECURITY_BRAKE_BUTTON_DESIGN',
+  driverKey:'DRIVER_KEYHOLE_DESIGN',
+  reverser:'REVERSER_CONTROL_DESIGN',
+  horn:'HORN_BUTTON_DESIGN',
+  modeSelector:'MODE_SELECTOR_KNOB_DESIGN',
+  cabSelector:'CAB_SELECTION_KNOB_DESIGN',
+  auxiliary:'SWITCHES_BOARD',
+  pantograph:'PANTOGRAPH_BUTTON_DESIGN',
+  batteryOff:'BATTERY_OFF_BUTTON_DESIGN',
+  batteryOn:'BATTERY_ON_BUTTON_DESIGN',
+  electricBrake:'ELECTRIC_BRAKE_SWITCH_BUTTON',
+  parkingBrake:'PARKING_BRAKE_SWITCH_BUTTON',
+  tailLight:'TAIL_LIGHT_SWITCH_BUTTON',
+  headLight:'HEAD_LIGHT_SWITCH_BUTTON',
+  brakeCylinder:'BRAKE_CYLINDER_PRESSURE_GAUGE_DESIGN',
+  brakePipe:'BRAKE_PIPE_PRESSURE_GAUGE_DESIGN',
+  current:'TRACTION_CURRENT_METER_DESIGN',
+  voltage:'TRACTION_VOLTAGE _METER_DESIGN',
+  remoteIndicatorsBoard:'INDICATORS_DESIGN',
+  stationStop:'STATION_STOP_INDICATOR',
+  departureAuthorize:'DEPART_AUTHORIZED_INDICATOR',
+  remoteBrake:'REMOTE_EB_INDICATOR',
+  radio:'TRAIN_PROTECTION_RADIO_BOARD_DESIGN',
+  radioPower:'POWER_PUSH_BUTTON_SWITCH_DESIGN',
+  radioEmergency:'EMERGENCY_RADIO_PUSH_BUTTON_SWITCH_DESIGN',
+  radioTest:'RADIO_TEST_PUSH_BUTTON_SWITCH_DESIGN',
+  radioOCC:'OCC_CALL_PUSH_BUTTON_SWITCH_DESIGN',
+  radioWayside:'WAYSIDE_COMMUNICATION_PUSH_BUTTON_SWITCH_DESIGN',
+  radioInterrupt:'COMMUNICATION_INTERRUPTPUSH_BUTTON_SWITCH_DESIGN',
+  radioStatus:'RADIO_STATUS_DISPLAY_DESIGN',
 });
+
+export const CAB_HIT_LAYER_FALLBACKS = Object.freeze({
+  bypass:'BYPASS_SWITCHES_BOARD',
+  bypassATP:'ATP BYPASS SWITCH',
+  bypassZS:'SPEEDMETER/ZERO SPEED BYPASS SWITCH',
+  bypassADC:'ALL DOORS CLOSED BYPASS SWITCH',
+  bypassTCMS:'TCMS BYPASS SWITCH',
+  bypassDSD:'DRIVER SAFETY DEVICE BYPASS SWITCH',
+  bypassMR:'MAIN RESERVOIR PRESSURE BYPASS SWITCH',
+});
+
+/** These hit layers already exist in the bundled, unedited artwork. */
+export const LEGACY_CAB_HIT_LAYER_IDS = Object.freeze([
+ 'MASTER_CONTROL_DESIGN','VIGILANCE_BUTTON_DESIGN',
+ 'LEFT_DOOR_CLOSE_BUTTON_DESIGN','LEFT_DOOR_ENABLE_OPEN_BUTTON_DESIGN','LEFT_DOOR_OPEN_BUTTON_DESIGN',
+ 'RIGHT_DOOR_CLOSE_BUTTON_DESIGN','RIGHT_DOOR_ENABLE_OPEN_BUTTON_DESIGN','RIGHT_DOOR_OPEN_BUTTON_DESIGN',
+]);
 
 const get=(doc,id)=>doc?.getElementById?.(id)??null;
 const finite=v=>Number.isFinite(v)?v:0;
@@ -123,17 +182,28 @@ export function applyCabSvgLayers(doc,{state={},previewDetent=null,sessionId=nul
  return true;
 }
 
-/** Shape bounds in the original 8784x4215 design coordinate system. */
+/** Convert the actual Figma component bounds into interactive SVG hit geometry.
+ * A nested group transform is applied when present, so rotated controls still
+ * line up with the original drawing. This never edits the source SVG content.
+ */
 export function findCabLayerBounds(doc,{width=1800,sourceWidth=8784}={}){
  const bounds={};
  const factor=width/sourceWidth;
+ const rootMatrix=doc?.documentElement?.getCTM?.();
  for(const [part,id] of Object.entries(CAB_HIT_LAYERS)){
-  const node=get(doc,id);
+  const node=get(doc,id)??get(doc,CAB_HIT_LAYER_FALLBACKS[part]);
   if(!node?.getBBox)continue;
   try{
    const b=node.getBBox();
    if(!(b.width>0&&b.height>0))continue;
-   bounds[part]={kind:'rect',x:b.x*factor,y:b.y*factor,w:b.width*factor,h:b.height*factor,rx:2};
+   const rect={kind:'rect',x:b.x*factor,y:b.y*factor,w:b.width*factor,h:b.height*factor,rx:2};
+   const ctm=node.getCTM?.();
+   if(!ctm){bounds[part]=rect;continue;}
+   let m=ctm;
+   try{if(rootMatrix?.inverse&&rootMatrix?.multiply)m=rootMatrix.inverse().multiply(ctm);}catch{}
+   const corners=[[b.x,b.y],[b.x+b.width,b.y],[b.x+b.width,b.y+b.height],[b.x,b.y+b.height]];
+   const points=corners.map(([x,y])=>[(m.a*x+m.c*y+m.e)*factor,(m.b*x+m.d*y+m.f)*factor]);
+   bounds[part]=points.every(pair=>pair.every(Number.isFinite))?{kind:'polygon',points}:rect;
   }catch{/* Retain the premeasured fallback hit shape. */}
  }
  return bounds;
@@ -142,6 +212,6 @@ export function findCabLayerBounds(doc,{width=1800,sourceWidth=8784}={}){
 export const EXPECTED_DYNAMIC_LAYERS=Object.freeze([
  ...Object.values(CAB_LAYER_IDS),
  ...DISPLAY_DETENTS.map(n=>`TEXT_${n}`),
- ...Object.values(CAB_HIT_LAYERS),
+ ...LEGACY_CAB_HIT_LAYER_IDS,
  ...Array.from({length:8},(_,i)=>['left','right'].flatMap(side=>Array.from({length:4},(_,j)=>`Open_Cab${String(i+1).padStart(2,'0')}_${side}_Door${j+1}`))).flat(),
 ]);
