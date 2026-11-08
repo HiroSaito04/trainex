@@ -1,7 +1,7 @@
 import {MASTER_HANDLE_POSITIONS} from '@trainex/contracts';
 const HANDLES=new Set(MASTER_HANDLE_POSITIONS);
 const COMMANDS=new Set(['MASTER_HANDLE_SET','EMERGENCY_BRAKE_ACTIVATE','EMERGENCY_BRAKE_RELEASE',
- 'DOOR_ENABLE_SET','DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST','VIGILANCE_ACKNOWLEDGE']);
+ 'DOOR_ENABLE_SET','DOOR_OPEN_REQUEST','DOOR_CLOSE_REQUEST','VIGILANCE_ACKNOWLEDGE','HORN_SET']);
 const reject=reason=>({accepted:false,reason});
 export function processCommand(state,command,{doors,rules}){
  if(!command || typeof command!=='object' || Array.isArray(command))return reject('Command must be an object.');
@@ -26,6 +26,9 @@ export function processCommand(state,command,{doors,rules}){
   if(state.speed>doors.stoppedThresholdKmh)return reject('Emergency brake release requires the train to stop.');
   if(state.masterHandle!=='N')return reject('Return the master handle to N before releasing emergency brake.');
   next={...state,emergencyBrakeReleasing:true,emergencyReleaseElapsed:0};break;
+ case 'HORN_SET':
+  if(typeof command.value!=='boolean')return reject('Horn expects true or false.');
+  next={...state,hornActive:command.value};break;
  case 'VIGILANCE_ACKNOWLEDGE':
   next={...state,vigilanceElapsedSeconds:0,vigilanceWarning:false,vigilanceBuzzer:false,vigilanceTrip:false};
   // Acknowledgement does not automatically release already-applied penalty EB.

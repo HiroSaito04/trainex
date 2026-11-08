@@ -1,0 +1,70 @@
+{
+  "board": "ESP32-WROOM-32 classic 30-pin USB-C",
+  "master": {
+    "sensor": "AS5600",
+    "sda": 21,
+    "scl": 22,
+    "address": "0x36",
+    "positions": [
+      "EB",
+      "B7",
+      "B6",
+      "B5",
+      "B4",
+      "B3",
+      "B2",
+      "B1",
+      "N",
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ]
+  },
+  "buttons": [
+    {
+      "name": "LEFT_DOOR_ENABLE",
+      "gpio": 18,
+      "controlId": "DOOR_ENABLE_LEFT",
+      "value": true
+    },
+    {
+      "name": "LEFT_DOOR_OPEN",
+      "gpio": 26,
+      "controlId": "DOORS_OPEN",
+      "value": "LEFT"
+    },
+    {
+      "name": "LEFT_DOOR_CLOSE",
+      "gpio": 27,
+      "controlId": "DOORS_CLOSE",
+      "value": "LEFT"
+    },
+    {
+      "name": "RIGHT_DOOR_ENABLE",
+      "gpio": 19,
+      "controlId": "DOOR_ENABLE_RIGHT",
+      "value": true
+    },
+    {
+      "name": "RIGHT_DOOR_OPEN",
+      "gpio": 25,
+      "controlId": "DOORS_OPEN",
+      "value": "RIGHT"
+    },
+    {
+      "name": "RIGHT_DOOR_CLOSE",
+      "gpio": 33,
+      "controlId": "DOORS_CLOSE",
+      "value": "RIGHT"
+    },
+    {
+      "name": "VIGILANCE",
+      "gpio": 23,
+      "controlId": "VIGILANCE_ACKNOWLEDGE",
+      "value": true
+    }
+  ],
+  "electrical": "N.O. to common GND, INPUT_PULLUP, active LOW, 35ms debounce",
+  "otherPhysicalControls": []
+}

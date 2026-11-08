@@ -1,16 +1,12 @@
-control,GPIO,logic,role
-MASTER_EB,13,LOW=selected,legacy 8-contact prototype
-MASTER_B3,14,LOW=selected,legacy 8-contact prototype
-MASTER_B2,16,LOW=selected,legacy 8-contact prototype
-MASTER_B1,17,LOW=selected,legacy 8-contact prototype
-MASTER_N,18,LOW=selected,legacy 8-contact prototype
-MASTER_P1,19,LOW=selected,legacy 8-contact prototype
-MASTER_P2,21,LOW=selected,legacy 8-contact prototype
-MASTER_P3,22,LOW=selected,legacy 8-contact prototype
-UNUSED_PREVIOUS_VIGILANCE,23,NOT POLLED,retired
-EMERGENCY_BRAKE_RELEASE,25,LOW=pressed,momentary button
-DOORS_OPEN,26,LOW=pressed,momentary button (selected bank must be enabled)
-DOORS_CLOSE,27,LOW=pressed,momentary button
-UNUSED_HORN,32,NOT POLLED,disabled until horn hardware is installed
-AS5600_SDA,21,I2C,planned 13-detent angle sensor (requires rewiring)
-AS5600_SCL,22,I2C,planned 13-detent angle sensor (requires rewiring)
+kind,hardware_control,gpio,config_define,breadboard_signal_gpio_wire,breadboard_signal_button_wire,button_other_terminal,control_id,value,svg_layer
+BUTTON,LEFT_DOOR_ENABLE,18,TRAINEX_PIN_LEFT_ENABLE,B8,E8,F8 to H8 to BLUE (-) rail,DOOR_ENABLE_LEFT,true,LEFT_DOOR_ENABLE_OPEN_BUTTON_DESIGN
+BUTTON,LEFT_DOOR_OPEN,26,TRAINEX_PIN_LEFT_OPEN,B16,E16,F16 to H16 to BLUE (-) rail,DOORS_OPEN,LEFT,LEFT_DOOR_OPEN_BUTTON_DESIGN
+BUTTON,LEFT_DOOR_CLOSE,27,TRAINEX_PIN_LEFT_CLOSE,B24,E24,F24 to H24 to BLUE (-) rail,DOORS_CLOSE,LEFT,LEFT_DOOR_CLOSE_BUTTON_DESIGN
+BUTTON,RIGHT_DOOR_ENABLE,19,TRAINEX_PIN_RIGHT_ENABLE,B32,E32,F32 to H32 to BLUE (-) rail,DOOR_ENABLE_RIGHT,true,RIGHT_DOOR_ENABLE_OPEN_BUTTON_DESIGN
+BUTTON,RIGHT_DOOR_OPEN,25,TRAINEX_PIN_RIGHT_OPEN,B40,E40,F40 to H40 to BLUE (-) rail,DOORS_OPEN,RIGHT,RIGHT_DOOR_OPEN_BUTTON_DESIGN
+BUTTON,RIGHT_DOOR_CLOSE,33,TRAINEX_PIN_RIGHT_CLOSE,B48,E48,F48 to H48 to BLUE (-) rail,DOORS_CLOSE,RIGHT,RIGHT_DOOR_CLOSE_BUTTON_DESIGN
+BUTTON,VIGILANCE_ACKNOWLEDGE,23,TRAINEX_PIN_VIGILANCE,B56,E56,F56 to H56 to BLUE (-) rail,VIGILANCE_ACKNOWLEDGE,true,VIGILANCE_BUTTON_DESIGN
+FUTURE,AS5600_SDA,21,RESERVED,not connected yet,,,SDA,,
+FUTURE,AS5600_SCL,22,RESERVED,not connected yet,,,SCL,,
+FUTURE,AS5600_VCC,3V3,RESERVED,not connected yet,,,VCC,,
+FUTURE,AS5600_GND,GND,RESERVED,not connected yet,,,GND,,

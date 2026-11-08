@@ -5,5 +5,6 @@ export function createInitialState(){return {
  leftDoorEnabled:false,rightDoorEnabled:false,
  emergencyBrake:false,emergencyBrakeReleasing:false,emergencyReleaseElapsed:0,
  vigilanceElapsedSeconds:0,vigilanceWarning:false,vigilanceBuzzer:false,vigilanceTrip:false,
+ hornActive:false,
  brakePressureRatio:0,brakeCylinderPressureKpa:0,brakePipePressureKpa:500,
 };}

@@ -1,5 +1,11 @@
-# TRAINEX hardware circuit (no physical LEDs)
+# TRAINEX seven-button circuit
 
-Use `mapping/gpioMapping.csv`, `wiring/wiringGuide.md`, and `components/billOfMaterials.csv` together. The only populated hardware inputs are the four buttons and the eight master-handle positions. **No LED outputs are wired or coded.** A passive piezo buzzer is assigned GPIO32 and has PWM firmware, but the actual buzzer/driver circuit and browser feedback integration still need testing.
+The seven tactile switches are **mounted directly on the MB-102 breadboard**, each straddling the center E–F trench.
 
-After testing the real switch contacts and ESP32 pin names, draw the final physical schematic in `schematics/`. No unverified schematic is included here.
+**Authoritative wiring documentation:**
+- `wiring/EXACT_BREADBOARD_PLACEMENT.md` — direct-placement and continuity testing
+- `mapping/gpioMapping.csv` — pins and website commands
+- `schematics/MB102_Seven_Buttons.svg` — color-coded conceptual wiring drawing
+- `testing/WIRING_VERIFICATION_CHECKLIST.md` — physical inspection
+
+Buttons use `INPUT_PULLUP` and common GND. Leave 3V3 disconnected until AS5600 sensor is installed later.

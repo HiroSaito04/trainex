@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="850" viewBox="0 0 1450 850">
+<rect width="1450" height="850" fill="#f8fafc"/>
+<text x="48" y="54" font-size="30" font-family="Arial" font-weight="700" fill="#102b43">TRAINEX / ESP32 → MB-102 → 7 Switches</text>
+<text x="48" y="86" font-size="18" font-family="Arial" fill="#4e6474">Pin-to-pin wiring schematic. Blue rail shares GND; every colored signal has a dedicated GPIO.</text>
+<rect x="46" y="155" width="278" height="540" rx="16" fill="#263641" stroke="#90a7b5" stroke-width="4"/>
+<text x="185" y="195" font-family="Arial" font-size="30" fill="white" font-weight="700" text-anchor="middle">ESP32-WROOM</text>
+<text x="185" y="226" font-family="Arial" font-size="17" fill="#d0dce4" text-anchor="middle">30-pin / USB-C</text>
+<rect x="480" y="155" width="283" height="540" rx="16" fill="#ebedef" stroke="#90a7b5" stroke-width="3"/>
+<text x="622" y="196" font-family="Arial" font-size="25" text-anchor="middle" fill="#293d4d" font-weight="700">Breadboard</text>
+<text x="622" y="224" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">Independent A–E rows</text>
+<rect x="820" y="155" width="575" height="540" rx="16" fill="#edf2f6" stroke="#90a7b5" stroke-width="3"/>
+<text x="1106" y="196" font-family="Arial" font-size="26" text-anchor="middle" fill="#293d4d" font-weight="700">Panel-mounted switches</text>
+<path d="M324 250 H440 V260 H820" stroke="#357ac4" stroke-width="5" fill="none"/>
+<rect x="800" y="245" width="16" height="30" rx="4" fill="#357ac4"/>
+<text x="185" y="256" fill="white" font-family="Arial" font-size="17" text-anchor="middle">GND</text>
+<text x="625" y="253" fill="#255e9a" font-family="Arial" font-size="18" text-anchor="middle">Upper BLUE (-) rail</text>
+<text x="1060" y="255" fill="#255e9a" font-family="Arial" font-size="17" text-anchor="middle">Ground return for every switch</text>
+<rect x="70" y="303" width="110" height="30" rx="5" fill="#394e5b" stroke="#8aa0af"/>
+<text x="125" y="323" fill="white" font-family="Arial" font-size="18" text-anchor="middle">GPIO18</text>
+<path d="M180 320 H482" fill="none" stroke="#b88824" stroke-width="3.5"/>
+<rect x="484" y="304" width="277" height="31" rx="6" fill="#fff" stroke="#b88824" stroke-width="2"/>
+<text x="622" y="325" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">B8 / D8 SAME STRIP</text>
+<path d="M761 320 H970" fill="none" stroke="#b88824" stroke-width="3.5"/>
+<rect x="972" y="300" width="370" height="40" rx="10" fill="#fff" stroke="#b88824" stroke-width="3"/>
+<text x="1157" y="326" font-family="Arial" font-size="18" fill="#293d4d" text-anchor="middle">LEFT DOOR ENABLE</text>
+<path d="M1342 320 H1380 V260 H1320" fill="none" stroke="#357ac4" stroke-width="2.4"/>
+<rect x="70" y="353" width="110" height="30" rx="5" fill="#394e5b" stroke="#8aa0af"/>
+<text x="125" y="373" fill="white" font-family="Arial" font-size="18" text-anchor="middle">GPIO26</text>
+<path d="M180 370 H482" fill="none" stroke="#329970" stroke-width="3.5"/>
+<rect x="484" y="354" width="277" height="31" rx="6" fill="#fff" stroke="#329970" stroke-width="2"/>
+<text x="622" y="375" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">B16 / D16 SAME STRIP</text>
+<path d="M761 370 H970" fill="none" stroke="#329970" stroke-width="3.5"/>
+<rect x="972" y="350" width="370" height="40" rx="10" fill="#fff" stroke="#329970" stroke-width="3"/>
+<text x="1157" y="376" font-family="Arial" font-size="18" fill="#293d4d" text-anchor="middle">LEFT DOOR OPEN</text>
+<path d="M1342 370 H1380 V260 H1320" fill="none" stroke="#357ac4" stroke-width="2.4"/>
+<rect x="70" y="403" width="110" height="30" rx="5" fill="#394e5b" stroke="#8aa0af"/>
+<text x="125" y="423" fill="white" font-family="Arial" font-size="18" text-anchor="middle">GPIO27</text>
+<path d="M180 420 H482" fill="none" stroke="#c24d53" stroke-width="3.5"/>
+<rect x="484" y="404" width="277" height="31" rx="6" fill="#fff" stroke="#c24d53" stroke-width="2"/>
+<text x="622" y="425" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">B24 / D24 SAME STRIP</text>
+<path d="M761 420 H970" fill="none" stroke="#c24d53" stroke-width="3.5"/>
+<rect x="972" y="400" width="370" height="40" rx="10" fill="#fff" stroke="#c24d53" stroke-width="3"/>
+<text x="1157" y="426" font-family="Arial" font-size="18" fill="#293d4d" text-anchor="middle">LEFT DOOR CLOSE</text>
+<path d="M1342 420 H1380 V260 H1320" fill="none" stroke="#357ac4" stroke-width="2.4"/>
+<rect x="70" y="453" width="110" height="30" rx="5" fill="#394e5b" stroke="#8aa0af"/>
+<text x="125" y="473" fill="white" font-family="Arial" font-size="18" text-anchor="middle">GPIO19</text>
+<path d="M180 470 H482" fill="none" stroke="#b88824" stroke-width="3.5"/>
+<rect x="484" y="454" width="277" height="31" rx="6" fill="#fff" stroke="#b88824" stroke-width="2"/>
+<text x="622" y="475" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">B32 / D32 SAME STRIP</text>
+<path d="M761 470 H970" fill="none" stroke="#b88824" stroke-width="3.5"/>
+<rect x="972" y="450" width="370" height="40" rx="10" fill="#fff" stroke="#b88824" stroke-width="3"/>
+<text x="1157" y="476" font-family="Arial" font-size="18" fill="#293d4d" text-anchor="middle">RIGHT DOOR ENABLE</text>
+<path d="M1342 470 H1380 V260 H1320" fill="none" stroke="#357ac4" stroke-width="2.4"/>
+<rect x="70" y="503" width="110" height="30" rx="5" fill="#394e5b" stroke="#8aa0af"/>
+<text x="125" y="523" fill="white" font-family="Arial" font-size="18" text-anchor="middle">GPIO25</text>
+<path d="M180 520 H482" fill="none" stroke="#329970" stroke-width="3.5"/>
+<rect x="484" y="504" width="277" height="31" rx="6" fill="#fff" stroke="#329970" stroke-width="2"/>
+<text x="622" y="525" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">B40 / D40 SAME STRIP</text>
+<path d="M761 520 H970" fill="none" stroke="#329970" stroke-width="3.5"/>
+<rect x="972" y="500" width="370" height="40" rx="10" fill="#fff" stroke="#329970" stroke-width="3"/>
+<text x="1157" y="526" font-family="Arial" font-size="18" fill="#293d4d" text-anchor="middle">RIGHT DOOR OPEN</text>
+<path d="M1342 520 H1380 V260 H1320" fill="none" stroke="#357ac4" stroke-width="2.4"/>
+<rect x="70" y="553" width="110" height="30" rx="5" fill="#394e5b" stroke="#8aa0af"/>
+<text x="125" y="573" fill="white" font-family="Arial" font-size="18" text-anchor="middle">GPIO33</text>
+<path d="M180 570 H482" fill="none" stroke="#c24d53" stroke-width="3.5"/>
+<rect x="484" y="554" width="277" height="31" rx="6" fill="#fff" stroke="#c24d53" stroke-width="2"/>
+<text x="622" y="575" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">B48 / D48 SAME STRIP</text>
+<path d="M761 570 H970" fill="none" stroke="#c24d53" stroke-width="3.5"/>
+<rect x="972" y="550" width="370" height="40" rx="10" fill="#fff" stroke="#c24d53" stroke-width="3"/>
+<text x="1157" y="576" font-family="Arial" font-size="18" fill="#293d4d" text-anchor="middle">RIGHT DOOR CLOSE</text>
+<path d="M1342 570 H1380 V260 H1320" fill="none" stroke="#357ac4" stroke-width="2.4"/>
+<rect x="70" y="603" width="110" height="30" rx="5" fill="#394e5b" stroke="#8aa0af"/>
+<text x="125" y="623" fill="white" font-family="Arial" font-size="18" text-anchor="middle">GPIO23</text>
+<path d="M180 620 H482" fill="none" stroke="#505b64" stroke-width="3.5"/>
+<rect x="484" y="604" width="277" height="31" rx="6" fill="#fff" stroke="#505b64" stroke-width="2"/>
+<text x="622" y="625" font-family="Arial" font-size="17" text-anchor="middle" fill="#293d4d">B56 / D56 SAME STRIP</text>
+<path d="M761 620 H970" fill="none" stroke="#505b64" stroke-width="3.5"/>
+<rect x="972" y="600" width="370" height="40" rx="10" fill="#fff" stroke="#505b64" stroke-width="3"/>
+<text x="1157" y="626" font-family="Arial" font-size="18" fill="#293d4d" text-anchor="middle">VIGILANCE ACKNOWLEDGE</text>
+<path d="M1342 620 H1380 V260 H1320" fill="none" stroke="#357ac4" stroke-width="2.4"/>
+<text x="58" y="765" font-family="Arial" font-size="18" fill="#2e4353">All N.O. button terminals must be open at rest, short to GND only when pressed (INPUT_PULLUP).</text>
+<text x="58" y="800" font-family="Arial" font-size="18" fill="#b25151">Do NOT use the red (+) rail for buttons. I²C GPIO21/22 are reserved for the future AS5600.</text>
+</svg>

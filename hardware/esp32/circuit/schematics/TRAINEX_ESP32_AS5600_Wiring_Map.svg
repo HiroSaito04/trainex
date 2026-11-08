@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980">
+<rect width="1440" height="980" fill="#f7f9fc"/>
+<text x="64" y="70" font-family="Arial" font-size="37" font-weight="bold" fill="#14233c">TRAINEX · ESP32 hardware wiring</text>
+<text x="64" y="110" font-family="Arial" font-size="20" fill="#64748b">13-detent AS5600 master controller · five core buttons · optional expansion · USB-C power</text>
+
+<rect x="75" y="155" width="320" height="200" rx="14" fill="#e8f6f7" stroke="#94d5db" stroke-width="2"/>
+<text x="103" y="199" font-family="Arial" font-size="22" fill="#0f5661" font-weight="bold" text-anchor="start">AS5600 MAGNETIC SENSOR</text>
+<text x="103" y="235" font-family="Arial" font-size="18" fill="#0f5661" font-weight="bold" text-anchor="start">VCC</text>
+<text x="250" y="235" font-family="Arial" font-size="18" fill="#0f5661" font-weight="normal" text-anchor="start">3V3</text>
+<text x="103" y="266" font-family="Arial" font-size="18" fill="#0f5661" font-weight="bold" text-anchor="start">GND</text>
+<text x="250" y="266" font-family="Arial" font-size="18" fill="#0f5661" font-weight="normal" text-anchor="start">GND</text>
+<text x="103" y="297" font-family="Arial" font-size="18" fill="#0f5661" font-weight="bold" text-anchor="start">SDA</text>
+<text x="250" y="297" font-family="Arial" font-size="18" fill="#0f5661" font-weight="normal" text-anchor="start">GPIO21</text>
+<text x="103" y="328" font-family="Arial" font-size="18" fill="#0f5661" font-weight="bold" text-anchor="start">SCL</text>
+<text x="250" y="328" font-family="Arial" font-size="18" fill="#0f5661" font-weight="normal" text-anchor="start">GPIO22</text>
+<rect x="480" y="155" width="405" height="550" rx="14" fill="#24354c" stroke="#0d2035" stroke-width="2"/>
+<text x="682" y="202" font-family="Arial" font-size="28" fill="#fff" font-weight="bold" text-anchor="middle">ESP32-WROOM-32</text>
+<text x="682" y="235" font-family="Arial" font-size="19" fill="#d6e3ef" font-weight="normal" text-anchor="middle">30-pin USB-C development board</text>
+<text x="512" y="273" font-family="Arial" font-size="17" fill="#bde3e9" font-weight="bold" text-anchor="start">INPUT / I2C</text>
+<rect x="505" y="287" width="355" height="35" rx="7" fill="#344a66" stroke="#56708e" stroke-width="2"/>
+<text x="520" y="312" font-family="Arial" font-size="17" fill="#f1f5f9" font-weight="normal" text-anchor="start">AS5600 SDA</text>
+<text x="833" y="312" font-family="Arial" font-size="17" fill="#d6e3ef" font-weight="bold" text-anchor="end">GPIO 21</text>
+<rect x="505" y="329" width="355" height="35" rx="7" fill="#344a66" stroke="#56708e" stroke-width="2"/>
+<text x="520" y="354" font-family="Arial" font-size="17" fill="#f1f5f9" font-weight="normal" text-anchor="start">AS5600 SCL</text>
+<text x="833" y="354" font-family="Arial" font-size="17" fill="#d6e3ef" font-weight="bold" text-anchor="end">GPIO 22</text>
+<rect x="505" y="371" width="355" height="35" rx="7" fill="#344a66" stroke="#56708e" stroke-width="2"/>
+<text x="520" y="396" font-family="Arial" font-size="17" fill="#f1f5f9" font-weight="normal" text-anchor="start">VIGILANCE</text>
+<text x="833" y="396" font-family="Arial" font-size="17" fill="#d6e3ef" font-weight="bold" text-anchor="end">GPIO 23</text>
+<rect x="505" y="413" width="355" height="35" rx="7" fill="#344a66" stroke="#56708e" stroke-width="2"/>
+<text x="520" y="438" font-family="Arial" font-size="17" fill="#f1f5f9" font-weight="normal" text-anchor="start">EB RELEASE</text>
+<text x="833" y="438" font-family="Arial" font-size="17" fill="#d6e3ef" font-weight="bold" text-anchor="end">GPIO 25</text>
+<rect x="505" y="455" width="355" height="35" rx="7" fill="#344a66" stroke="#56708e" stroke-width="2"/>
+<text x="520" y="480" font-family="Arial" font-size="17" fill="#f1f5f9" font-weight="normal" text-anchor="start">DOOR OPEN</text>
+<text x="833" y="480" font-family="Arial" font-size="17" fill="#d6e3ef" font-weight="bold" text-anchor="end">GPIO 26</text>
+<rect x="505" y="497" width="355" height="35" rx="7" fill="#344a66" stroke="#56708e" stroke-width="2"/>
+<text x="520" y="522" font-family="Arial" font-size="17" fill="#f1f5f9" font-weight="normal" text-anchor="start">DOOR CLOSE</text>
+<text x="833" y="522" font-family="Arial" font-size="17" fill="#d6e3ef" font-weight="bold" text-anchor="end">GPIO 27</text>
+<rect x="505" y="539" width="355" height="35" rx="7" fill="#344a66" stroke="#56708e" stroke-width="2"/>
+<text x="520" y="564" font-family="Arial" font-size="17" fill="#f1f5f9" font-weight="normal" text-anchor="start">HORN</text>
+<text x="833" y="564" font-family="Arial" font-size="17" fill="#d6e3ef" font-weight="bold" text-anchor="end">GPIO 33</text>
+<rect x="505" y="602" width="355" height="74" rx="9" fill="#233f4c" stroke="#488481" stroke-width="2"/>
+<text x="520" y="630" font-family="Arial" font-size="18" fill="#d4ffde" font-weight="bold" text-anchor="start">GPIO32 → BUZZER DRIVER</text>
+<text x="520" y="654" font-family="Arial" font-size="15" fill="#e8f4ef" font-weight="normal" text-anchor="start">DISABLED until transistor installed</text>
+<path d="M395,235 L479,235" fill="none" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" />
+<path d="M395,266 L479,266" fill="none" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" />
+<path d="M395,297 L479,297" fill="none" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" />
+<path d="M395,328 L479,328" fill="none" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" />
+<rect x="980" y="155" width="390" height="403" rx="14" fill="#ffffff" stroke="#c9d2e0" stroke-width="2"/>
+<text x="1008" y="197" font-family="Arial" font-size="23" fill="#15213a" font-weight="bold" text-anchor="start">FIVE CORE BUTTONS</text>
+<circle cx="1026" cy="242" r="18" fill="#333333" stroke="#8090a0" stroke-width="3"/>
+<text x="1061" y="246" font-family="Arial" font-size="18" fill="#263548" font-weight="normal" text-anchor="start">Vigilance acknowledge</text>
+<text x="1330" y="246" font-family="Arial" font-size="17" fill="#3f708e" font-weight="bold" text-anchor="end">GPIO23</text>
+<path d="M885,312 L970,312" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+<circle cx="1026" cy="304" r="18" fill="#347cc1" stroke="#8090a0" stroke-width="3"/>
+<text x="1061" y="308" font-family="Arial" font-size="18" fill="#263548" font-weight="normal" text-anchor="start">EB RELEASE</text>
+<text x="1330" y="308" font-family="Arial" font-size="17" fill="#3f708e" font-weight="bold" text-anchor="end">GPIO25</text>
+<path d="M885,354 L970,354" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+<circle cx="1026" cy="366" r="18" fill="#e8b343" stroke="#8090a0" stroke-width="3"/>
+<text x="1061" y="370" font-family="Arial" font-size="18" fill="#263548" font-weight="normal" text-anchor="start">Door OPEN</text>
+<text x="1330" y="370" font-family="Arial" font-size="17" fill="#3f708e" font-weight="bold" text-anchor="end">GPIO26</text>
+<path d="M885,396 L970,396" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+<circle cx="1026" cy="428" r="18" fill="#202b31" stroke="#8090a0" stroke-width="3"/>
+<text x="1061" y="432" font-family="Arial" font-size="18" fill="#263548" font-weight="normal" text-anchor="start">Door CLOSE</text>
+<text x="1330" y="432" font-family="Arial" font-size="17" fill="#3f708e" font-weight="bold" text-anchor="end">GPIO27</text>
+<path d="M885,438 L970,438" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+<circle cx="1026" cy="490" r="18" fill="#f4f4f4" stroke="#8090a0" stroke-width="3"/>
+<text x="1061" y="494" font-family="Arial" font-size="18" fill="#263548" font-weight="normal" text-anchor="start">Horn</text>
+<text x="1330" y="494" font-family="Arial" font-size="17" fill="#3f708e" font-weight="bold" text-anchor="end">GPIO33</text>
+<path d="M885,480 L970,480" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+<rect x="980" y="582" width="390" height="105" rx="14" fill="#e5f0e6" stroke="#84ac8d" stroke-width="2"/>
+<text x="1009" y="619" font-family="Arial" font-size="22" fill="#256345" font-weight="bold" text-anchor="start">COMMON GND RAIL</text>
+<text x="1009" y="649" font-family="Arial" font-size="16" fill="#3c7954" font-weight="normal" text-anchor="start">All switch returns + AS5600 GND</text>
+<path d="M1210,558 L1210,582" fill="none" stroke="#28884c" stroke-width="4" stroke-linecap="round" />
+<path d="M885,685 L980,685" fill="none" stroke="#28884c" stroke-width="5" stroke-linecap="round" />
+<rect x="75" y="422" width="320" height="242" rx="14" fill="#fff7ed" stroke="#f5c57b" stroke-width="2"/>
+<text x="103" y="460" font-family="Arial" font-size="20" fill="#8a4c08" font-weight="bold" text-anchor="start">OPTIONAL EXTRA BUTTONS</text>
+<text x="105" y="500" font-family="Arial" font-size="17" fill="#8a4c08" font-weight="bold" text-anchor="start">GPIO18</text>
+<text x="182" y="500" font-family="Arial" font-size="16" fill="#795a2d" font-weight="normal" text-anchor="start">LEFT door ENABLE</text>
+<text x="105" y="543" font-family="Arial" font-size="17" fill="#8a4c08" font-weight="bold" text-anchor="start">GPIO19</text>
+<text x="182" y="543" font-family="Arial" font-size="16" fill="#795a2d" font-weight="normal" text-anchor="start">RIGHT door ENABLE</text>
+<text x="105" y="586" font-family="Arial" font-size="17" fill="#8a4c08" font-weight="bold" text-anchor="start">GPIO13</text>
+<text x="182" y="586" font-family="Arial" font-size="16" fill="#795a2d" font-weight="normal" text-anchor="start">SECURITY BRAKE</text>
+<text x="102" y="640" font-family="Arial" font-size="14" fill="#795a2d" font-weight="normal" text-anchor="start">Enable firmware flag only after wiring</text>
+<path d="M395,531 L480,531" fill="none" stroke="#e6a13c" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 6"/>
+<rect x="75" y="733" width="1295" height="155" rx="14" fill="#fff4f4" stroke="#e8b1b5" stroke-width="2"/>
+<text x="105" y="776" font-family="Arial" font-size="22" fill="#8a2331" font-weight="bold" text-anchor="start">OPTIONAL ACTIVE BUZZER OUTPUT (GPIO32)</text>
+<text x="105" y="812" font-family="Arial" font-size="17" fill="#853b48" font-weight="normal" text-anchor="start">GPIO32 → 1 kΩ resistor → NPN base  |  emitter → common GND  |  collector → buzzer (−)</text>
+<text x="105" y="845" font-family="Arial" font-size="16" fill="#853b48" font-weight="normal" text-anchor="start">Buzzer (+) → verified rated supply. Add 10 kΩ base pull-down. Do NOT connect buzzer to GPIO directly.</text>
+<path d="M706,705 L706,732" fill="none" stroke="#c84556" stroke-width="4" stroke-linecap="round" />
+<text x="75" y="944" font-family="Arial" font-size="17" fill="#64748b" font-weight="normal" text-anchor="start">Pins are GPIO numbers, not breadboard row positions. Check the exact ESP32 board labels before wiring.</text>
+</svg>

@@ -1,3 +1,5 @@
+> **Legacy reference only.** GPIO and EB RESET instructions here have been superseded by `TRAINEX_HARDWARE_REVISION_2026-11-08.md`.
+
 > **HISTORICAL / SUPERSEDED:** This document describes the previous vigilance and EB Reset implementation. Do NOT follow it for the 2026-11-08 TRAINEX revision. Refer to `TRAINEX_REVISION_2026-11-08.md` instead.
 
 # TRAINEX — PNR-reference vigilance revision

@@ -4,7 +4,7 @@ import { useHardwareStatus } from "../../context/useHardwareStatus.js";
 import { useTrainState } from "../../context/useTrainState.js";
 
 export default function PairingPanel() {
-  const { status, error: hardwareError } = useHardwareStatus();
+  const { status, method, error: hardwareError } = useHardwareStatus();
   const { sessionId } = useTrainState();
   const [endpoint, setEndpoint] = useState(import.meta.env.VITE_TRAINEX_RELAY_URL ?? "");
   const [pairingCode, setPairingCode] = useState("");
@@ -31,7 +31,7 @@ export default function PairingPanel() {
         <p className="eyebrow">OPTIONAL HARDWARE</p>
         <h2>Connect an ESP32 console</h2>
       </div>
-      <p>Start a simulation session first. Connect only through a separately deployed relay that authenticates device and session pairing.</p>
+      <p>Optional Wi-Fi/WSS connection. Start a simulation session first and use a separately deployed authenticated relay. For direct USB-C, use the panel beside this one.</p>
       <form className="form-stack" onSubmit={connect}>
         <label>
           Secure WebSocket endpoint
@@ -54,7 +54,7 @@ export default function PairingPanel() {
             Connect
           </button>
           <button type="button" className="btn btn-secondary"
-            onClick={disconnectHardware} disabled={status === "disconnected"}>
+            onClick={disconnectHardware} disabled={method !== "websocket" || status === "disconnected"}>
             Disconnect
           </button>
         </div>

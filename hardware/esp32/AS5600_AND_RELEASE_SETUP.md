@@ -1,12 +1,13 @@
-# ESP32 configuration after TRAINEX revision
+# AS5600 / emergency release / physical inputs — current setup
 
-The **PlatformIO active firmware** is `hardware/esp32/src/main.cpp`.
+**Only active firmware:** `hardware/esp32/src/main.cpp` compiled using `hardware/esp32/platformio.ini`.
 
-- Default `TRAINEX_USE_AS5600=0`: legacy 8-contact handle still works (EB, B3, B2, B1, N, P1, P2, P3).
-- After fitting an AS5600 sensor, change to `TRAINEX_USE_AS5600=1` (or set a compile flag). Connect its 3.3V power, GND, SDA to GPIO21, and SCL to GPIO22. **Disconnect any rotary switch contacts from GPIO21/22** before using I²C.
-- Measure the sensor RAW_ANGLE register at Neutral and enter the 0–4095 reading into `AS5600_NEUTRAL_RAW`. Verify P positions read as positive and B as negative. Set `AS5600_REVERSE=true` if necessary.
-- The simulator recognizes all 13 detents; the sensor rejects readings farther than 5 degrees from a detent.
-- GPIO25 button sends `EMERGENCY_BRAKE_RELEASE`, not RESET. Release requires speed near zero and master handle N and takes 3 seconds in the engine.
-- GPIO23 vigilance has been retired and must not be wired as an active command. GPIO32 horn input is disabled to prevent phantom presses while unconnected.
-- GPIO26/27 open/close doors **on the selected enabled side**. The chosen side is currently enabled through the corresponding 2D SVG door ENABLE control. No additional enable buttons were assigned to physical GPIO pins in this revision.
-- Hardware pairing still needs the externally deployed authenticated WSS relay.
+1. All **13** handle detents require the AS5600; legacy eight-contact rotary contact firmware is **retired**. Wire `3V3 / GND / SDA21 / SCL22` and physically disconnect the old switch contacts.
+2. Open PlatformIO Serial Monitor at 115200 baud with the handle at `N`; read `AS5600 RAW=...`. Set `TRAINEX_AS5600_NEUTRAL_RAW` in `include/TrainexHardwareConfig.h`. It defaults to `-1`, which disables master commands until calibrated. Set `TRAINEX_AS5600_REVERSE 1` if P1 reads in the brake direction.
+3. Mandatory five buttons: GPIO23 vigilance, GPIO25 EB release, GPIO26 door OPEN, GPIO27 door CLOSE, GPIO33 horn. Each input connects to common GND when pressed.
+4. Door LEFT/RIGHT enable buttons on GPIO18/19 and the red security brake on GPIO13 are **optional extras**; `TRAINEX_ENABLE_EXTRA_CONTROLS=0` until installed.
+5. GPIO32 is **output to an external active buzzer transistor driver**; `TRAINEX_ENABLE_BUZZER_DRIVER=0` until the driver and current draw are verified.
+6. The site starts a session and handles all state, including the three-second EB release, stopped/N conditions, 30/32.5/35-second vigilance sequence, and door-side interlocks. The ESP32 reads/sends commands only.
+7. Use Wi-Fi 2.4 GHz and authenticated WSS relay; the Vercel web app is not a direct Wi-Fi endpoint for the board. No Bluetooth.
+
+Detailed table, ground-rail wiring and testing: `circuit/wiring/wiringGuide.md` and `circuit/testing/*.md`.

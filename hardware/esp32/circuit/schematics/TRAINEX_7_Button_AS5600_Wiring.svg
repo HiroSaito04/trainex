@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="770" viewBox="0 0 1180 770">
+<rect width="1180" height="770" rx="18" fill="#f7f9fb"/>
+<text x="38" y="53" fill="#142b3a" font-family="Arial,sans-serif" font-weight="bold" font-size="29">TRAINEX - ESP32 physical wiring (7 buttons + AS5600)</text>
+<text x="38" y="79" fill="#566777" font-family="Arial,sans-serif" font-size="15">Conceptual wiring schematic | All switches are normally-open to shared GND | USB-C powers ESP32</text>
+<rect x="35" y="126" width="255" height="570" rx="15" fill="#253541" stroke="#597280" stroke-width="3"/>
+<text x="163" y="165" text-anchor="middle" fill="#fff" font-family="Arial" font-weight="bold" font-size="23">ESP32-WROOM-32</text>
+<text x="163" y="189" text-anchor="middle" fill="#d7e0e7" font-family="Arial" font-size="15">30-pin USB-C board</text>
+<rect x="318" y="126" width="350" height="174" rx="13" fill="#f0f6fa" stroke="#93adba" stroke-width="2"/>
+<text x="335" y="157" fill="#142b3a" font-family="Arial" font-weight="bold" font-size="20">AS5600 magnetic angle sensor</text>
+<text x="335" y="179" fill="#526575" font-family="Arial" font-size="13">13 detents: EB, B7...B1, N, P1...P4</text>
+<rect x="318" y="322" width="826" height="374" rx="13" fill="#fff" stroke="#b4c9d6" stroke-width="2"/>
+<text x="334" y="355" fill="#142b3a" font-family="Arial" font-size="20" font-weight="bold">Momentary switches - opposite contact to GND</text>
+<line x1="824" x2="824" y1="390" y2="675" stroke="#4a6d8b" stroke-width="4"/>
+<text x="837" y="380" fill="#4a6d8b" font-family="Arial" font-size="13">Common ground bus</text>
+<circle cx="281" cy="220" r="4" fill="#d65c47"/>
+<path d="M281 220 H320" stroke="#d65c47" stroke-width="3" fill="none"/>
+<text x="80" y="225" fill="#fff" font-family="Arial" font-size="15">3V3</text>
+<text x="337" y="225" fill="#152c39" font-family="Arial" font-size="15">VCC</text>
+<circle cx="281" cy="237" r="4" fill="#59636b"/>
+<path d="M281 237 H320" stroke="#59636b" stroke-width="3" fill="none"/>
+<text x="80" y="242" fill="#fff" font-family="Arial" font-size="15">GND</text>
+<text x="337" y="242" fill="#152c39" font-family="Arial" font-size="15">GND</text>
+<circle cx="281" cy="254" r="4" fill="#e1ac28"/>
+<path d="M281 254 H320" stroke="#e1ac28" stroke-width="3" fill="none"/>
+<text x="80" y="259" fill="#fff" font-family="Arial" font-size="15">GPIO21</text>
+<text x="337" y="259" fill="#152c39" font-family="Arial" font-size="15">SDA</text>
+<circle cx="281" cy="271" r="4" fill="#4686bd"/>
+<path d="M281 271 H320" stroke="#4686bd" stroke-width="3" fill="none"/>
+<text x="80" y="276" fill="#fff" font-family="Arial" font-size="15">GPIO22</text>
+<text x="337" y="276" fill="#152c39" font-family="Arial" font-size="15">SCL</text>
+<text x="476" y="224" fill="#152b38" font-family="Arial" font-size="15">VCC/GND to breadboard rails</text>
+<text x="476" y="248" fill="#152b38" font-family="Arial" font-size="15">GPIO21/22 = I²C data/clock</text>
+<text x="51" y="396" fill="white" font-family="Arial" font-size="15">GPIO 18</text>
+<circle cx="281" cy="390" r="4.5" fill="#2e9c73"/>
+<line x1="281" y1="390" x2="440" y2="390" stroke="#2e9c73" stroke-width="3"/>
+<rect x="440" y="375" width="190" height="30" rx="7" fill="#f7fafc" stroke="#2e9c73" stroke-width="2"/>
+<text x="535" y="395" text-anchor="middle" fill="#142d3c" font-family="Arial" font-size="14" font-weight="bold">LEFT ENABLE</text>
+<path d="M630 390 H688" stroke="#2e9c73" stroke-width="3" fill="none"/>
+<circle cx="697" cy="390" r="3" fill="#2e9c73"/>
+<circle cx="744" cy="390" r="3" fill="#4a6d8b"/>
+<path d="M698 377 l43 8" stroke="#142b3a" stroke-width="3" stroke-linecap="round"/>
+<path d="M744 390 H824" stroke="#4a6d8b" stroke-width="3" fill="none"/>
+<text x="846" y="395" fill="#526577" font-family="Arial" font-size="13">DOOR_ENABLE_LEFT</text>
+<text x="51" y="437" fill="white" font-family="Arial" font-size="15">GPIO 26</text>
+<circle cx="281" cy="431" r="4.5" fill="#2e9c73"/>
+<line x1="281" y1="431" x2="440" y2="431" stroke="#2e9c73" stroke-width="3"/>
+<rect x="440" y="416" width="190" height="30" rx="7" fill="#f7fafc" stroke="#2e9c73" stroke-width="2"/>
+<text x="535" y="436" text-anchor="middle" fill="#142d3c" font-family="Arial" font-size="14" font-weight="bold">LEFT OPEN</text>
+<path d="M630 431 H688" stroke="#2e9c73" stroke-width="3" fill="none"/>
+<circle cx="697" cy="431" r="3" fill="#2e9c73"/>
+<circle cx="744" cy="431" r="3" fill="#4a6d8b"/>
+<path d="M698 418 l43 8" stroke="#142b3a" stroke-width="3" stroke-linecap="round"/>
+<path d="M744 431 H824" stroke="#4a6d8b" stroke-width="3" fill="none"/>
+<text x="846" y="436" fill="#526577" font-family="Arial" font-size="13">DOORS_OPEN: LEFT</text>
+<text x="51" y="478" fill="white" font-family="Arial" font-size="15">GPIO 27</text>
+<circle cx="281" cy="472" r="4.5" fill="#2e9c73"/>
+<line x1="281" y1="472" x2="440" y2="472" stroke="#2e9c73" stroke-width="3"/>
+<rect x="440" y="457" width="190" height="30" rx="7" fill="#f7fafc" stroke="#2e9c73" stroke-width="2"/>
+<text x="535" y="477" text-anchor="middle" fill="#142d3c" font-family="Arial" font-size="14" font-weight="bold">LEFT CLOSE</text>
+<path d="M630 472 H688" stroke="#2e9c73" stroke-width="3" fill="none"/>
+<circle cx="697" cy="472" r="3" fill="#2e9c73"/>
+<circle cx="744" cy="472" r="3" fill="#4a6d8b"/>
+<path d="M698 459 l43 8" stroke="#142b3a" stroke-width="3" stroke-linecap="round"/>
+<path d="M744 472 H824" stroke="#4a6d8b" stroke-width="3" fill="none"/>
+<text x="846" y="477" fill="#526577" font-family="Arial" font-size="13">DOORS_CLOSE: LEFT</text>
+<text x="51" y="519" fill="white" font-family="Arial" font-size="15">GPIO 19</text>
+<circle cx="281" cy="513" r="4.5" fill="#2584c4"/>
+<line x1="281" y1="513" x2="440" y2="513" stroke="#2584c4" stroke-width="3"/>
+<rect x="440" y="498" width="190" height="30" rx="7" fill="#f7fafc" stroke="#2584c4" stroke-width="2"/>
+<text x="535" y="518" text-anchor="middle" fill="#142d3c" font-family="Arial" font-size="14" font-weight="bold">RIGHT ENABLE</text>
+<path d="M630 513 H688" stroke="#2584c4" stroke-width="3" fill="none"/>
+<circle cx="697" cy="513" r="3" fill="#2584c4"/>
+<circle cx="744" cy="513" r="3" fill="#4a6d8b"/>
+<path d="M698 500 l43 8" stroke="#142b3a" stroke-width="3" stroke-linecap="round"/>
+<path d="M744 513 H824" stroke="#4a6d8b" stroke-width="3" fill="none"/>
+<text x="846" y="518" fill="#526577" font-family="Arial" font-size="13">DOOR_ENABLE_RIGHT</text>
+<text x="51" y="560" fill="white" font-family="Arial" font-size="15">GPIO 25</text>
+<circle cx="281" cy="554" r="4.5" fill="#2584c4"/>
+<line x1="281" y1="554" x2="440" y2="554" stroke="#2584c4" stroke-width="3"/>
+<rect x="440" y="539" width="190" height="30" rx="7" fill="#f7fafc" stroke="#2584c4" stroke-width="2"/>
+<text x="535" y="559" text-anchor="middle" fill="#142d3c" font-family="Arial" font-size="14" font-weight="bold">RIGHT OPEN</text>
+<path d="M630 554 H688" stroke="#2584c4" stroke-width="3" fill="none"/>
+<circle cx="697" cy="554" r="3" fill="#2584c4"/>
+<circle cx="744" cy="554" r="3" fill="#4a6d8b"/>
+<path d="M698 541 l43 8" stroke="#142b3a" stroke-width="3" stroke-linecap="round"/>
+<path d="M744 554 H824" stroke="#4a6d8b" stroke-width="3" fill="none"/>
+<text x="846" y="559" fill="#526577" font-family="Arial" font-size="13">DOORS_OPEN: RIGHT</text>
+<text x="51" y="601" fill="white" font-family="Arial" font-size="15">GPIO 33</text>
+<circle cx="281" cy="595" r="4.5" fill="#2584c4"/>
+<line x1="281" y1="595" x2="440" y2="595" stroke="#2584c4" stroke-width="3"/>
+<rect x="440" y="580" width="190" height="30" rx="7" fill="#f7fafc" stroke="#2584c4" stroke-width="2"/>
+<text x="535" y="600" text-anchor="middle" fill="#142d3c" font-family="Arial" font-size="14" font-weight="bold">RIGHT CLOSE</text>
+<path d="M630 595 H688" stroke="#2584c4" stroke-width="3" fill="none"/>
+<circle cx="697" cy="595" r="3" fill="#2584c4"/>
+<circle cx="744" cy="595" r="3" fill="#4a6d8b"/>
+<path d="M698 582 l43 8" stroke="#142b3a" stroke-width="3" stroke-linecap="round"/>
+<path d="M744 595 H824" stroke="#4a6d8b" stroke-width="3" fill="none"/>
+<text x="846" y="600" fill="#526577" font-family="Arial" font-size="13">DOORS_CLOSE: RIGHT</text>
+<text x="51" y="642" fill="white" font-family="Arial" font-size="15">GPIO 23</text>
+<circle cx="281" cy="636" r="4.5" fill="#b77731"/>
+<line x1="281" y1="636" x2="440" y2="636" stroke="#b77731" stroke-width="3"/>
+<rect x="440" y="621" width="190" height="30" rx="7" fill="#f7fafc" stroke="#b77731" stroke-width="2"/>
+<text x="535" y="641" text-anchor="middle" fill="#142d3c" font-family="Arial" font-size="14" font-weight="bold">VIGILANCE</text>
+<path d="M630 636 H688" stroke="#b77731" stroke-width="3" fill="none"/>
+<circle cx="697" cy="636" r="3" fill="#b77731"/>
+<circle cx="744" cy="636" r="3" fill="#4a6d8b"/>
+<path d="M698 623 l43 8" stroke="#142b3a" stroke-width="3" stroke-linecap="round"/>
+<path d="M744 636 H824" stroke="#4a6d8b" stroke-width="3" fill="none"/>
+<text x="846" y="641" fill="#526577" font-family="Arial" font-size="13">VIGILANCE_ACKNOWLEDGE</text>
+<line x1="824" y1="674" x2="824" y2="710" stroke="#4a6d8b" stroke-width="4"/>
+<path d="M810 710 H838 M814 717 H834 M819 724 H829" stroke="#4a6d8b" stroke-width="3"/>
+<text x="38" y="746" fill="#526577" font-family="Arial" font-size="14">Bridge any split in the blue (-) breadboard rail. Do not connect a GPIO directly to 3V3/5V.</text>
+</svg>

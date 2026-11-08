@@ -1,12 +1,11 @@
-# TRAINEX hardware specifications — no physical LED indicators
+# Active hardware component specifications
 
-- **MCU:** Classic ESP32-WROOM Type-C development board, 3.3 V GPIO, USB-powered.
-- **Momentary switches (4):** normally-open contact, one terminal to an assigned GPIO and the other to GND, read via `INPUT_PULLUP`.
-- **Master lever:** non-shorting 1P12T selector mechanically limited to 8 positions (EB, B3, B2, B1, N, P1, P2, P3). Common to GND; eight contacts to mapped GPIO pins.
-- **Buzzer:** planned but not yet assigned in firmware; identify active/passive type and its current rating before choosing a driver or pin.
-- **LEDs:** none; status lamps remain virtual on the 2D/3D displays.
-- **Power:** data-capable USB cable for programming/testing; suitable USB power supply for untethered Wi-Fi use. Do not apply 5 V to a GPIO.
-- **Connection:** Wi-Fi/WSS intended after pairing is integrated; USB Serial for first local hardware test. No Bluetooth.
+- **ESP32-WROOM classic, 30-pin USB-C:** one board, ESP32 digital inputs configured `INPUT_PULLUP`, 3.3 V logic, USB-C for programming/power.
+- **AS5600 angle sensor:** one sensor, I2C at address `0x36`; 3V3 supply, GPIO21=SDA, GPIO22=SCL, GND; 12-degree detent spacing, from -96 degree EB to +48 degree P4.
+- **Seven 6x6mm four-leg tactile N.O. switches mounted across breadboard trench:** one each left enable, left open, left close, right enable, right open, right close, vigilance. All active LOW to common GND, 35 ms debouncing. See mapping.
+- **Breadboard + jumpers:** 830 tie-point breadboard, GND rail bridged across manufacturer split(s), optional 3V3 rail for AS5600 only.
+- **Mechanics:** source-specified 3D-printed lever, 8 mm steel shaft, 8 mm bearing, 8 mm collar, spring plunger, M5 x 40 mm bolt, shaft-end magnetic coupling.
+- **Existing active piezo buzzer:** listed in materials PDF, **not connected or enabled** in this scoped build.
+- **No hardware LEDs:** all door/EB/vigilance indicator lighting remains in SVG/TMS, not physical outputs.
 
-## PNR vigilance buzzer
-GPIO32 sends a 2.2 kHz PWM tone to a low-current 3.3 V-compatible passive piezo when browser feedback sets `vigilanceBuzzer=true` (32.5 s to 35 s). For an active, high-current or 5V buzzer, verify its module specification and use a suitably rated transistor driver rather than direct GPIO.
+**Source versus design decision:** source PDF has an earlier limited pushbutton plan; exactly seven buttons are required by the current user-defined hardware scope. Source material does not itself fix GPIOs or browser protocol; those are TRAINEX implementation assignments.

@@ -3,6 +3,7 @@ import "../assets/styles/pages/hardware.css";
 import PageHeader from "../components/common/PageHeader.jsx";
 
 import PairingPanel from "../components/hardware/PairingPanel.jsx";
+import UsbSerialPanel from "../components/hardware/UsbSerialPanel.jsx";
 
 import HardwareSessionControls from "../components/hardware/HardwareSessionControls.jsx";
 
@@ -20,12 +21,15 @@ export default function HardwarePage() {
       <HardwareSessionControls />
 
       <div className="card-grid two-cols align-start">
-        <PairingPanel />
+        <UsbSerialPanel />
 
-        <ConnectionStatus />
+        <PairingPanel />
       </div>
 
+      <ConnectionStatus />
+
       <p className="notice spaced">
+        Direct USB mode requires Chrome/Edge serial-port permission and a closed PlatformIO Serial Monitor.
         Internet-based hardware requires a
         separately deployed, authenticated
         WebSocket relay. This page does not

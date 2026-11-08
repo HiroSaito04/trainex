@@ -15,7 +15,7 @@ export function createHardwareTrainingBridge({getSnapshot,subscribeSnapshot,send
  const submit=async event=>{
    const result=await sendTrainexInput(event);
    // Events on the wire are hardware control IDs. Training uses canonical engine commands.
-   const mapping={MASTER_HANDLE:'MASTER_HANDLE_SET',EMERGENCY_BRAKE:'EMERGENCY_BRAKE_ACTIVATE',EMERGENCY_BRAKE_RELEASE:'EMERGENCY_BRAKE_RELEASE',DOOR_ENABLE_LEFT:'DOOR_ENABLE_SET',DOOR_ENABLE_RIGHT:'DOOR_ENABLE_SET',DOORS_OPEN:'DOOR_OPEN_REQUEST',DOORS_CLOSE:'DOOR_CLOSE_REQUEST'};
+   const mapping={MASTER_HANDLE:'MASTER_HANDLE_SET',EMERGENCY_BRAKE:'EMERGENCY_BRAKE_ACTIVATE',EMERGENCY_BRAKE_RELEASE:'EMERGENCY_BRAKE_RELEASE',DOOR_ENABLE_LEFT:'DOOR_ENABLE_SET',DOOR_ENABLE_RIGHT:'DOOR_ENABLE_SET',DOORS_OPEN:'DOOR_OPEN_REQUEST',DOORS_CLOSE:'DOOR_CLOSE_REQUEST',VIGILANCE_ACKNOWLEDGE:'VIGILANCE_ACKNOWLEDGE',HORN:'HORN_SET'};
    trainer.recordCommand({type:mapping[event.controlId]??event.type,value:event.value,source:event.source},result);
    return result;
  };

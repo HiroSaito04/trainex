@@ -1,9 +1,24 @@
 import { forwardHardwareInput } from "./inputAdapter.js";
-import { getTrainexSnapshot } from "./trainexClient.js";
+import { getTrainexSnapshot, subscribeTrainex } from "./trainexClient.js";
+import { UsbSerialConnection } from "./UsbSerialConnection.js";
+import { parseTrainexUsbLine } from "./parseTrainexUsbLine.js";
 
 let socket = null;
+let usbConnection = null;
+let usbSequence = 0;
+let unsubscribeUsbSession = null;
 let sequence = -1;
 let heartbeatTimer = null;
+let unsubscribeFeedback = null;
+let lastFeedbackAt = 0;
+let previousBuzzer = null;
+function stopFeedback() {
+  unsubscribeFeedback?.();
+  unsubscribeFeedback = null;
+  previousBuzzer = null;
+  lastFeedbackAt = 0;
+}
+
 let hardware = Object.freeze({
   status: "disconnected",
   deviceId: null,
@@ -35,9 +50,15 @@ function stopHeartbeat() {
 
 export function disconnectHardware() {
   const previous = socket;
+  const previousUsb = usbConnection;
   socket = null;
+  usbConnection = null;
+  usbSequence = 0;
   sequence = -1;
+  unsubscribeUsbSession?.();
+  unsubscribeUsbSession = null;
   stopHeartbeat();
+  stopFeedback();
 
   // Explicit disconnect: tell the relay to free the session when possible.
   if (previous) {
@@ -47,6 +68,8 @@ export function disconnectHardware() {
     previous.close();
   }
 
+  // Cancel the stream and release COM5 so PlatformIO can use it again.
+  const serialCleanup = previousUsb?.disconnect() ?? Promise.resolve();
   update({
     status: "disconnected",
     deviceId: null,
@@ -54,6 +77,86 @@ export function disconnectHardware() {
     method: null,
     lastMessage: null,
   });
+  return serialCleanup;
+}
+
+/**
+ * Connect an ESP32 running the existing `esp32dev` BENCH firmware.
+ * No reflash, Wi-Fi, pairing code, or relay required. The browser permission
+ * picker MUST be invoked by a direct click on the Connect USB button.
+ */
+export async function connectUsbHardware() {
+  const initialSessionId = getTrainexSnapshot().sessionId;
+  if (!initialSessionId) {
+    throw new Error("Start a TRAINEX simulation session before connecting USB hardware.");
+  }
+  if (hardware.status !== "disconnected" && hardware.status !== "error") {
+    throw new Error("Disconnect the existing hardware connection first.");
+  }
+  if (!globalThis.isSecureContext || !globalThis.navigator?.serial?.requestPort) {
+    throw new Error("Use desktop Chrome or Edge on HTTPS (or localhost) to connect USB Serial.");
+  }
+  if (hardware.status === "error") void disconnectHardware();
+  const deviceId = "trainex-esp32-usb";
+  let connection;
+  const onLine = (line) => {
+    if (usbConnection !== connection || hardware.status !== "connected") return;
+    const input = parseTrainexUsbLine(line);
+    if (!input) return; // Ignore boot logs, status lines, corrupt bytes, unknown commands.
+    if (getTrainexSnapshot().sessionId !== initialSessionId) {
+      void disconnectHardware();
+      return;
+    }
+    const message = {
+      source: "hardware", type: "input", deviceId,
+      sessionId: initialSessionId, sequence: usbSequence++, ...input,
+    };
+    update({lastMessage: `${input.controlId}${typeof input.value === 'string' ? ` ${input.value}` : ''}`, error: null});
+    Promise.resolve(forwardHardwareInput(message))
+      .then((result) => {
+        if (usbConnection === connection && result?.accepted !== true) {
+          update({error: result?.reason ?? "The simulation rejected that button press."});
+        }
+      })
+      .catch((error) => {
+        if (usbConnection === connection) update({error: error?.message ?? "USB input failed."});
+      });
+  };
+  const onClosed = (error) => {
+    if (usbConnection !== connection) return;
+    usbConnection = null;
+    unsubscribeUsbSession?.();
+    unsubscribeUsbSession = null;
+    update({status: "disconnected", deviceId: null, method: null,
+      error: error?.message ?? "USB disconnected."});
+  };
+  connection = new UsbSerialConnection({onLine, onClosed});
+  usbConnection = connection;
+  usbSequence = 0;
+  update({status: "connecting", method: "usb-serial", deviceId: null, error: null, lastMessage: null});
+  try {
+    // connect() immediately invokes navigator.serial.requestPort() under the click gesture.
+    await connection.connect();
+    if (usbConnection !== connection) return;
+    if (getTrainexSnapshot().sessionId !== initialSessionId) {
+      await disconnectHardware();
+      throw new Error("Simulation session changed during USB connection.");
+    }
+    update({status: "connected", method: "usb-serial", deviceId, error: null});
+    unsubscribeUsbSession = subscribeTrainex(() => {
+      if (usbConnection === connection && getTrainexSnapshot().sessionId !== initialSessionId) {
+        void disconnectHardware();
+      }
+    });
+  } catch (error) {
+    if (usbConnection === connection) {
+      usbConnection = null;
+      await connection.disconnect();
+      update({status: "error", method: null, deviceId: null,
+        error: error?.name === "NotFoundError" ? "No USB serial port selected." : error?.message ?? "USB connection failed."});
+    }
+    throw error;
+  }
 }
 
 // The Railway relay requires browser authentication BEFORE a pairing request.
@@ -147,6 +250,25 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
         error: null,
         method: "websocket",
       });
+      // The ESP32 receives vigilance warning feedback for its optional buzzer.
+      const sendFeedback = () => {
+        if (socket !== ws || ws.readyState !== WebSocket.OPEN || !paired) return;
+        const state = getTrainexSnapshot().trainState;
+        const buzzer = getTrainexSnapshot().ready && state?.vigilanceBuzzer === true;
+        const now = Date.now();
+        if (previousBuzzer === buzzer && now - lastFeedbackAt < 200) return;
+        previousBuzzer = buzzer;
+        lastFeedbackAt = now;
+        ws.send(JSON.stringify({
+          type: 'state_feedback', sessionId: pairedSession,
+          vigilanceBuzzer: buzzer,
+          emergencyBrake: state?.emergencyBrake === true,
+          speed: Number.isFinite(state?.speed) ? state.speed : 0,
+        }));
+      };
+      stopFeedback();
+      unsubscribeFeedback = subscribeTrainex(sendFeedback);
+      sendFeedback();
       return;
     }
 
@@ -195,6 +317,7 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
   ws.onclose = (event) => {
     if (socket !== ws) return;
     stopHeartbeat();
+    stopFeedback();
     socket = null;
     sequence = -1;
     // Retain the reason so the UI can show why pairing failed.

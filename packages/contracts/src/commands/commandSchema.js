@@ -15,6 +15,8 @@ export function validateCommand(command) {
   if (command.type === COMMAND_TYPES.MASTER_HANDLE_SET) {
     if (!MASTER_HANDLE_POSITIONS.includes(command.value))
       return reject('Invalid master handle position.');
+  } else if (command.type === COMMAND_TYPES.HORN_SET) {
+    if(typeof command.value!=='boolean')return reject('Horn command requires a boolean value.');
   } else if (command.type === COMMAND_TYPES.DOOR_ENABLE_SET || command.type === COMMAND_TYPES.DOOR_OPEN_REQUEST || command.type === COMMAND_TYPES.DOOR_CLOSE_REQUEST) {
     if (command.type === COMMAND_TYPES.DOOR_ENABLE_SET && !['LEFT','RIGHT'].includes(command.value)) return reject('Choose LEFT or RIGHT to enable doors.');
     if (command.type !== COMMAND_TYPES.DOOR_ENABLE_SET && command.value != null && !DOOR_SIDES.includes(command.value)) return reject('Invalid door side.');

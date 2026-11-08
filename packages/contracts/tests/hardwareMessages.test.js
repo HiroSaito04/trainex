@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { validateHardwareInput, makeHardwareFeedback } from '../src/index.js';
 test('hardware messages require device, control and sequence', () => {
- assert.equal(validateHardwareInput({ deviceId: 'dev-1', sequence: 1, controlId: 'DOORS_CLOSE' }).valid, true);
- assert.equal(validateHardwareInput({ deviceId: 'dev-1', sequence: -1, controlId: 'DOORS_CLOSE' }).valid, false);
+ assert.equal(validateHardwareInput({ deviceId: 'dev-1', sequence: 1, controlId: 'DOORS_CLOSE', value: true }).valid, true);
+ assert.equal(validateHardwareInput({ deviceId: 'dev-1', sequence: -1, controlId: 'DOORS_CLOSE', value: true }).valid, false);
 });
 
 test('feedback carries separate visual, buzzer and penalty flags to the ESP32', () => {

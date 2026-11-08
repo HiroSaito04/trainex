@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "npm run dev --workspace=./apps/web",
     "test:2d": "npm run test --workspace=@trainex/simulator-2d",
-    "test:revision": "node --test tests/revision2026.spec.mjs packages/simulator-2d/tests/figmaSvgLayers.test.js packages/simulator-2d/tests/figmaComponentInspection2026.test.js"
+    "test:revision": "node --test tests/revision2026.spec.mjs packages/simulator-2d/tests/figmaSvgLayers.test.js packages/simulator-2d/tests/figmaComponentInspection2026.test.js",
+    "test:hardware": "node --test tests/hardwareWiring2026.test.mjs packages/contracts/tests/hardwareMessages.test.js packages/input-manager/test/vigilance.test.js tests/revision2026.spec.mjs"
   }
 }

@@ -1,15 +1,9 @@
-# PNR reference vigilance — physical wiring
+# Vigilance button and buzzer — current firmware
 
-* GPIO23 -> normally-open Vigilance Acknowledge button -> GND (internal pull-up).
-* GPIO25 -> normally-open Emergency Brake Reset button -> GND.
-* GPIO26/27 -> Door Open / Door Close buttons -> GND.
-* Master Handle EB is still GPIO13, one of eight rotary detents (not a separate EB-activation pushbutton).
-* **No physical LEDs**; warning indicator remains in the 2D/3D software dashboards.
-* **GPIO32 -> passive piezo (+), piezo (-) -> GND** only for a verified low-current 3.3V-compatible piezo.
-  Use a driver transistor or suitable buzzer module if its current/voltage exceeds ESP32 GPIO limits.
-* The ESP32 does **not** run its own 30/32.5/35 s vigilance clock. It plays a tone only
-  upon receiving `state_feedback.vigilanceBuzzer: true` from an active browser/relay link.
-* Physical buzzer sound is unavailable until the browser hardware connection and feedback
-  subscription are working; USB Serial Monitor output alone does not generate feedback.
-
-Power off the board while wiring and verify all contact terminal assignments with a meter.
+- Vigilance acknowledge button: **GPIO23 -> normally-open contact -> GND**.
+- The 2D simulator's vigilance indicator and TMS warnings are virtual; no physical LEDs.
+- Current simulation timer: visual 30 s, buzzer 32.5 s, penalty EB 35 s **when the configured movement requirement is met**. The ESP32 has no independent timer.
+- If the active buzzer driver is installed and enabled, relay `state_feedback.vigilanceBuzzer` turns GPIO32's transistor driver on/off. The web browser must be paired with the ESP32 through a separate WSS relay.
+- GPIO25 is now **Emergency Brake RELEASE**, not reset. EB release checks stopped + master Neutral and takes the specified 3 s in the web simulation engine.
+- Do not use GPIO32 as a horn switch input; the horn input is GPIO33.
+- See `wiringGuide.md` for the full grounding/driver circuit.

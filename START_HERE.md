@@ -1,3 +1,5 @@
+> **Latest hardware update (8 Nov 2026):** See `TRAINEX_HARDWARE_REVISION_2026-11-08.md` for AS5600 13-notch GPIO wiring, inputs, EB release and PlatformIO setup.
+
 > **HISTORICAL HARDWARE INTEGRATION NOTES:** For the current 2026-11-08 version start with `APPLY_THIS_REVISION.txt` and `TRAINEX_REVISION_2026-11-08.md`. The old vigilance/EB reset section below is superseded.
 
 # TRAINEX ESP32 + deployed website connection kit

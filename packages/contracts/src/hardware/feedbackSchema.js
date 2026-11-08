@@ -4,4 +4,8 @@ export function makeHardwareFeedback(state){return Object.freeze({
  leftDoorState:state.leftDoorState??'UNKNOWN',rightDoorState:state.rightDoorState??'UNKNOWN',
  emergencyBrake:state.emergencyBrake===true,emergencyBrakeReleasing:state.emergencyBrakeReleasing===true,
  speed:Number.isFinite(state.speed)?state.speed:null,
+ vigilanceWarning:state.vigilanceWarning===true,
+ vigilanceBuzzer:state.vigilanceBuzzer===true,
+ vigilanceTrip:state.vigilanceTrip===true,
+ hornActive:state.hornActive===true,
 });}

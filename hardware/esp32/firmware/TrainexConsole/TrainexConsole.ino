@@ -1,3 +1,4 @@
+#error "LEGACY TRAINEX SKETCH RETIRED: open hardware/esp32/ with VS Code PlatformIO and flash src/main.cpp (AS5600/13-detent)."
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include "src/config/HardwarePins.h"

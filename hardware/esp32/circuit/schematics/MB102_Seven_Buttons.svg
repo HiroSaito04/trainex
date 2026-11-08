@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="950" viewBox="0 0 1540 950">
+<rect width="1540" height="950" fill="#f5f7fa"/>
+<text x="60" y="68" font-family="Arial,sans-serif" font-size="34" font-weight="bold" fill="#102335">TRAINEX | Seven tactile buttons directly on breadboard</text>
+<text x="60" y="103" font-family="Arial,sans-serif" font-size="20" fill="#506176">Each switch straddles E–F. GPIO on the A–E side; separate F–J side connects to the BLUE (−) ground rail.</text>
+<rect x="52" y="140" width="245" height="704" rx="22" fill="#243344"/>
+<text x="175" y="181" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" fill="white" font-size="27">ESP32-WROOM-32</text>
+<text x="175" y="208" text-anchor="middle" font-family="Arial,sans-serif" fill="#cbd6dd" font-size="16">Header labels: GPIO numbers</text>
+<rect x="336" y="138" width="1151" height="708" rx="23" fill="#fff" stroke="#b1c5d3" stroke-width="3"/>
+<rect x="400" y="185" width="1040" height="42" rx="10" fill="#dceaf8"/>
+<line x1="410" y1="206" x2="1428" y2="206" stroke="#2374ae" stroke-width="9"/>
+<text x="920" y="201" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="18" fill="#ffffff">COMMON BLUE (−) GND RAIL</text>
+<rect x="975" y="259" width="56" height="535" rx="8" fill="#d2dae0"/>
+<text x="1003" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#354a5a">CENTER TRENCH</text>
+<text x="671" y="264" text-anchor="middle" font-size="23" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">A–E</text>
+<text x="1305" y="264" text-anchor="middle" font-size="23" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F–J</text>
+<path d="M260 797 H368 V206 H408" fill="none" stroke="#2374ae" stroke-width="7"/>
+<text x="160" y="780" font-family="Arial,sans-serif" font-size="23" fill="white">GND</text>
+<circle cx="266" cy="307" r="6" fill="#f6b94b"/>
+<text x="75" y="314" font-size="24" fill="white" font-family="Arial,sans-serif">GPIO18</text>
+<path d="M266 307 H544" stroke="#e1a83a" stroke-width="5"/>
+<circle cx="544" cy="307" r="7" fill="#e1a83a"/>
+<rect x="510" y="281" width="377" height="52" rx="9" fill="#f0f3f6"/>
+<text x="540" y="302" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">B8 → E8</text>
+<text x="540" y="323" font-size="18" font-family="Arial,sans-serif" fill="#536777">LEFT ENABLE</text>
+<rect x="903" y="281" width="180" height="52" rx="9" fill="#677987" stroke="#314858" stroke-width="3"/>
+<circle cx="992" cy="307" r="17" fill="#d4e0e6" stroke="#f9fbfd" stroke-width="3"/>
+<text x="905" y="270" font-size="13" font-family="Arial,sans-serif" fill="#667b8d">N.O. tactile switch</text>
+<text x="1119" y="303" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F8 → H8</text>
+<text x="1122" y="324" font-size="17" font-family="Arial,sans-serif" fill="#536777">→ BLUE RAIL</text>
+<path d="M1083 307 H1343 V206" stroke="#2374ae" stroke-width="3" fill="none" opacity="0.73"/>
+<circle cx="266" cy="379" r="6" fill="#f6b94b"/>
+<text x="75" y="386" font-size="24" fill="white" font-family="Arial,sans-serif">GPIO26</text>
+<path d="M266 379 H544" stroke="#e1a83a" stroke-width="5"/>
+<circle cx="544" cy="379" r="7" fill="#e1a83a"/>
+<rect x="510" y="353" width="377" height="52" rx="9" fill="#f0f3f6"/>
+<text x="540" y="374" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">B16 → E16</text>
+<text x="540" y="395" font-size="18" font-family="Arial,sans-serif" fill="#536777">LEFT OPEN</text>
+<rect x="903" y="353" width="180" height="52" rx="9" fill="#677987" stroke="#314858" stroke-width="3"/>
+<circle cx="992" cy="379" r="17" fill="#d4e0e6" stroke="#f9fbfd" stroke-width="3"/>
+<text x="905" y="342" font-size="13" font-family="Arial,sans-serif" fill="#667b8d">N.O. tactile switch</text>
+<text x="1119" y="375" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F16 → H16</text>
+<text x="1122" y="396" font-size="17" font-family="Arial,sans-serif" fill="#536777">→ BLUE RAIL</text>
+<path d="M1083 379 H1343 V206" stroke="#2374ae" stroke-width="3" fill="none" opacity="0.73"/>
+<circle cx="266" cy="451" r="6" fill="#f6b94b"/>
+<text x="75" y="458" font-size="24" fill="white" font-family="Arial,sans-serif">GPIO27</text>
+<path d="M266 451 H544" stroke="#e1a83a" stroke-width="5"/>
+<circle cx="544" cy="451" r="7" fill="#e1a83a"/>
+<rect x="510" y="425" width="377" height="52" rx="9" fill="#f0f3f6"/>
+<text x="540" y="446" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">B24 → E24</text>
+<text x="540" y="467" font-size="18" font-family="Arial,sans-serif" fill="#536777">LEFT CLOSE</text>
+<rect x="903" y="425" width="180" height="52" rx="9" fill="#677987" stroke="#314858" stroke-width="3"/>
+<circle cx="992" cy="451" r="17" fill="#d4e0e6" stroke="#f9fbfd" stroke-width="3"/>
+<text x="905" y="414" font-size="13" font-family="Arial,sans-serif" fill="#667b8d">N.O. tactile switch</text>
+<text x="1119" y="447" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F24 → H24</text>
+<text x="1122" y="468" font-size="17" font-family="Arial,sans-serif" fill="#536777">→ BLUE RAIL</text>
+<path d="M1083 451 H1343 V206" stroke="#2374ae" stroke-width="3" fill="none" opacity="0.73"/>
+<circle cx="266" cy="523" r="6" fill="#f6b94b"/>
+<text x="75" y="530" font-size="24" fill="white" font-family="Arial,sans-serif">GPIO19</text>
+<path d="M266 523 H544" stroke="#e1a83a" stroke-width="5"/>
+<circle cx="544" cy="523" r="7" fill="#e1a83a"/>
+<rect x="510" y="497" width="377" height="52" rx="9" fill="#f0f3f6"/>
+<text x="540" y="518" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">B32 → E32</text>
+<text x="540" y="539" font-size="18" font-family="Arial,sans-serif" fill="#536777">RIGHT ENABLE</text>
+<rect x="903" y="497" width="180" height="52" rx="9" fill="#677987" stroke="#314858" stroke-width="3"/>
+<circle cx="992" cy="523" r="17" fill="#d4e0e6" stroke="#f9fbfd" stroke-width="3"/>
+<text x="905" y="486" font-size="13" font-family="Arial,sans-serif" fill="#667b8d">N.O. tactile switch</text>
+<text x="1119" y="519" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F32 → H32</text>
+<text x="1122" y="540" font-size="17" font-family="Arial,sans-serif" fill="#536777">→ BLUE RAIL</text>
+<path d="M1083 523 H1343 V206" stroke="#2374ae" stroke-width="3" fill="none" opacity="0.73"/>
+<circle cx="266" cy="595" r="6" fill="#f6b94b"/>
+<text x="75" y="602" font-size="24" fill="white" font-family="Arial,sans-serif">GPIO25</text>
+<path d="M266 595 H544" stroke="#e1a83a" stroke-width="5"/>
+<circle cx="544" cy="595" r="7" fill="#e1a83a"/>
+<rect x="510" y="569" width="377" height="52" rx="9" fill="#f0f3f6"/>
+<text x="540" y="590" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">B40 → E40</text>
+<text x="540" y="611" font-size="18" font-family="Arial,sans-serif" fill="#536777">RIGHT OPEN</text>
+<rect x="903" y="569" width="180" height="52" rx="9" fill="#677987" stroke="#314858" stroke-width="3"/>
+<circle cx="992" cy="595" r="17" fill="#d4e0e6" stroke="#f9fbfd" stroke-width="3"/>
+<text x="905" y="558" font-size="13" font-family="Arial,sans-serif" fill="#667b8d">N.O. tactile switch</text>
+<text x="1119" y="591" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F40 → H40</text>
+<text x="1122" y="612" font-size="17" font-family="Arial,sans-serif" fill="#536777">→ BLUE RAIL</text>
+<path d="M1083 595 H1343 V206" stroke="#2374ae" stroke-width="3" fill="none" opacity="0.73"/>
+<circle cx="266" cy="667" r="6" fill="#f6b94b"/>
+<text x="75" y="674" font-size="24" fill="white" font-family="Arial,sans-serif">GPIO33</text>
+<path d="M266 667 H544" stroke="#e1a83a" stroke-width="5"/>
+<circle cx="544" cy="667" r="7" fill="#e1a83a"/>
+<rect x="510" y="641" width="377" height="52" rx="9" fill="#f0f3f6"/>
+<text x="540" y="662" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">B48 → E48</text>
+<text x="540" y="683" font-size="18" font-family="Arial,sans-serif" fill="#536777">RIGHT CLOSE</text>
+<rect x="903" y="641" width="180" height="52" rx="9" fill="#677987" stroke="#314858" stroke-width="3"/>
+<circle cx="992" cy="667" r="17" fill="#d4e0e6" stroke="#f9fbfd" stroke-width="3"/>
+<text x="905" y="630" font-size="13" font-family="Arial,sans-serif" fill="#667b8d">N.O. tactile switch</text>
+<text x="1119" y="663" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F48 → H48</text>
+<text x="1122" y="684" font-size="17" font-family="Arial,sans-serif" fill="#536777">→ BLUE RAIL</text>
+<path d="M1083 667 H1343 V206" stroke="#2374ae" stroke-width="3" fill="none" opacity="0.73"/>
+<circle cx="266" cy="739" r="6" fill="#f6b94b"/>
+<text x="75" y="746" font-size="24" fill="white" font-family="Arial,sans-serif">GPIO23</text>
+<path d="M266 739 H544" stroke="#e1a83a" stroke-width="5"/>
+<circle cx="544" cy="739" r="7" fill="#e1a83a"/>
+<rect x="510" y="713" width="377" height="52" rx="9" fill="#f0f3f6"/>
+<text x="540" y="734" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">B56 → E56</text>
+<text x="540" y="755" font-size="18" font-family="Arial,sans-serif" fill="#536777">VIGILANCE</text>
+<rect x="903" y="713" width="180" height="52" rx="9" fill="#677987" stroke="#314858" stroke-width="3"/>
+<circle cx="992" cy="739" r="17" fill="#d4e0e6" stroke="#f9fbfd" stroke-width="3"/>
+<text x="905" y="702" font-size="13" font-family="Arial,sans-serif" fill="#667b8d">N.O. tactile switch</text>
+<text x="1119" y="735" font-size="20" font-family="Arial,sans-serif" font-weight="bold" fill="#334b5e">F56 → H56</text>
+<text x="1122" y="756" font-size="17" font-family="Arial,sans-serif" fill="#536777">→ BLUE RAIL</text>
+<path d="M1083 739 H1343 V206" stroke="#2374ae" stroke-width="3" fill="none" opacity="0.73"/>
+<text x="60" y="889" font-family="Arial,sans-serif" font-size="20" fill="#344f64">USB OFF when wiring  •  NO 3V3 required for buttons  •  Confirm actual switch contacts with continuity meter</text>
+<text x="60" y="923" font-family="Arial,sans-serif" font-size="17" fill="#586e7c">Schematic placement guide (not a to-scale pinout). Each button occupies two nearby row numbers: 8/10, 16/18, ... 56/58.</text>
+</svg>

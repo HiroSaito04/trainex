@@ -1,10 +1,17 @@
-item,component,specification,quantity
-1,ESP32-WROOM Type-C development board,Classic ESP32-WROOM with USB-C and 3.3V GPIO,1
-2,USB-C data cable,Data-capable cable for flashing and serial tests,1
-3,Breadboard,For temporary prototyping,1
-4,Jumper wires,Male-to-male/female-to-male/female-to-female as appropriate,as needed
-5,Normally-open pushbuttons,Vigilance / EB Reset / Door Open / Door Close,4
-6,1P12T rotary selector,Non-shorting 8-stop configuration and common terminal (full-console stage),1
-7,Lever or bar grip,Secure mounting for rotary shaft (full-console stage),1
-8,Passive low-current piezo buzzer,GPIO32 PWM output; verify 3.3V/current rating or use appropriate driver,1
-9,Enclosure/terminal blocks/insulation,For securely mounting and routing wires,as needed
+item,quantity,role,notes
+ESP32-WROOM-32 30-pin USB-C development board,1,Microcontroller,Classic ESP32 not S2/S3/C3
+830-point breadboard,1,Prototype wiring,Full-size MB-102 style 63 numbered rows; verify blue-rail splits
+6x6mm four-leg momentary normally-open tactile switch,7,Breadboard-mounted left/right door enable/open/close plus vigilance,Match footprint and verify opposite contact pairs with continuity tester
+Female-to-male jumper wires,12,ESP32 headers to breadboard,Quantity estimate; verify header style
+Male-to-male jumper wires,12,Breadboard GND and button wiring,Quantity estimate
+Female-to-female jumper wires,4,Sensor and module connection as needed,Pin header arrangement dependent
+AS5600 magnetic angle sensor module,1,13-notch master handle,I2C address 0x36
+Diametrically magnetized shaft-end magnet,1,Angle sensing,Confirm compatible with AS5600 and shaft design
+3D-printed master handle,1,Physical lever,Per source assembly
+8 mm steel shaft,1,Lever shaft,Per source assembly
+8 mm bearing,1,Mechanical support,Per source assembly
+8 mm shaft collar,1,Axial restraint,Per source assembly
+Spring ball plunger,1,Detent feedback,Per source assembly
+M5 x 40 mm bolt,1,Mechanical fastener,Per source assembly
+USB-C data and power cable,1,Firmware upload and power,Not power-only
+2.4 GHz Wi-Fi access,1,Authenticated WSS relay connection,No Bluetooth
