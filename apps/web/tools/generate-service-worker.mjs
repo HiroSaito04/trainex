@@ -35,7 +35,7 @@ for (const file of files) {
 const revision = fingerprint.digest("hex").slice(0, 16);
 
 const serviceWorker = `/* Generated automatically by tools/generate-service-worker.mjs. */
-const CACHE_NAME = "trainex-precache-${revision}";
+const CACHE_NAME = "trainex-precache-${revision}-svg-navigation-v2";
 const CACHE_PREFIX = "trainex-precache-";
 const PRECACHE_URLS = ${JSON.stringify(cacheUrls, null, 2)};
 const PRECACHE_PATHS = new Set(PRECACHE_URLS);
@@ -64,8 +64,19 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin || url.pathname === "/sw.js") return;
 
+  // Important: <object data="...svg"> may be requested as a document NAVIGATION.
+  // An SVG asset must be served from its own cache entry, not replaced by the
+  // index.html SPA fallback. Handle ALL known static resources first.
+  if (PRECACHE_PATHS.has(url.pathname) && url.pathname !== "/" && url.pathname !== "/index.html") {
+    event.respondWith((async () => {
+      const cached = await caches.match(url.pathname);
+      return cached || fetch(request);
+    })());
+    return;
+  }
+
   if (request.mode === "navigate") {
-    // Fresh online pages, cached SPA shell for all routes while offline.
+    // Navigation fallback applies to SPA pages only, never to cached SVG objects.
     event.respondWith((async () => {
       try {
         return await fetch(request);
