@@ -29,14 +29,11 @@ export default function HardwarePage() {
       <ConnectionStatus />
 
       <p className="notice spaced">
-        Direct USB mode requires Chrome/Edge serial-port permission and a closed PlatformIO Serial Monitor.
-        Internet-based hardware requires a
-        separately deployed, authenticated
-        WebSocket relay. This page does not
-        deploy the relay or ESP32 firmware.
-        The browser simulation must also
-        have its runtime connected before
-        physical inputs can change train state.
+        Direct USB mode requires Chrome/Edge serial-port permission and a closed
+        PlatformIO Serial Monitor. Internet-based hardware requires a separately
+        deployed, authenticated WebSocket relay. This page does not deploy the
+        relay or ESP32 firmware. The browser simulation must also have its
+        runtime connected before physical inputs can change train state.
       </p>
     </div>
   );

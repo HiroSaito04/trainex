@@ -1,8 +1,4 @@
-
-import {
-  Outlet,
-  ScrollRestoration,
-} from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 
 import NavBar from "../components/common/NavBar.jsx";
 import Footer from "../components/common/Footer.jsx";

@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const features = [
@@ -29,31 +28,15 @@ export default function FeatureCards() {
   return (
     <section className="section">
       <div className="section-heading">
-        <p className="eyebrow">
-          TRAINEX FEATURES
-        </p>
+        <p className="eyebrow">TRAINEX FEATURES</p>
 
-        <h2>
-          Learn through interaction
-        </h2>
+        <h2>Learn through interaction</h2>
       </div>
 
       <div className="card-grid">
-        {features.map(({
-          title,
-          description,
-          to,
-          icon,
-        }) => (
-          <Link
-            className="panel feature-card"
-            key={to}
-            to={to}
-          >
-            <div
-              className="feature-icon"
-              aria-hidden="true"
-            >
+        {features.map(({ title, description, to, icon }) => (
+          <Link className="panel feature-card" key={to} to={to}>
+            <div className="feature-icon" aria-hidden="true">
               {icon}
             </div>
 
@@ -61,9 +44,7 @@ export default function FeatureCards() {
 
             <p>{description}</p>
 
-            <span className="card-link">
-              Explore →
-            </span>
+            <span className="card-link">Explore →</span>
           </Link>
         ))}
       </div>

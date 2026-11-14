@@ -21,8 +21,7 @@
 .simulator-grid {
   display: grid;
 
-  grid-template-columns:
-    minmax(0, 1fr) 310px;
+  grid-template-columns: minmax(0, 1fr) 310px;
 
   gap: 1rem;
   align-items: start;
@@ -137,7 +136,6 @@
   overflow-wrap: anywhere;
 }
 
-
 /* Full-width modular 2D simulator */
 
 .simulator-canvas-2d {
@@ -165,22 +163,21 @@
   overflow: visible;
 }
 
-
 /* TRAINEX palette alignment and local responsive states */
 @media (max-width: 900px) {
-.simulator-grid {
+  .simulator-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 760px) {
-.simulator-canvas {
+  .simulator-canvas {
     min-height: 340px;
   }
 }
 
 @media (max-width: 420px) {
-.toolbar-actions .btn {
+  .toolbar-actions .btn {
     flex: 1;
   }
 }

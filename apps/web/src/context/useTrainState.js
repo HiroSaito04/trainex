@@ -1,6 +1,4 @@
-import {
-  useSyncExternalStore,
-} from "react";
+import { useSyncExternalStore } from "react";
 
 import {
   getTrainexSnapshot,
@@ -8,8 +6,5 @@ import {
 } from "../integrations/trainexClient.js";
 
 export function useTrainState() {
-  return useSyncExternalStore(
-    subscribeTrainex,
-    getTrainexSnapshot
-  );
+  return useSyncExternalStore(subscribeTrainex, getTrainexSnapshot);
 }

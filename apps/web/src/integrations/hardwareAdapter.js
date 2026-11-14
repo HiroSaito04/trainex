@@ -88,13 +88,20 @@ export function disconnectHardware() {
 export async function connectUsbHardware() {
   const initialSessionId = getTrainexSnapshot().sessionId;
   if (!initialSessionId) {
-    throw new Error("Start a TRAINEX simulation session before connecting USB hardware.");
+    throw new Error(
+      "Start a TRAINEX simulation session before connecting USB hardware.",
+    );
   }
   if (hardware.status !== "disconnected" && hardware.status !== "error") {
     throw new Error("Disconnect the existing hardware connection first.");
   }
-  if (!globalThis.isSecureContext || !globalThis.navigator?.serial?.requestPort) {
-    throw new Error("Use desktop Chrome or Edge on HTTPS (or localhost) to connect USB Serial.");
+  if (
+    !globalThis.isSecureContext ||
+    !globalThis.navigator?.serial?.requestPort
+  ) {
+    throw new Error(
+      "Use desktop Chrome or Edge on HTTPS (or localhost) to connect USB Serial.",
+    );
   }
   if (hardware.status === "error") void disconnectHardware();
   const deviceId = "trainex-esp32-usb";
@@ -108,18 +115,29 @@ export async function connectUsbHardware() {
       return;
     }
     const message = {
-      source: "hardware", type: "input", deviceId,
-      sessionId: initialSessionId, sequence: usbSequence++, ...input,
+      source: "hardware",
+      type: "input",
+      deviceId,
+      sessionId: initialSessionId,
+      sequence: usbSequence++,
+      ...input,
     };
-    update({lastMessage: `${input.controlId}${typeof input.value === 'string' ? ` ${input.value}` : ''}`, error: null});
+    update({
+      lastMessage: `${input.controlId}${typeof input.value === "string" ? ` ${input.value}` : ""}`,
+      error: null,
+    });
     Promise.resolve(forwardHardwareInput(message))
       .then((result) => {
         if (usbConnection === connection && result?.accepted !== true) {
-          update({error: result?.reason ?? "The simulation rejected that button press."});
+          update({
+            error:
+              result?.reason ?? "The simulation rejected that button press.",
+          });
         }
       })
       .catch((error) => {
-        if (usbConnection === connection) update({error: error?.message ?? "USB input failed."});
+        if (usbConnection === connection)
+          update({ error: error?.message ?? "USB input failed." });
       });
   };
   const onClosed = (error) => {
@@ -127,13 +145,23 @@ export async function connectUsbHardware() {
     usbConnection = null;
     unsubscribeUsbSession?.();
     unsubscribeUsbSession = null;
-    update({status: "disconnected", deviceId: null, method: null,
-      error: error?.message ?? "USB disconnected."});
+    update({
+      status: "disconnected",
+      deviceId: null,
+      method: null,
+      error: error?.message ?? "USB disconnected.",
+    });
   };
-  connection = new UsbSerialConnection({onLine, onClosed});
+  connection = new UsbSerialConnection({ onLine, onClosed });
   usbConnection = connection;
   usbSequence = 0;
-  update({status: "connecting", method: "usb-serial", deviceId: null, error: null, lastMessage: null});
+  update({
+    status: "connecting",
+    method: "usb-serial",
+    deviceId: null,
+    error: null,
+    lastMessage: null,
+  });
   try {
     // connect() immediately invokes navigator.serial.requestPort() under the click gesture.
     await connection.connect();
@@ -142,9 +170,17 @@ export async function connectUsbHardware() {
       await disconnectHardware();
       throw new Error("Simulation session changed during USB connection.");
     }
-    update({status: "connected", method: "usb-serial", deviceId, error: null});
+    update({
+      status: "connected",
+      method: "usb-serial",
+      deviceId,
+      error: null,
+    });
     unsubscribeUsbSession = subscribeTrainex(() => {
-      if (usbConnection === connection && getTrainexSnapshot().sessionId !== initialSessionId) {
+      if (
+        usbConnection === connection &&
+        getTrainexSnapshot().sessionId !== initialSessionId
+      ) {
         void disconnectHardware();
       }
     });
@@ -152,8 +188,15 @@ export async function connectUsbHardware() {
     if (usbConnection === connection) {
       usbConnection = null;
       await connection.disconnect();
-      update({status: "error", method: null, deviceId: null,
-        error: error?.name === "NotFoundError" ? "No USB serial port selected." : error?.message ?? "USB connection failed."});
+      update({
+        status: "error",
+        method: null,
+        deviceId: null,
+        error:
+          error?.name === "NotFoundError"
+            ? "No USB serial port selected."
+            : (error?.message ?? "USB connection failed."),
+      });
     }
     throw error;
   }
@@ -167,8 +210,10 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
     throw new Error("A secure wss:// relay endpoint is required.");
   }
   if (
-    typeof sessionId !== "string" || !sessionId.trim() ||
-    typeof pairingCode !== "string" || !pairingCode.trim()
+    typeof sessionId !== "string" ||
+    !sessionId.trim() ||
+    typeof pairingCode !== "string" ||
+    !pairingCode.trim()
   ) {
     throw new Error("Session ID and pairing code are required.");
   }
@@ -190,8 +235,14 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
 
   function fail(message) {
     if (socket !== ws) return;
-    update({ status: "error", error: String(message || "Relay connection failed.") });
-    if (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING) {
+    update({
+      status: "error",
+      error: String(message || "Relay connection failed."),
+    });
+    if (
+      ws.readyState === WebSocket.OPEN ||
+      ws.readyState === WebSocket.CONNECTING
+    ) {
       ws.close();
     }
   }
@@ -225,11 +276,13 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
       if (authenticated) return;
       authenticated = true;
       // Correct second message: pair ONLY after relay authentication.
-      ws.send(JSON.stringify({
-        type: "pair",
-        sessionId: pairedSession,
-        pairingCode: suppliedPairingCode,
-      }));
+      ws.send(
+        JSON.stringify({
+          type: "pair",
+          sessionId: pairedSession,
+          pairingCode: suppliedPairingCode,
+        }),
+      );
       return;
     }
 
@@ -252,19 +305,24 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
       });
       // The ESP32 receives vigilance warning feedback for its optional buzzer.
       const sendFeedback = () => {
-        if (socket !== ws || ws.readyState !== WebSocket.OPEN || !paired) return;
+        if (socket !== ws || ws.readyState !== WebSocket.OPEN || !paired)
+          return;
         const state = getTrainexSnapshot().trainState;
-        const buzzer = getTrainexSnapshot().ready && state?.vigilanceBuzzer === true;
+        const buzzer =
+          getTrainexSnapshot().ready && state?.vigilanceBuzzer === true;
         const now = Date.now();
         if (previousBuzzer === buzzer && now - lastFeedbackAt < 200) return;
         previousBuzzer = buzzer;
         lastFeedbackAt = now;
-        ws.send(JSON.stringify({
-          type: 'state_feedback', sessionId: pairedSession,
-          vigilanceBuzzer: buzzer,
-          emergencyBrake: state?.emergencyBrake === true,
-          speed: Number.isFinite(state?.speed) ? state.speed : 0,
-        }));
+        ws.send(
+          JSON.stringify({
+            type: "state_feedback",
+            sessionId: pairedSession,
+            vigilanceBuzzer: buzzer,
+            emergencyBrake: state?.emergencyBrake === true,
+            speed: Number.isFinite(state?.speed) ? state.speed : 0,
+          }),
+        );
       };
       stopFeedback();
       unsubscribeFeedback = subscribeTrainex(sendFeedback);
@@ -273,7 +331,11 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
     }
 
     if (message.type === "error" || message.type === "pair-error") {
-      fail(message.reason || message.message || "Relay rejected the connection or pairing.");
+      fail(
+        message.reason ||
+          message.message ||
+          "Relay rejected the connection or pairing.",
+      );
       return;
     }
 
@@ -282,21 +344,29 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
       return;
     }
 
-    if (message.type !== "input" || !paired || hardware.status !== "connected") return;
+    if (message.type !== "input" || !paired || hardware.status !== "connected")
+      return;
 
     if (getTrainexSnapshot().sessionId !== pairedSession) {
       fail("Simulation session changed. Hardware disconnected.");
       return;
     }
-    if (message.sessionId !== pairedSession || message.deviceId !== hardware.deviceId) return;
+    if (
+      message.sessionId !== pairedSession ||
+      message.deviceId !== hardware.deviceId
+    )
+      return;
     if (
       !Number.isSafeInteger(message.sequence) ||
       message.sequence < 0 ||
       message.sequence <= sequence
-    ) return;
+    )
+      return;
 
     sequence = message.sequence;
-    update({ lastMessage: String(message.controlId ?? message.control ?? "—") });
+    update({
+      lastMessage: String(message.controlId ?? message.control ?? "—"),
+    });
 
     Promise.resolve()
       .then(() => forwardHardwareInput(message))
@@ -306,12 +376,14 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
         }
       })
       .catch((error) => {
-        if (socket === ws) update({ error: error?.message ?? "Hardware input failed." });
+        if (socket === ws)
+          update({ error: error?.message ?? "Hardware input failed." });
       });
   };
 
   ws.onerror = () => {
-    if (socket === ws) update({ status: "error", error: "WebSocket connection failed." });
+    if (socket === ws)
+      update({ status: "error", error: "WebSocket connection failed." });
   };
 
   ws.onclose = (event) => {
@@ -321,8 +393,11 @@ export function connectHardware({ endpoint, sessionId, pairingCode }) {
     socket = null;
     sequence = -1;
     // Retain the reason so the UI can show why pairing failed.
-    const error = hardware.error ||
-      (event.code === 1000 ? null : `WebSocket closed (code ${event.code}${event.reason ? `: ${event.reason}` : ""}).`);
+    const error =
+      hardware.error ||
+      (event.code === 1000
+        ? null
+        : `WebSocket closed (code ${event.code}${event.reason ? `: ${event.reason}` : ""}).`);
     update({
       status: "disconnected",
       deviceId: null,

@@ -1,10 +1,7 @@
-
 import { createEngine } from "@trainex/simulation-engine";
 import { createInputManager } from "@trainex/input-manager";
 
-import {
-  registerTrainexRuntime,
-} from "./trainexClient.js";
+import { registerTrainexRuntime } from "./trainexClient.js";
 
 let installation = null;
 
@@ -20,11 +17,9 @@ export function initializeTrainexRuntime() {
 
   // All operating commands pass through this manager.
   const inputManager = createInputManager({
-    dispatchCommand: (command) =>
-      engine.sendCommand(command),
+    dispatchCommand: (command) => engine.sendCommand(command),
 
-    getSessionId: () =>
-      engine.getSessionInfo().sessionId,
+    getSessionId: () => engine.getSessionInfo().sessionId,
   });
 
   const runtime = {

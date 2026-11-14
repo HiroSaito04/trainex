@@ -5,7 +5,9 @@ let vigilanceGain = null;
 
 function stopVigilance() {
   if (!vigilanceOscillator) return;
-  try { vigilanceOscillator.stop(); } catch {}
+  try {
+    vigilanceOscillator.stop();
+  } catch {}
   vigilanceOscillator.disconnect();
   vigilanceGain?.disconnect();
   vigilanceOscillator = null;
@@ -17,21 +19,28 @@ export const audioService = {
 
   async enable() {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) throw new Error('Web Audio is unsupported in this browser.');
+    if (!AudioContextClass)
+      throw new Error("Web Audio is unsupported in this browser.");
     context ??= new AudioContextClass();
     await context.resume();
     enabled = true;
   },
 
-  mute() { enabled = false; stopVigilance(); },
+  mute() {
+    enabled = false;
+    stopVigilance();
+  },
 
   /** Read-only warning output. The Simulation Engine owns all timing. */
   setVigilanceAlert(active) {
-    if (!active || !enabled || !context) { stopVigilance(); return; }
+    if (!active || !enabled || !context) {
+      stopVigilance();
+      return;
+    }
     if (vigilanceOscillator) return;
     const oscillator = context.createOscillator();
     const gain = context.createGain();
-    oscillator.type = 'sine';
+    oscillator.type = "sine";
     oscillator.frequency.setValueAtTime(880, context.currentTime);
     gain.gain.setValueAtTime(0.08, context.currentTime);
     oscillator.connect(gain);
@@ -45,7 +54,7 @@ export const audioService = {
     if (!enabled || !context) return;
     const oscillator = context.createOscillator();
     const gain = context.createGain();
-    oscillator.type = 'sine';
+    oscillator.type = "sine";
     oscillator.frequency.value = 660;
     gain.gain.setValueAtTime(0.0001, context.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.1, context.currentTime + 0.02);

@@ -1,4 +1,3 @@
-
 /* ========================================
    APPLICATION SHELL
 ======================================== */
@@ -20,10 +19,7 @@
 ======================================== */
 
 .container {
-  width: min(
-    var(--container-width),
-    calc(100% - 2rem)
-  );
+  width: min(var(--container-width), calc(100% - 2rem));
 
   margin-inline: auto;
 }
@@ -63,15 +59,13 @@
 .card-grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 1rem;
 }
 
 .card-grid.two-cols {
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .card-grid.align-start {
@@ -86,27 +80,25 @@
   margin-top: 1.7rem;
 }
 
-
 /* TRAINEX palette alignment and local responsive states */
 @media (max-width: 900px) {
-.card-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 760px) {
-.card-grid,
+  .card-grid,
   .card-grid.two-cols {
     grid-template-columns: 1fr;
   }
-.page {
+  .page {
     padding-block: 2.4rem 3rem;
   }
 }
 
 @media (max-width: 420px) {
-.container {
+  .container {
     width: calc(100% - 1.5rem);
   }
 }

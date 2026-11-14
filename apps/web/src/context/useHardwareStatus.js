@@ -1,6 +1,4 @@
-import {
-  useSyncExternalStore,
-} from "react";
+import { useSyncExternalStore } from "react";
 
 import {
   getHardwareSnapshot,
@@ -8,8 +6,5 @@ import {
 } from "../integrations/hardwareAdapter.js";
 
 export function useHardwareStatus() {
-  return useSyncExternalStore(
-    subscribeHardware,
-    getHardwareSnapshot
-  );
+  return useSyncExternalStore(subscribeHardware, getHardwareSnapshot);
 }

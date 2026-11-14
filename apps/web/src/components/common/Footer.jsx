@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import BrandWordmark from "./BrandWordmark.jsx";
 import "./Footer.css";
@@ -49,15 +48,12 @@ export default function Footer() {
             </span>
 
             <p className="trainex-footer-description">
-              Explore railway driver-cab controls, learn
-              fundamental train operations, and develop
-              practical skills through interactive training.
+              Explore railway driver-cab controls, learn fundamental train
+              operations, and develop practical skills through interactive
+              training.
             </p>
 
-            <Link
-              to="/simulators"
-              className="trainex-footer-action"
-            >
+            <Link to="/simulators" className="trainex-footer-action">
               Explore Simulators
               <span aria-hidden="true">↗</span>
             </Link>
@@ -68,18 +64,13 @@ export default function Footer() {
             aria-label="Footer navigation"
           >
             {footerGroups.map((group) => (
-              <div
-                className="trainex-footer-group"
-                key={group.title}
-              >
+              <div className="trainex-footer-group" key={group.title}>
                 <h2>{group.title}</h2>
 
                 <ul>
                   {group.links.map((link) => (
                     <li key={link.to}>
-                      <Link to={link.to}>
-                        {link.label}
-                      </Link>
+                      <Link to={link.to}>{link.label}</Link>
                     </li>
                   ))}
                 </ul>
@@ -89,27 +80,20 @@ export default function Footer() {
         </div>
 
         <div className="trainex-footer-notice">
-          <span
-            className="trainex-footer-notice-icon"
-            aria-hidden="true"
-          >
+          <span className="trainex-footer-notice-icon" aria-hidden="true">
             i
           </span>
 
           <p>
-            <strong>Educational Use Only.</strong>{" "}
-            TRAINEX is a railway training and educational
-            simulation platform. It is not a substitute
-            for certified railway operating procedures
-            or professional driver training.
+            <strong>Educational Use Only.</strong> TRAINEX is a railway training
+            and educational simulation platform. It is not a substitute for
+            certified railway operating procedures or professional driver
+            training.
           </p>
         </div>
 
         <div className="trainex-footer-bottom">
-          <p>
-            © {new Date().getFullYear()} TRAINEX.
-            Railway Training System.
-          </p>
+          <p>© {new Date().getFullYear()} TRAINEX. Railway Training System.</p>
 
           <span className="trainex-footer-bottom-label">
             LEARN <span>•</span> PRACTICE <span>•</span> EXPLORE

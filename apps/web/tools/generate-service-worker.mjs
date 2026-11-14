@@ -17,8 +17,13 @@ async function walk(dir) {
   const files = [];
   for (const entry of entries) {
     const file = path.join(dir, entry.name);
-    if (entry.isDirectory()) files.push(...await walk(file));
-    else if (entry.isFile() && !entry.name.startsWith(".") && entry.name !== "sw.js" && !entry.name.endsWith(".map")) {
+    if (entry.isDirectory()) files.push(...(await walk(file)));
+    else if (
+      entry.isFile() &&
+      !entry.name.startsWith(".") &&
+      entry.name !== "sw.js" &&
+      !entry.name.endsWith(".map")
+    ) {
       files.push(file);
     }
   }
@@ -26,7 +31,12 @@ async function walk(dir) {
 }
 
 const files = (await walk(distDir)).sort();
-const cacheUrls = ["/", ...files.map((file) => "/" + path.relative(distDir, file).split(path.sep).join("/"))];
+const cacheUrls = [
+  "/",
+  ...files.map(
+    (file) => "/" + path.relative(distDir, file).split(path.sep).join("/"),
+  ),
+];
 const fingerprint = createHash("sha256");
 for (const file of files) {
   fingerprint.update(path.relative(distDir, file));
@@ -99,4 +109,6 @@ self.addEventListener("fetch", (event) => {
 `;
 
 await writeFile(path.join(distDir, "sw.js"), serviceWorker, "utf8");
-console.log(`TRAINEX offline service worker: ${cacheUrls.length} paths precached (${revision}).`);
+console.log(
+  `TRAINEX offline service worker: ${cacheUrls.length} paths precached (${revision}).`,
+);

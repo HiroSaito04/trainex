@@ -1,20 +1,10 @@
 import "./NavBar.css";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 
-import {
-  Link,
-  NavLink,
-  useLocation,
-} from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
-import {
-  navigation,
-} from "../../data/navigation.js";
+import { navigation } from "../../data/navigation.js";
 
 import BrandWordmark from "./BrandWordmark.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
@@ -72,9 +62,7 @@ function MenuIcon({ open }) {
 }
 
 function getNavClass({ isActive }) {
-  return isActive
-    ? "nav-link active"
-    : "nav-link";
+  return isActive ? "nav-link active" : "nav-link";
 }
 
 export default function NavBar() {
@@ -95,9 +83,7 @@ export default function NavBar() {
 
   // Close the sidebar if the viewport becomes desktop-sized.
   useEffect(() => {
-    const media = window.matchMedia(
-      "(min-width: 1121px)"
-    );
+    const media = window.matchMedia("(min-width: 1121px)");
 
     const handleChange = () => {
       if (media.matches) {
@@ -105,16 +91,10 @@ export default function NavBar() {
       }
     };
 
-    media.addEventListener(
-      "change",
-      handleChange
-    );
+    media.addEventListener("change", handleChange);
 
     return () => {
-      media.removeEventListener(
-        "change",
-        handleChange
-      );
+      media.removeEventListener("change", handleChange);
     };
   }, []);
 
@@ -122,8 +102,7 @@ export default function NavBar() {
   useEffect(() => {
     if (!isOpen) return;
 
-    const oldOverflow =
-      document.body.style.overflow;
+    const oldOverflow = document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
 
@@ -139,8 +118,8 @@ export default function NavBar() {
 
       const focusable = Array.from(
         sidebarRef.current?.querySelectorAll(
-          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        ) ?? []
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
       );
 
       if (!focusable.length) return;
@@ -148,34 +127,21 @@ export default function NavBar() {
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
 
-      if (
-        event.shiftKey &&
-        document.activeElement === first
-      ) {
+      if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
-      } else if (
-        !event.shiftKey &&
-        document.activeElement === last
-      ) {
+      } else if (!event.shiftKey && document.activeElement === last) {
         event.preventDefault();
         first.focus();
       }
     }
 
-    document.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow =
-        oldOverflow;
+      document.body.style.overflow = oldOverflow;
 
-      document.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
+      document.removeEventListener("keydown", handleKeyDown);
 
       toggleRef.current?.focus();
     };
@@ -185,7 +151,6 @@ export default function NavBar() {
     <>
       <header className="site-header">
         <div className="container nav-inner">
-
           {/* TRAINEX WORDMARK */}
 
           <Link
@@ -196,17 +161,12 @@ export default function NavBar() {
           >
             <BrandWordmark />
 
-            <span className="brand-tagline">
-              RAILWAY TRAINING SYSTEM
-            </span>
+            <span className="brand-tagline">RAILWAY TRAINING SYSTEM</span>
           </Link>
 
           {/* DESKTOP NAVIGATION */}
 
-          <nav
-            className="desktop-nav"
-            aria-label="Main navigation"
-          >
+          <nav className="desktop-nav" aria-label="Main navigation">
             {navigation.map((item) => (
               <NavLink
                 key={item.to}
@@ -225,13 +185,8 @@ export default function NavBar() {
             <div className="desktop-actions">
               <ThemeToggle />
 
-              <Link
-                to="/simulators"
-                className="nav-cta"
-              >
-                <span>
-                  Launch Simulator
-                </span>
+              <Link to="/simulators" className="nav-cta">
+                <span>Launch Simulator</span>
 
                 <ArrowIcon />
               </Link>
@@ -242,19 +197,11 @@ export default function NavBar() {
             <button
               ref={toggleRef}
               type="button"
-              className={`menu-toggle ${
-                isOpen ? "is-open" : ""
-              }`}
-              aria-label={
-                isOpen
-                  ? "Close navigation"
-                  : "Open navigation"
-              }
+              className={`menu-toggle ${isOpen ? "is-open" : ""}`}
+              aria-label={isOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={isOpen}
               aria-controls="trainex-mobile-sidebar"
-              onClick={() =>
-                setIsOpen((previous) => !previous)
-              }
+              onClick={() => setIsOpen((previous) => !previous)}
             >
               <MenuIcon open={isOpen} />
             </button>
@@ -266,9 +213,7 @@ export default function NavBar() {
 
       <button
         type="button"
-        className={`sidebar-backdrop ${
-          isOpen ? "is-visible" : ""
-        }`}
+        className={`sidebar-backdrop ${isOpen ? "is-visible" : ""}`}
         tabIndex={-1}
         aria-label="Close sidebar"
         onClick={closeSidebar}
@@ -279,9 +224,7 @@ export default function NavBar() {
       <aside
         id="trainex-mobile-sidebar"
         ref={sidebarRef}
-        className={`mobile-sidebar ${
-          isOpen ? "is-open" : ""
-        }`}
+        className={`mobile-sidebar ${isOpen ? "is-open" : ""}`}
         role="dialog"
         aria-modal={isOpen}
         aria-label="Mobile navigation"
@@ -311,49 +254,31 @@ export default function NavBar() {
 
         <div className="sidebar-body">
           <div className="sidebar-intro">
-            <span className="sidebar-eyebrow">
-              NAVIGATION
-            </span>
+            <span className="sidebar-eyebrow">NAVIGATION</span>
 
             <h2>Explore TRAINEX</h2>
 
-            <p>
-              Your gateway to railway
-              simulation and learning.
-            </p>
+            <p>Your gateway to railway simulation and learning.</p>
           </div>
 
-          <nav
-            className="sidebar-nav"
-            aria-label="Mobile main navigation"
-          >
+          <nav className="sidebar-nav" aria-label="Mobile main navigation">
             {navigation.map((item, index) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 end={item.to === "/"}
                 className={({ isActive }) =>
-                  `sidebar-link ${
-                    isActive ? "active" : ""
-                  }`
+                  `sidebar-link ${isActive ? "active" : ""}`
                 }
                 onClick={closeSidebar}
               >
                 <span className="sidebar-link-number">
-                  {String(index + 1).padStart(
-                    2,
-                    "0"
-                  )}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
 
-                <span className="sidebar-link-text">
-                  {item.label}
-                </span>
+                <span className="sidebar-link-text">{item.label}</span>
 
-                <span
-                  className="sidebar-link-arrow"
-                  aria-hidden="true"
-                >
+                <span className="sidebar-link-arrow" aria-hidden="true">
                   ↗
                 </span>
               </NavLink>
@@ -361,9 +286,7 @@ export default function NavBar() {
           </nav>
 
           <div className="sidebar-secondary">
-            <span className="sidebar-eyebrow">
-              QUICK ACCESS
-            </span>
+            <span className="sidebar-eyebrow">QUICK ACCESS</span>
 
             <Link
               to="/glossary"
@@ -375,14 +298,8 @@ export default function NavBar() {
             </Link>
           </div>
 
-          <Link
-            className="sidebar-cta"
-            to="/simulators"
-            onClick={closeSidebar}
-          >
-            <span>
-              Launch Simulator
-            </span>
+          <Link className="sidebar-cta" to="/simulators" onClick={closeSidebar}>
+            <span>Launch Simulator</span>
 
             <ArrowIcon />
           </Link>
@@ -394,10 +311,7 @@ export default function NavBar() {
             <ThemeToggle />
           </div>
 
-          <p>
-            TRAINEX · Interactive railway
-            education
-          </p>
+          <p>TRAINEX · Interactive railway education</p>
         </div>
       </aside>
     </>

@@ -5,7 +5,12 @@
  * One COM port cannot be opened by both this reader and PlatformIO Monitor.
  */
 export class UsbSerialConnection {
-  constructor({serial = globalThis.navigator?.serial, baudRate = 115200, onLine, onClosed}) {
+  constructor({
+    serial = globalThis.navigator?.serial,
+    baudRate = 115200,
+    onLine,
+    onClosed,
+  }) {
     this.serial = serial;
     this.baudRate = baudRate;
     this.onLine = onLine;
@@ -19,13 +24,15 @@ export class UsbSerialConnection {
 
   async connect() {
     if (!this.serial?.requestPort) {
-      throw new Error('USB Serial requires a compatible browser (Chrome/Edge) over HTTPS or localhost.');
+      throw new Error(
+        "USB Serial requires a compatible browser (Chrome/Edge) over HTTPS or localhost.",
+      );
     }
     // IMPORTANT: requestPort() happens before the first await; preserve the click gesture.
     const port = await this.serial.requestPort();
     if (this.closed) return;
     this.port = port;
-    await port.open({baudRate: this.baudRate});
+    await port.open({ baudRate: this.baudRate });
     if (this.closed) {
       await this.#closePort();
       return;
@@ -35,7 +42,7 @@ export class UsbSerialConnection {
   }
 
   async #readLoop() {
-    let pending = '';
+    let pending = "";
     const decoder = new TextDecoder();
     let readError = null;
     try {
@@ -44,14 +51,14 @@ export class UsbSerialConnection {
         this.reader = reader;
         try {
           while (!this.closed) {
-            const {value, done} = await reader.read();
+            const { value, done } = await reader.read();
             if (done) break;
-            pending += decoder.decode(value, {stream: true});
+            pending += decoder.decode(value, { stream: true });
             // Avoid unbounded input on corrupt serial bytes or newline-free output.
-            if (pending.length > 16384 && !pending.includes('\n')) pending = '';
+            if (pending.length > 16384 && !pending.includes("\n")) pending = "";
             let newline;
-            while ((newline = pending.indexOf('\n')) !== -1) {
-              const line = pending.slice(0, newline).replace(/\r$/, '');
+            while ((newline = pending.indexOf("\n")) !== -1) {
+              const line = pending.slice(0, newline).replace(/\r$/, "");
               pending = pending.slice(newline + 1);
               if (line.length <= 4096 && !this.closed) this.onLine(line);
             }
@@ -70,7 +77,10 @@ export class UsbSerialConnection {
       const userClosed = this.closed;
       this.closed = true;
       await this.#closePort();
-      if (!userClosed) this.onClosed(readError ?? new Error('ESP32 USB Serial connection ended.'));
+      if (!userClosed)
+        this.onClosed(
+          readError ?? new Error("ESP32 USB Serial connection ended."),
+        );
     }
   }
 
@@ -79,7 +89,11 @@ export class UsbSerialConnection {
     if (!this.portCloseTask) {
       const port = this.port;
       this.portCloseTask = (async () => {
-        try { await port.close(); } catch { /* Disconnect can close a port already removed. */ }
+        try {
+          await port.close();
+        } catch {
+          /* Disconnect can close a port already removed. */
+        }
         if (this.port === port) this.port = null;
       })();
     }
@@ -88,7 +102,11 @@ export class UsbSerialConnection {
 
   async disconnect() {
     this.closed = true;
-    try { await this.reader?.cancel(); } catch { /* USB may already be detached. */ }
+    try {
+      await this.reader?.cancel();
+    } catch {
+      /* USB may already be detached. */
+    }
     if (this.readTask) await this.readTask;
     else await this.#closePort();
   }

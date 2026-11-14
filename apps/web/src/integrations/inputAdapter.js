@@ -12,7 +12,10 @@ export const dispatchTrainexInput = sendInput;
 // The relay must authenticate pairing and device/session ownership.
 export function forwardHardwareInput(message) {
   if (!message || typeof message !== "object" || Array.isArray(message)) {
-    return Promise.resolve({ accepted: false, reason: "Invalid hardware message." });
+    return Promise.resolve({
+      accepted: false,
+      reason: "Invalid hardware message.",
+    });
   }
 
   return sendTrainexInput({

@@ -1,7 +1,4 @@
-
-import {
-  useTheme,
-} from "../../context/useTheme.js";
+import { useTheme } from "../../context/useTheme.js";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -13,14 +10,8 @@ export default function ThemeToggle() {
       type="button"
       className="icon-button theme-toggle"
       onClick={toggleTheme}
-      aria-label={
-        isDark
-          ? "Switch to light mode"
-          : "Switch to dark mode"
-      }
-      title={
-        isDark ? "Light mode" : "Dark mode"
-      }
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDark ? "Light mode" : "Dark mode"}
     >
       {isDark ? (
         <svg

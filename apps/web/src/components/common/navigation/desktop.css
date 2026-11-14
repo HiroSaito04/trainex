@@ -13,8 +13,7 @@
   border: 1px solid var(--border);
   border-radius: 100px;
 
-  box-shadow:
-    0 3px 14px rgba(0, 0, 0, 0.035);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.035);
 }
 
 .desktop-nav .nav-link {
@@ -55,8 +54,7 @@
 
   font-weight: 800;
 
-  box-shadow:
-    inset 0 0 0 1px var(--border);
+  box-shadow: inset 0 0 0 1px var(--border);
 }
 
 .desktop-nav .nav-link.active::before {
@@ -118,32 +116,49 @@
 
   transform: translateY(-2px);
 
-  box-shadow:
-    0 8px 23px var(--maroon-glow);
+  box-shadow: 0 8px 23px var(--maroon-glow);
 }
 
 .nav-cta svg {
   flex-shrink: 0;
 }
 
-.desktop-nav { background: var(--surface); border-color: var(--border); }
+.desktop-nav {
+  background: var(--surface);
+  border-color: var(--border);
+}
 
-.desktop-nav .nav-link { color: var(--muted); }
+.desktop-nav .nav-link {
+  color: var(--muted);
+}
 
-.desktop-nav .nav-link:hover { background: var(--raised); color: var(--text); }
+.desktop-nav .nav-link:hover {
+  background: var(--raised);
+  color: var(--text);
+}
 
 .desktop-nav .nav-link.active {
-  background: var(--raised); color: var(--accent-text);
+  background: var(--raised);
+  color: var(--accent-text);
   box-shadow: inset 0 0 0 1px var(--border);
 }
 
-.desktop-nav .nav-link.active::before { background: var(--accent); }
-
-.nav-cta,.btn-primary {
-  background: #ffd700; color: #14171c; border: 1px solid #ffd700;
+.desktop-nav .nav-link.active::before {
+  background: var(--accent);
 }
 
-.nav-cta:hover,.btn-primary:not(:disabled):hover { background: #ffe34d; color: #14171c; }
+.nav-cta,
+.btn-primary {
+  background: #ffd700;
+  color: #14171c;
+  border: 1px solid #ffd700;
+}
+
+.nav-cta:hover,
+.btn-primary:not(:disabled):hover {
+  background: #ffe34d;
+  color: #14171c;
+}
 
 :root:not([data-theme="dark"]) .desktop-nav,
 [data-theme="light"] .desktop-nav {
@@ -153,11 +168,11 @@
 :root:not([data-theme="dark"]) .desktop-nav .nav-link.active,
 [data-theme="light"] .desktop-nav .nav-link.active {
   border: 1px solid var(--trainex-line);
-  box-shadow: inset 0 0 0 1px rgba(92,112,135,.13);
+  box-shadow: inset 0 0 0 1px rgba(92, 112, 135, 0.13);
 }
 
 @media (max-width: 1120px) {
-.desktop-nav,
+  .desktop-nav,
   .desktop-actions {
     display: none;
   }

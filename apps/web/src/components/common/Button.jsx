@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 export default function Button({
@@ -8,8 +7,7 @@ export default function Button({
   className = "",
   ...props
 }) {
-  const classes =
-    `btn btn-${variant} ${className}`.trim();
+  const classes = `btn btn-${variant} ${className}`.trim();
 
   if (to) {
     return (
@@ -20,11 +18,7 @@ export default function Button({
   }
 
   return (
-    <button
-      type="button"
-      className={classes}
-      {...props}
-    >
+    <button type="button" className={classes} {...props}>
       {children}
     </button>
   );

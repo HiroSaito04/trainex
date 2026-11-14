@@ -1,4 +1,3 @@
-
 let runtime = null;
 let unsubscribeRuntime = null;
 
@@ -27,16 +26,12 @@ function notifyListeners() {
 }
 
 function refreshSnapshot() {
-  const trainState =
-    runtime?.getState?.() ?? unavailableState;
+  const trainState = runtime?.getState?.() ?? unavailableState;
 
-  const sessionStatus =
-    runtime?.getSessionStatus?.() ?? "IDLE";
+  const sessionStatus = runtime?.getSessionStatus?.() ?? "IDLE";
 
   const sessionId =
-    runtime?.getSessionInfo?.()?.sessionId ??
-    trainState.sessionId ??
-    null;
+    runtime?.getSessionInfo?.()?.sessionId ?? trainState.sessionId ?? null;
 
   // Avoid unnecessary React rerenders.
   if (
@@ -65,9 +60,7 @@ export function registerTrainexRuntime(nextRuntime) {
       typeof nextRuntime.getState !== "function" ||
       typeof nextRuntime.subscribe !== "function"
     ) {
-      throw new Error(
-        "TRAINEX runtime must implement getState and subscribe."
-      );
+      throw new Error("TRAINEX runtime must implement getState and subscribe.");
     }
   }
 
@@ -77,9 +70,7 @@ export function registerTrainexRuntime(nextRuntime) {
   runtime = nextRuntime ?? null;
 
   if (runtime) {
-    unsubscribeRuntime = runtime.subscribe(
-      refreshSnapshot
-    );
+    unsubscribeRuntime = runtime.subscribe(refreshSnapshot);
   }
 
   refreshSnapshot();
@@ -139,28 +130,23 @@ export const sendCommand = sendTrainexInput;
 
 // Session management.
 export function startTrainexSession(options = {}) {
-  return runtime?.startSession?.(options) ??
-    unavailable();
+  return runtime?.startSession?.(options) ?? unavailable();
 }
 
 export function pauseTrainexSession() {
-  return runtime?.pauseSession?.() ??
-    unavailable();
+  return runtime?.pauseSession?.() ?? unavailable();
 }
 
 export function resumeTrainexSession() {
-  return runtime?.resumeSession?.() ??
-    unavailable();
+  return runtime?.resumeSession?.() ?? unavailable();
 }
 
 export function resetTrainexSession() {
-  return runtime?.resetSession?.() ??
-    unavailable();
+  return runtime?.resetSession?.() ?? unavailable();
 }
 
 export function endTrainexSession() {
-  return runtime?.endSession?.() ??
-    unavailable();
+  return runtime?.endSession?.() ?? unavailable();
 }
 
 // Short aliases for existing integrations.

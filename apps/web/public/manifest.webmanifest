@@ -8,10 +8,7 @@
   "display": "standalone",
   "background_color": "#800000",
   "theme_color": "#800000",
-  "categories": [
-    "education",
-    "simulation"
-  ],
+  "categories": ["education", "simulation"],
   "icons": [
     {
       "src": "/icon-192.png",
