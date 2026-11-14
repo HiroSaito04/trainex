@@ -1,0 +1,216 @@
+/* TRAINEX 5-second launch animation — all presentation lives in assets/styles. */
+.trainex-splash {
+  --splash-maroon: #800000;
+  --splash-gold: #ffd700;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: minmax(235px, 1fr) minmax(190px, 39vh) minmax(90px, .45fr);
+  align-items: center;
+  isolation: isolate;
+  color: #f9fafc;
+  background: radial-gradient(ellipse at 50% 54%, #35101d 0, #13151d 52%, #080b12 100%);
+  font-family: inherit;
+  text-align: center;
+}
+
+.trainex-splash *,
+.trainex-splash *::before,
+.trainex-splash *::after { box-sizing: border-box; }
+
+.trainex-splash__ambient {
+  position: absolute;
+  z-index: -1;
+  width: 38vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(68px);
+  opacity: .30;
+  pointer-events: none;
+}
+.trainex-splash__ambient--one {
+  top: -24vw;
+  left: -12vw;
+  background: #8a102c;
+}
+.trainex-splash__ambient--two {
+  bottom: -28vw;
+  right: -16vw;
+  background: #986200;
+}
+
+.trainex-splash__branding {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  padding: 2rem 1rem 0;
+}
+.trainex-splash__app-icon {
+  display: block;
+  width: clamp(44px, 5.3vw, 64px);
+  height: auto;
+  margin: 0 auto .9rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 30px #0009, 0 0 35px #80000055;
+}
+.trainex-splash__eyebrow {
+  margin: 0 0 .45rem;
+  letter-spacing: .24em;
+  font-size: clamp(.59rem, 1vw, .76rem);
+  font-weight: 750;
+  color: #e0bb8a;
+}
+.trainex-splash__wordmark {
+  margin: 0;
+  font-size: clamp(3rem, 7.8vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -.07em;
+  text-shadow: 0 8px 30px #0008;
+}
+.trainex-splash__wordmark span { color: var(--splash-gold); }
+.trainex-splash__tagline {
+  max-width: 38rem;
+  margin: .8rem auto 0;
+  color: #c2c7d0;
+  font-size: clamp(.78rem, 1.4vw, 1rem);
+}
+
+.trainex-splash__rail-scene {
+  align-self: center;
+  position: relative;
+  width: 100%;
+  height: min(39vh, 380px);
+  min-height: 190px;
+  overflow: hidden;
+}
+.trainex-splash__rail-scene::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 13%;
+  height: 45%;
+  background: linear-gradient(to bottom, transparent, #64041c1d 55%, #14161d99);
+}
+.trainex-splash__train {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 50%;
+  width: clamp(680px, 82vw, 1170px);
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  animation: trainex-splash-ride 4.8s linear both;
+}
+@keyframes trainex-splash-ride {
+  0% { transform: translate3d(calc(-150% - 100vw), 0, 0); }
+  48% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(calc(50% + 100vw), 0, 0); }
+}
+
+.trainex-splash__motion-trails {
+  position: absolute;
+  inset: 12% 0 20%;
+  opacity: .2;
+  background: repeating-linear-gradient(0deg, transparent 0 30px, #cba56877 30px 32px, transparent 32px 70px);
+  mask-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
+}
+.trainex-splash__rail {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(#92939c, #484a53 56%, #151922);
+  box-shadow: 0 2px 5px #000b;
+}
+.trainex-splash__rail--top { bottom: 13%; }
+.trainex-splash__rail--bottom { bottom: 7%; }
+.trainex-splash__sleepers {
+  position: absolute;
+  z-index: 1;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  height: 13%;
+  background: repeating-linear-gradient(90deg, transparent 0 42px, #4e515c 42px 63px, transparent 63px 100px);
+  animation: trainex-splash-tracks .7s linear infinite;
+}
+@keyframes trainex-splash-tracks {
+  to { background-position-x: 100px; }
+}
+
+.trainex-splash__footer {
+  z-index: 2;
+  align-self: start;
+  width: min(440px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: clamp(.4rem, 2vh, 1.4rem) 0 2rem;
+}
+.trainex-splash__progress-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #ffdd6b;
+  font-weight: 800;
+  letter-spacing: .11em;
+  font-size: .69rem;
+}
+.trainex-splash__progress-count { color: #aab0be; font-weight: 600; }
+.trainex-splash__progress-track {
+  height: 5px;
+  margin-top: .7rem;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #3b3b45;
+  box-shadow: 0 1px 8px #0007;
+}
+.trainex-splash__progress-fill {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #aa071b, #ffd700);
+  border-radius: inherit;
+  animation: trainex-splash-progress 5s linear forwards;
+}
+@keyframes trainex-splash-progress { to { width: 100%; } }
+.trainex-splash__footer p {
+  margin: .85rem 0 0;
+  color: #adb3c0;
+  font-size: .79rem;
+}
+
+@media (max-width: 650px) {
+  .trainex-splash {
+    grid-template-rows: minmax(0, 1fr) minmax(165px, 32vh) minmax(0, .85fr);
+  }
+  .trainex-splash__branding { padding-top: .75rem; }
+  .trainex-splash__eyebrow { letter-spacing: .13em; }
+  .trainex-splash__rail-scene { height: 32vh; min-height: 165px; }
+  .trainex-splash__train { width: 680px; bottom: 6%; }
+  .trainex-splash__progress-heading { font-size: .6rem; letter-spacing: .05em; }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .trainex-splash { grid-template-rows: auto 1fr auto; }
+  .trainex-splash__branding { padding-top: .4rem; }
+  .trainex-splash__app-icon, .trainex-splash__tagline { display: none; }
+  .trainex-splash__wordmark { font-size: 2.5rem; }
+  .trainex-splash__rail-scene { height: 45vh; min-height: 115px; }
+  .trainex-splash__footer { padding: 0 0 .65rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Accessibility: still keep the 5-second splash, but don't move the train. */
+  .trainex-splash__train { animation: none; transform: translateX(-50%); }
+  .trainex-splash__sleepers { animation: none; }
+  .trainex-splash__progress-fill { animation: none; width: 100%; }
+}

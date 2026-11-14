@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import BrandWordmark from "./BrandWordmark.jsx";
-import "./Footer.css";
+import "../../assets/styles/components/Footer.css";
 
 const footerGroups = [
   {

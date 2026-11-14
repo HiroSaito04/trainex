@@ -1,4 +1,4 @@
-import "./NavBar.css";
+import "../../assets/styles/components/NavBar.css";
 
 import { useEffect, useRef, useState } from "react";
 

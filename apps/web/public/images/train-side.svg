@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500" role="img" aria-label="TRAINEX maroon and yellow modern Philippine commuter train, true side view">
+<title>TRAINEX — PNR-inspired side profile commuter train</title>
+<desc>Original scalable SVG vector illustration with maroon and golden yellow livery. Not an official PNR train diagram.</desc>
+<defs>
+  <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B4222B"/><stop offset=".4" stop-color="#88000D"/><stop offset="1" stop-color="#650008"/></linearGradient>
+  <linearGradient id="gold" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFE064"/><stop offset=".42" stop-color="#FDBF21"/><stop offset="1" stop-color="#E68C00"/></linearGradient>
+  <linearGradient id="glass" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#192E44"/><stop offset=".56" stop-color="#162130"/><stop offset="1" stop-color="#0A111A"/></linearGradient>
+  <linearGradient id="metal" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F4F5F6"/><stop offset=".36" stop-color="#BCC2CB"/><stop offset=".65" stop-color="#F4F5F6"/><stop offset="1" stop-color="#8F98A2"/></linearGradient>
+  <linearGradient id="skirt" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#424953"/><stop offset="1" stop-color="#21252C"/></linearGradient>
+  <filter id="drop" x="-15%" y="-50%" width="130%" height="230%"><feGaussianBlur stdDeviation="11"/></filter>
+  <g id="wheel"><circle r="32" fill="#343A40" stroke="#171B21" stroke-width="5"/><circle r="24" fill="#73808A" stroke="#272D33" stroke-width="5"/><circle r="13" fill="#C1C8CE" stroke="#343B42" stroke-width="4"/><circle r="5" fill="#495056"/></g>
+  <g id="passenger-window"><rect width="106" height="74" rx="11" fill="#10151D" stroke="#CFD2D7" stroke-width="4"/><rect x="6" y="6" width="94" height="62" rx="7" fill="url(#glass)"/><path d="M18 7H51L16 68H7Z" fill="#FFFFFF" opacity=".13"/><path d="M70 7H83L45 68H31Z" fill="#FFFFFF" opacity=".07"/></g>
+  <g id="pair-door"><rect width="124" height="166" rx="10" fill="#15191F" stroke="#E1E3E7" stroke-width="4"/><rect x="5" y="5" width="114" height="156" rx="7" fill="url(#metal)"/><path d="M62 6V161" stroke="#666E77" stroke-width="3"/><rect x="12" y="19" width="42" height="69" rx="7" fill="url(#glass)" stroke="#4D5763" stroke-width="2"/><rect x="70" y="19" width="42" height="69" rx="7" fill="url(#glass)" stroke="#4D5763" stroke-width="2"/><rect x="51" y="100" width="5" height="23" rx="2" fill="#5B6069"/><rect x="68" y="100" width="5" height="23" rx="2" fill="#5B6069"/><path d="M62 143V161" stroke="#D5DBE0" stroke-width="2"/></g>
+</defs>
+<!-- soft ground shadow (not a backdrop) -->
+<ellipse cx="793" cy="424" rx="705" ry="15" fill="#18212B" opacity=".11" filter="url(#drop)"/>
+<!-- coupling and lower running equipment -->
+<path d="M56 343H1530V390H56Z" fill="url(#skirt)" stroke="#22262D" stroke-width="4"/>
+<path d="M65 375h-28l-13 6v13h44M1532 376h30l14 8v13h-44" fill="#2B3037" stroke="#181C21" stroke-width="5"/>
+<!-- roof and base cabin silhouette, right end round-nosed -->
+<path d="M72 161Q72 139 101 139H1359Q1432 139 1472 162L1507 193Q1533 217 1534 269V347Q1534 365 1514 365H75Q61 365 61 352V177Q61 166 72 161Z" fill="url(#body)" stroke="#4D050C" stroke-width="6"/>
+<!-- Roof band -->
+<path d="M100 139Q119 122 164 122H1378Q1448 122 1478 159L1495 177Q1462 150 1396 149H102Z" fill="url(#metal)" stroke="#59616B" stroke-width="3"/>
+<path d="M126 151H1391" stroke="#FFFFFF" stroke-width="5" opacity=".5"/>
+<!-- roof air conditioner housings -->
+<g fill="url(#metal)" stroke="#626B75" stroke-width="3"><path d="M282 123V97Q282 83 298 83H548Q563 83 563 97V123Z"/><path d="M1012 123V97Q1012 83 1028 83H1271Q1288 83 1288 97V123Z"/></g>
+<g stroke="#65717A" stroke-width="3">
+<path d="M334 93v23"/>
+<path d="M349 93v23"/>
+<path d="M364 93v23"/>
+<path d="M379 93v23"/>
+<path d="M394 93v23"/>
+<path d="M409 93v23"/>
+<path d="M424 93v23"/>
+<path d="M439 93v23"/>
+<path d="M454 93v23"/>
+<path d="M469 93v23"/>
+<path d="M484 93v23"/>
+<path d="M499 93v23"/>
+<path d="M514 93v23"/>
+<path d="M1057 93v23"/>
+<path d="M1072 93v23"/>
+<path d="M1087 93v23"/>
+<path d="M1102 93v23"/>
+<path d="M1117 93v23"/>
+<path d="M1132 93v23"/>
+<path d="M1147 93v23"/>
+<path d="M1162 93v23"/>
+<path d="M1177 93v23"/>
+<path d="M1192 93v23"/>
+<path d="M1207 93v23"/>
+<path d="M1222 93v23"/>
+<path d="M1237 93v23"/>
+</g>
+<!-- upper glazing waistband -->
+<path d="M80 185H1394Q1425 185 1442 204L1477 262H80Z" fill="#54030B" opacity=".55"/>
+<!-- front cab glass / side driver's window -->
+<path d="M1382 187H1454Q1473 202 1485 228L1505 276H1430Q1410 276 1403 255Z" fill="#141B25" stroke="#D2D7DB" stroke-width="5"/>
+<path d="M1392 193H1449Q1461 204 1469 219L1435 269H1411Z" fill="url(#glass)"/>
+<path d="M1446 196L1471 225L1435 266H1419Z" fill="#E4F5FF" opacity=".12"/>
+<path d="M1506 276L1515 293L1483 293" fill="#29282D" stroke="#B9C0C5" stroke-width="3"/>
+<!-- cabin left side end door -->
+<rect x="82" y="190" width="56" height="153" rx="8" fill="#57000B" stroke="#C6C5C6" stroke-width="4"/>
+<rect x="89" y="201" width="42" height="75" rx="7" fill="url(#glass)" stroke="#D0D0D3" stroke-width="2"/>
+<!-- window modules -->
+<use href="#passenger-window" x="151" y="191"/>
+<use href="#passenger-window" x="268" y="191"/>
+<use href="#passenger-window" x="524" y="191"/>
+<use href="#passenger-window" x="643" y="191"/>
+<use href="#passenger-window" x="762" y="191"/>
+<use href="#passenger-window" x="881" y="191"/>
+<use href="#passenger-window" x="1120" y="191"/>
+<use href="#passenger-window" x="1240" y="191"/>
+<!-- bold double yellow belt which flows into the front cab -->
+<path d="M62 291H1392Q1465 291 1527 311V337H1390H62Z" fill="url(#gold)"/>
+<path d="M61 312H1386Q1453 312 1524 333V344H61Z" fill="#70000B"/>
+<path d="M61 350H1508Q1523 350 1531 340V349Q1531 365 1514 365H72Z" fill="#D59310"/>
+<path d="M1425 292Q1487 295 1528 313L1526 329Q1475 307 1414 310" fill="#FFE37C" opacity=".78"/>
+<!-- stainless doors overlay yellow livery -->
+<use href="#pair-door" x="385" y="188"/>
+<use href="#pair-door" x="1004" y="188"/>
+<!-- car separations and rivet details -->
+<path d="M113 284V350M1356 284V350" stroke="#3D0208" opacity=".45" stroke-width="3"/>
+<g fill="#F8D15D" opacity=".6"><circle cx="151" cy="355" r="2"/><circle cx="232" cy="355" r="2"/><circle cx="599" cy="355" r="2"/><circle cx="889" cy="355" r="2"/><circle cx="1376" cy="355" r="2"/></g>
+<!-- front headlights and nose details -->
+<path d="M1518 295Q1530 298 1532 310L1532 323H1494Z" fill="#171C24" stroke="#8B9298" stroke-width="3"/>
+<ellipse cx="1514" cy="310" rx="12" ry="5" fill="#FFE78A"/>
+<path d="M1511 351q5 6 17 5" stroke="#4F0408" stroke-width="4" fill="none"/>
+<!-- bogie frames and suspension -->
+<g stroke="#20272E" stroke-width="4" fill="#383F47">
+ <path d="M192 373H450L424 410H221Z"/>
+ <path d="M1096 373H1360L1331 410H1126Z"/>
+</g>
+<!-- wheels -->
+<use href="#wheel" x="263" y="410"/><use href="#wheel" x="385" y="410"/>
+<use href="#wheel" x="1154" y="410"/><use href="#wheel" x="1285" y="410"/>
+<!-- bogie top crossbeam and axle bars -->
+<g fill="none" stroke="#1F252D" stroke-width="10" stroke-linecap="round"><path d="M260 388H388"/><path d="M1150 388H1287"/></g>
+<g fill="none" stroke="#82909C" stroke-width="4"><path d="M310 380v24m18-24v24m880-24v24m18-24v24"/></g>
+<!-- lower equipment housings -->
+<g fill="#424B55" stroke="#242B33" stroke-width="4"><rect x="520" y="377" width="155" height="48" rx="7"/><rect x="690" y="377" width="125" height="47" rx="7"/><rect x="837" y="376" width="154" height="48" rx="7"/></g>
+<g stroke="#8D98A3" stroke-width="2"><path d="M538 390h60M538 398h60M707 390h45M707 399h45M857 392h83M857 402h83"/></g>
+<!-- coupler caps -->
+<path d="M53 384h-35v13h35M1538 384h38v13h-38" fill="#343D46" stroke="#20252A" stroke-width="4"/>
+</svg>

@@ -35,18 +35,24 @@ test("theme variables have a single authoritative owner", () => {
 });
 
 test("navigation and footer have independent CSS owners", () => {
-  assert.match(read("src/components/common/NavBar.jsx"), /\.\/NavBar\.css/);
+  assert.match(
+    read("src/components/common/NavBar.jsx"),
+    /assets\/styles\/components\/NavBar\.css/,
+  );
   assert.match(
     read("src/components/common/BrandWordmark.jsx"),
-    /\.\/BrandWordmark\.css/,
+    /assets\/styles\/components\/BrandWordmark\.css/,
   );
-  assert.match(read("src/components/common/Footer.jsx"), /\.\/Footer\.css/);
+  assert.match(
+    read("src/components/common/Footer.jsx"),
+    /assets\/styles\/components\/Footer\.css/,
+  );
   assert.doesNotMatch(
-    read("src/components/common/NavBar.css"),
+    read("src/assets/styles/components/NavBar.css"),
     /\.footer-inner|\.trainex-footer-main/,
   );
   assert.match(
-    read("src/components/common/Footer.css"),
+    read("src/assets/styles/components/Footer.css"),
     /\.trainex-footer-main/,
   );
 });
@@ -121,4 +127,16 @@ test("styles for Home, Hardware, and both simulator pages are owned by their pag
     ["Simulator3DPage.jsx", "simulation.css"],
   ])
     assert.ok(read(`src/pages/${component}`).includes(name), component);
+});
+
+test("website styles live only in src/assets/styles", () => {
+  const cssFiles = files(src).filter((f) => f.endsWith(".css"));
+  const styleDir = resolve(src, "assets/styles") + "/";
+  assert.ok(cssFiles.length > 0);
+  for (const file of cssFiles)
+    assert.ok(file.startsWith(styleDir), `Misplaced stylesheet: ${file}`);
+  for (const file of files(src).filter((f) => /\.(jsx|js)$/.test(f))) {
+    const source = readFileSync(file, "utf8");
+    assert.doesNotMatch(source, /\bstyle\s*=\s*\{\{/, `Inline CSS in ${file}`);
+  }
 });

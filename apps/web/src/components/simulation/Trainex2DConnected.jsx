@@ -1,5 +1,5 @@
 import { audioService } from "../../services/audioService.js";
-import "./Trainex2DConnected.css";
+import "../../assets/styles/components/Trainex2DConnected.css";
 import { useEffect, useSyncExternalStore } from "react";
 import { Simulator2D } from "@trainex/simulator-2d";
 import {

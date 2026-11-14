@@ -107,20 +107,12 @@ export default function TrainingPage() {
                   {completedCount} / {chosen.steps.length} practice steps
                   reviewed (self-check)
                 </span>
-                <div
+                <progress
                   className="train-progress-track"
-                  role="progressbar"
                   aria-label="Self-review progress"
-                  aria-valuemin={0}
-                  aria-valuemax={chosen.steps.length}
-                  aria-valuenow={completedCount}
-                >
-                  <span
-                    style={{
-                      width: `${(completedCount / chosen.steps.length) * 100}%`,
-                    }}
-                  />
-                </div>
+                  value={completedCount}
+                  max={chosen.steps.length || 1}
+                />
               </div>
               <ol className="train-step-list">
                 {chosen.steps.map((step, index) => (

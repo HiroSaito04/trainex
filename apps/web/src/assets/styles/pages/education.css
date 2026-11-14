@@ -506,17 +506,30 @@
   color: var(--muted);
   margin: 1.25rem 0;
 }
+/* Native progress keeps its changing value in HTML and its styling in CSS. */
 .train-progress-track {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
   height: 8px;
   background: var(--surface-alt);
+  border: 0;
   border-radius: 8px;
   overflow: hidden;
 }
-.train-progress-track span {
-  display: block;
-  height: 100%;
+.train-progress-track::-webkit-progress-bar {
+  background: var(--surface-alt);
+  border-radius: 8px;
+}
+.train-progress-track::-webkit-progress-value {
   background: var(--brand-maroon);
+  border-radius: 8px;
   transition: width 0.16s ease;
+}
+.train-progress-track::-moz-progress-bar {
+  background: var(--brand-maroon);
+  border-radius: 8px;
 }
 .train-step-list {
   list-style: none;
@@ -980,7 +993,13 @@
   border: 1px solid var(--border);
 }
 
-.edu-page .train-progress-track span {
+.edu-page .train-progress-track::-webkit-progress-bar {
+  background: var(--raised);
+}
+.edu-page .train-progress-track::-webkit-progress-value {
+  background: #ffd700;
+}
+.edu-page .train-progress-track::-moz-progress-bar {
   background: #ffd700;
 }
 
