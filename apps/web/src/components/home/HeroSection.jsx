@@ -14,7 +14,7 @@ export default function HeroSection() {
 
         <p className="lead">
           TRAINEX brings together interactive 3D cabin interfaces, guided
-          learning, and optional physical controls in one browser-based
+          learning and training in one browser-based
           platform.
         </p>
 

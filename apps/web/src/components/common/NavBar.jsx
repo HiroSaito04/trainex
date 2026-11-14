@@ -161,7 +161,7 @@ export default function NavBar() {
           >
             <BrandWordmark />
 
-            <span className="brand-tagline">RAILWAY TRAINING SYSTEM</span>
+            <span className="brand-tagline">RAILWAY DRIVER TRAINING SIMULATOR</span>
           </Link>
 
           {/* DESKTOP NAVIGATION */}

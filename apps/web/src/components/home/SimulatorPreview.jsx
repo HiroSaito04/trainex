@@ -1,30 +1,30 @@
 import Button from "../common/Button.jsx";
 
 const controls = [
-  "Front Display Panel",
-  "All Doors Closed Lamp",
+  "Train Management System Panel",
   "Master Control Handle",
-  "Emergency Brake Reset",
+  "Horn Button",
+  "Vigilance Button",
   "Passenger Door Controls",
+  "Security Brake Button",
 ];
 
 export default function SimulatorPreview() {
   return (
     <section className="section split-section">
       <div>
-        <p className="eyebrow">FIVE ESSENTIAL CONSOLE ELEMENTS</p>
+        <h2>Built around NSCR Commuter Train Driver Cabin Controls </h2>
 
-        <h2>Built around functional railway controls</h2>
+        <p className="eyebrow">FUNCTIONAL DRIVER CAB COMPONENTS</p>
 
         <p className="lead">
-          The Front Display Panel, All Doors Closed lamp, Master Control Handle,
-          Emergency Brake Switch, and Passenger Door Controls form the initial
+          The Train Management System Panel, All Doors Closed Lamp, 
+          All Doors Open Lamp, Speedometer, Master Control Handle,
+          Horn Button, Vigilance Button and Lamp, Security Brake Button,
+          and Passenger Door Controls form the initial
           simulation scope.
         </p>
 
-        <Button to="/simulators" variant="secondary">
-          View simulator options
-        </Button>
       </div>
 
       <div className="panel list-panel">
