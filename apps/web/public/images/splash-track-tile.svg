@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" width="320" height="100" aria-label="Stationary steel railway rail mounted on evenly spaced sleepers and ballast">
+  <title>TRAINEX stationary railway track, side elevation</title>
+  <defs>
+    <linearGradient id="railhead" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#D9DEE3"/><stop offset=".38" stop-color="#8C959D"/><stop offset="1" stop-color="#555C67"/></linearGradient>
+    <linearGradient id="web" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#3F4853"/><stop offset="1" stop-color="#242B34"/></linearGradient>
+    <linearGradient id="ballast" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#343941"/><stop offset="1" stop-color="#20262E"/></linearGradient>
+    <g id="sleeper">
+      <path d="M-20 51H20L25 79H-25Z" fill="#454852" stroke="#171C23" stroke-width="2"/>
+      <path d="M-17 55H17M-19 68H19" stroke="#69717B" stroke-width="2"/>
+      <rect x="-9" y="50" width="18" height="5" rx="1.5" fill="#8B9098" stroke="#252A30" stroke-width="1" />
+      <path d="M-14 53H-10M10 53H14" stroke="#D0A15E" stroke-width="3"/>
+    </g>
+  </defs>
+  <!-- Graded ballast layer: all components are a fixed (nonanimated) background. -->
+  <path d="M0 69 L20 64 43 69 59 64 84 68 109 65 135 70 161 64 181 66 205 63 229 69 257 64 280 69 302 65 320 68 V100 H0Z" fill="url(#ballast)"/>
+  <g fill="#69717A" opacity=".50">
+    <path d="M9 87l7-3 6 5-8 3z M45 84l7-2 6 5-8 2z M77 92l6-4 9 4-8 3z M116 84l8-3 5 6-10 3z M161 93l9-4 7 5-10 3z M212 87l6-4 10 5-8 3z M247 92l7-3 8 4-6 4z M296 84l7-3 9 5-9 3z" />
+  </g>
+  <g><use href="#sleeper" x="40"/><use href="#sleeper" x="120"/><use href="#sleeper" x="200"/><use href="#sleeper" x="280"/></g>
+  <!-- One visible continuous steel rail: head, web, and wide foot. -->
+  <path d="M0 25 H320 V33 H0 Z" fill="url(#railhead)" stroke="#272D35" stroke-width="1.2" />
+  <path d="M0 33 H320 V50 H0 Z" fill="url(#web)" />
+  <path d="M0 48 H320 V53 H0 Z" fill="#7D8790" />
+  <path d="M0 52 H320 V57 H0 Z" fill="#343A44" />
+  <path d="M0 25 H320" stroke="#F2F5F7" stroke-width="1.6" opacity=".92" />
+  <path d="M0 32 H320" stroke="#303741" stroke-width="1.2" />
+  <!-- Rail fastening points beside each sleeper, not a second horizontal rail. -->
+  <g fill="#C49756"><rect x="30" y="49" width="6" height="3" rx="1"/><rect x="44" y="49" width="6" height="3" rx="1"/><rect x="110" y="49" width="6" height="3" rx="1"/><rect x="124" y="49" width="6" height="3" rx="1"/><rect x="190" y="49" width="6" height="3" rx="1"/><rect x="204" y="49" width="6" height="3" rx="1"/><rect x="270" y="49" width="6" height="3" rx="1"/><rect x="284" y="49" width="6" height="3" rx="1"/></g>
+</svg>

@@ -33,7 +33,7 @@ test('existing PWA pre-caches new local public assets after build', async () => 
 });
 
 
-test('five cars are connected in one traveling SVG; rails and sleepers remain motionless', async () => {
+test('five cars are connected in one traveling SVG; rail and sleepers remain motionless', async () => {
   const svg = await read('../public/images/train-side.svg');
   const css = await read('../src/assets/styles/components/SplashScreen.css');
   const splash = await read('../src/components/common/SplashScreen.jsx');
@@ -42,6 +42,20 @@ test('five cars are connected in one traveling SVG; rails and sleepers remain mo
   assert.match(splash, /className="trainex-splash__train"/);
   assert.match(css, /\.trainex-splash__train\s*\{[^}]*animation:\s*trainex-splash-ride/s);
   assert.doesNotMatch(css, /trainex-splash-tracks/);
-  assert.doesNotMatch(css, /\.trainex-splash__sleepers\s*\{[^}]*animation:/s);
-  assert.doesNotMatch(css, /\.trainex-splash__rail\s*\{[^}]*animation:/s);
+  assert.match(splash, /className="trainex-splash__track"/);
+  assert.doesNotMatch(css.replace(/\/\*[\s\S]*?\*\//g, ""), /\.trainex-splash__track\s*\{[^}]*animation:/s);
+});
+
+
+test('train is significantly larger and aligned to railhead; track stays stationary', async () => {
+  const css = await read('../src/assets/styles/components/SplashScreen.css');
+  const track = await read('../public/images/splash-track-tile.svg');
+  const splash = await read('../src/components/common/SplashScreen.jsx');
+  assert.match(css, /--train-height:\s*clamp\(185px,\s*30vh,\s*268px\)/);
+  assert.match(css, /bottom:\s*calc\(var\(--track-height\) \* \.75 - var\(--wheel-offset\)\)/);
+  assert.match(track, /Rail fastening points/);
+  assert.match(track, /One visible continuous steel rail/);
+  assert.match(splash, /className="trainex-splash__track"/);
+  assert.doesNotMatch(css, /filter:\s*blur|backdrop-filter|trainex-splash__ambient|trainex-splash__motion-trails/);
+  assert.doesNotMatch(track, /<animate|animation/);
 });

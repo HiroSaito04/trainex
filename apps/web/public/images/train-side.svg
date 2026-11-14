@@ -8,7 +8,6 @@
   <linearGradient id="glass" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#192E44"/><stop offset=".56" stop-color="#162130"/><stop offset="1" stop-color="#0A111A"/></linearGradient>
   <linearGradient id="metal" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F4F5F6"/><stop offset=".36" stop-color="#BCC2CB"/><stop offset=".65" stop-color="#F4F5F6"/><stop offset="1" stop-color="#8F98A2"/></linearGradient>
   <linearGradient id="skirt" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#424953"/><stop offset="1" stop-color="#21252C"/></linearGradient>
-  <filter id="drop" x="-15%" y="-50%" width="130%" height="230%"><feGaussianBlur stdDeviation="11"/></filter>
   <g id="wheel"><circle r="32" fill="#343A40" stroke="#171B21" stroke-width="5"/><circle r="24" fill="#73808A" stroke="#272D33" stroke-width="5"/><circle r="13" fill="#C1C8CE" stroke="#343B42" stroke-width="4"/><circle r="5" fill="#495056"/></g>
   <g id="passenger-window"><rect width="106" height="74" rx="11" fill="#10151D" stroke="#CFD2D7" stroke-width="4"/><rect x="6" y="6" width="94" height="62" rx="7" fill="url(#glass)"/><path d="M18 7H51L16 68H7Z" fill="#FFFFFF" opacity=".13"/><path d="M70 7H83L45 68H31Z" fill="#FFFFFF" opacity=".07"/></g>
   <g id="pair-door"><rect width="124" height="166" rx="10" fill="#15191F" stroke="#E1E3E7" stroke-width="4"/><rect x="5" y="5" width="114" height="156" rx="7" fill="url(#metal)"/><path d="M62 6V161" stroke="#666E77" stroke-width="3"/><rect x="12" y="19" width="42" height="69" rx="7" fill="url(#glass)" stroke="#4D5763" stroke-width="2"/><rect x="70" y="19" width="42" height="69" rx="7" fill="url(#glass)" stroke="#4D5763" stroke-width="2"/><rect x="51" y="100" width="5" height="23" rx="2" fill="#5B6069"/><rect x="68" y="100" width="5" height="23" rx="2" fill="#5B6069"/><path d="M62 143V161" stroke="#D5DBE0" stroke-width="2"/></g>
@@ -163,8 +162,7 @@
 </g>
 <g id="trainex-car-5" data-splash-car="5" transform="translate(6060 0)">
 
-<!-- soft ground shadow (not a backdrop) -->
-<ellipse cx="793" cy="424" rx="705" ry="15" fill="#18212B" opacity=".11" filter="url(#drop)"/>
+
 <!-- coupling and lower running equipment -->
 <path d="M56 343H1530V390H56Z" fill="url(#skirt)" stroke="#22262D" stroke-width="4"/>
 <path d="M65 375h-28l-13 6v13h44M1532 376h30l14 8v13h-44" fill="#2B3037" stroke="#181C21" stroke-width="5"/>

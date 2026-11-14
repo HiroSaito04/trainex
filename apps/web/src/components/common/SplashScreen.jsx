@@ -10,9 +10,6 @@ export const SPLASH_DURATION_MS = 5000;
 export default function SplashScreen() {
   return (
     <main className="trainex-splash" role="status" aria-live="polite" aria-label="TRAINEX is opening">
-      <div className="trainex-splash__ambient trainex-splash__ambient--one" aria-hidden="true" />
-      <div className="trainex-splash__ambient trainex-splash__ambient--two" aria-hidden="true" />
-
       <header className="trainex-splash__branding">
         <img className="trainex-splash__app-icon" src="/icon-192.png" alt="" width="64" height="64" />
         <p className="trainex-splash__eyebrow">RAILWAY DRIVER TRAINING SYSTEM</p>
@@ -21,7 +18,6 @@ export default function SplashScreen() {
       </header>
 
       <div className="trainex-splash__rail-scene" aria-hidden="true">
-        <div className="trainex-splash__motion-trails" />
         <img
           className="trainex-splash__train"
           src="/images/train-side.svg"
@@ -31,9 +27,7 @@ export default function SplashScreen() {
           draggable="false"
           fetchPriority="high"
         />
-        <div className="trainex-splash__rail trainex-splash__rail--top" />
-        <div className="trainex-splash__rail trainex-splash__rail--bottom" />
-        <div className="trainex-splash__sleepers" />
+        <div className="trainex-splash__track" />
       </div>
 
       <footer className="trainex-splash__footer">
