@@ -1,42 +1,80 @@
 import { useSyncExternalStore } from "react";
 
+const STORAGE_KEY = "trainex-theme";
 const listeners = new Set();
+const systemThemeQuery = typeof window === "undefined" || !window.matchMedia
+  ? null
+  : window.matchMedia("(prefers-color-scheme: dark)");
 
-const storedTheme = (() => {
+function getSavedTheme() {
   try {
-    return window.localStorage.getItem("trainex-theme");
+    const value = window.localStorage.getItem(STORAGE_KEY);
+    return value === "dark" || value === "light" ? value : null;
   } catch {
     return null;
   }
-})();
+}
 
-let theme = storedTheme === "light" ? "light" : "dark";
+function getSystemTheme() {
+  return systemThemeQuery?.matches ? "dark" : "light";
+}
 
-document.documentElement.dataset.theme = theme;
+const savedTheme = getSavedTheme();
+let followsSystemTheme = savedTheme === null;
+let theme = savedTheme ?? getSystemTheme();
 
-function subscribe(callback) {
-  listeners.add(callback);
+function updateDocumentTheme() {
+  if (typeof document !== "undefined") {
+    document.documentElement.dataset.theme = theme;
+  }
+}
 
-  return () => listeners.delete(callback);
+function notifyListeners() {
+  for (const listener of listeners) listener();
+}
+
+updateDocumentTheme();
+
+// Track OS theme changes only until the user chooses a TRAINEX theme.
+function onSystemThemeChange() {
+  if (!followsSystemTheme) return;
+  const nextTheme = getSystemTheme();
+  if (theme === nextTheme) return;
+  theme = nextTheme;
+  updateDocumentTheme();
+  notifyListeners();
+}
+
+if (systemThemeQuery) {
+  if (typeof systemThemeQuery.addEventListener === "function") {
+    systemThemeQuery.addEventListener("change", onSystemThemeChange);
+  } else if (typeof systemThemeQuery.addListener === "function") {
+    systemThemeQuery.addListener(onSystemThemeChange);
+  }
+}
+
+function subscribe(listener) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
 }
 
 export function setTheme(nextTheme) {
-  theme = nextTheme === "light" ? "light" : "dark";
-
-  document.documentElement.dataset.theme = theme;
+  const selectedTheme = nextTheme === "light" ? "light" : "dark";
+  followsSystemTheme = false;
+  theme = selectedTheme;
+  updateDocumentTheme();
 
   try {
-    window.localStorage.setItem("trainex-theme", theme);
+    window.localStorage.setItem(STORAGE_KEY, selectedTheme);
   } catch {
-    // Local storage is optional.
+    // The theme still applies during this session if storage is unavailable.
   }
 
-  listeners.forEach((callback) => callback());
+  notifyListeners();
 }
 
 export function useTheme() {
-  const current = useSyncExternalStore(subscribe, () => theme);
-
+  const current = useSyncExternalStore(subscribe, () => theme, () => theme);
   return {
     theme: current,
     setTheme,

@@ -1,8 +1,20 @@
-/* TRAINEX splash: enlarged five-car train on one physically coherent, STATIC side-view track. */
-/* All splash styling lives in src/assets/styles/components/. */
+/* TRAINEX launch splash — crisp architectural background, responsive to the
+   same html[data-theme] setting as the website. No filters or blurs. */
 .trainex-splash {
   --splash-maroon: #800000;
   --splash-gold: #ffd700;
+  /* Light appearance; overridden by html[data-theme="dark"] below. */
+  --splash-background: linear-gradient(165deg, #fffdf8, #e9edf3);
+  --splash-ink: #1a2739;
+  --splash-muted: #4f5e70;
+  --splash-kicker: #8e1826;
+  --splash-highlight: #9a6500;
+  --splash-grid: rgba(48, 65, 85, .12); /* Soft grid in light mode */
+    --splash-horizon: rgba(128, 0, 0, .28);
+  --splash-stage: rgba(128, 0, 0, .030);
+  --splash-progress-bg: #cad2dd;
+  --splash-caption: #6e7685;
+
   position: fixed;
   inset: 0;
   z-index: 10000;
@@ -14,20 +26,70 @@
   min-height: 100dvh;
   overflow: hidden;
   isolation: isolate;
-  background: #0b1019; /* Flat, sharp background: NO blurred gradient or ambient glow. */
-  color: #f9fafc;
+  background: var(--splash-background);
+  color: var(--splash-ink);
   font-family: inherit;
   text-align: center;
 }
+
+:root[data-theme="dark"] .trainex-splash {
+  --splash-background: radial-gradient(ellipse 100% 75% at 50% 105%, rgba(128, 0, 0, 0.055) 0%, rgba(128, 0, 0, 0.018) 38%, transparent 73%), #0a0c10;
+  --splash-ink: #f8f8fa;
+  --splash-muted: #c4cdd8;
+  --splash-kicker: #e8bd79;
+  --splash-highlight: #ffd700;
+  --splash-grid: rgba(205, 218, 237, .10); /* Soft grid in dark mode */
+  --splash-horizon: rgba(255, 215, 0, .22);
+  --splash-stage: rgba(255, 215, 0, .016);
+  --splash-progress-bg: #353c48;
+  --splash-caption: #a3adbb;
+}
+
+/* CSS fallback before JavaScript sets data-theme. The running app uses the
+   stored TRAINEX choice first, then the device's system appearance. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .trainex-splash {
+    --splash-background: radial-gradient(ellipse 100% 75% at 50% 105%, rgba(128, 0, 0, 0.055) 0%, rgba(128, 0, 0, 0.018) 38%, transparent 73%), #0a0c10;
+    --splash-ink: #f8f8fa;
+    --splash-muted: #c4cdd8;
+    --splash-kicker: #e8bd79;
+    --splash-highlight: #ffd700;
+    --splash-grid: rgba(205, 218, 237, .10); /* Soft grid in dark mode */
+      --splash-horizon: rgba(255, 215, 0, .22);
+    --splash-stage: rgba(255, 215, 0, .016);
+    --splash-progress-bg: #353c48;
+    --splash-caption: #a3adbb;
+  }
+}
+
 .trainex-splash *,
 .trainex-splash *::before,
 .trainex-splash *::after { box-sizing: border-box; }
+
+/* Subtle, widely spaced grid — static, sharp, never animated or blurred. */
+.trainex-splash::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--splash-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--splash-grid) 1px, transparent 1px);
+  background-size: 180px 180px;
+  background-position: center top;
+  opacity: .45; /* Visible, but understated. */
+}
+
+/* No upper-right decoration: the background grid stays clean. */
 
 .trainex-splash__branding {
   position: relative;
   z-index: 2;
   align-self: end;
-  padding: 1.3rem 1rem 0;
+  justify-self: center;
+  width: min(750px, calc(100% - 2rem));
+  padding: 1.3rem 1rem 1rem;
 }
 .trainex-splash__app-icon {
   display: block;
@@ -41,36 +103,55 @@
   letter-spacing: .24em;
   font-size: clamp(.60rem, 1vw, .78rem);
   font-weight: 750;
-  color: #e7bc84;
+  color: var(--splash-kicker);
 }
 .trainex-splash__wordmark {
   margin: 0;
+  color: var(--splash-ink);
   font-size: clamp(3.1rem, 7.8vw, 5.5rem);
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -.07em;
 }
-.trainex-splash__wordmark span { color: var(--splash-gold); }
+.trainex-splash__wordmark span { color: var(--splash-highlight); }
 .trainex-splash__tagline {
   max-width: 38rem;
   margin: .65rem auto 0;
-  color: #d2d7df;
+  color: var(--splash-muted);
   font-size: clamp(.78rem, 1.4vw, 1rem);
 }
 
-/* The train sits over a SINGLE side-profile rail. The far rail is visually obscured
-   from a true side view; a second floating parallel line was not accurate. */
+/* The train sits over a single coherent, STATIONARY side-profile railway track. */
 .trainex-splash__rail-scene {
   --train-height: clamp(185px, 30vh, 268px);
   --track-height: clamp(78px, 12vh, 112px);
-  /* SVG wheel bottom is 58/500 of the image height above its bottom edge.
-     Static track SVG has rail top at y=25 of 100 units = 75% from bottom. */
   --wheel-offset: calc(var(--train-height) * .116);
   position: relative;
+  z-index: 1;
   align-self: center;
   width: 100%;
   height: clamp(280px, 42vh, 360px);
   overflow: hidden;
+}
+/* The stage keeps a soft fade only; no extra vertical guide lines. */
+.trainex-splash__rail-scene::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 var(--track-height);
+  background: linear-gradient(to bottom, transparent, var(--splash-stage));
+  pointer-events: none;
+}
+.trainex-splash__rail-scene::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: var(--track-height);
+  left: 0;
+  height: 1px;
+  background: var(--splash-horizon);
+  pointer-events: none;
 }
 .trainex-splash__train {
   position: absolute;
@@ -79,15 +160,13 @@
   bottom: calc(var(--track-height) * .75 - var(--wheel-offset));
   display: block;
   width: auto;
-  height: var(--train-height); /* 2–3 times taller than the old narrow 5-car strip */
+  height: var(--train-height);
   max-width: none;
   pointer-events: none;
   user-select: none;
   will-change: transform;
   animation: trainex-splash-ride 4.8s linear both;
 }
-/* Start with last pixel just outside LEFT edge and exit fully to RIGHT.
-   Only the train moves; the track image never translates. */
 @keyframes trainex-splash-ride {
   0% { transform: translate3d(calc(-100% - 50vw), 0, 0); }
   50% { transform: translate3d(-50%, 0, 0); }
@@ -103,10 +182,11 @@
   background-position: left bottom;
   background-size: auto 100%;
   pointer-events: none;
-  /* The track, sleepers, fastenings and ballast are fixed in place. */
+  /* Sleepers, ballast and rail remain still. */
 }
 
 .trainex-splash__footer {
+  position: relative;
   z-index: 2;
   align-self: start;
   width: min(440px, calc(100% - 3rem));
@@ -117,30 +197,30 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  color: #ffdd6b;
+  color: var(--splash-kicker);
   font-weight: 800;
   letter-spacing: .11em;
   font-size: .69rem;
 }
-.trainex-splash__progress-count { color: #aab0be; font-weight: 600; }
+.trainex-splash__progress-count { color: var(--splash-muted); font-weight: 700; }
 .trainex-splash__progress-track {
   height: 5px;
   margin-top: .7rem;
   overflow: hidden;
   border-radius: 99px;
-  background: #3b3b45;
+  background: var(--splash-progress-bg);
 }
 .trainex-splash__progress-fill {
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, #aa071b, #ffd700);
+  background: linear-gradient(90deg, #9d0b23, #ffd700);
   border-radius: inherit;
   animation: trainex-splash-progress 5s linear forwards;
 }
 @keyframes trainex-splash-progress { to { width: 100%; } }
 .trainex-splash__footer p {
   margin: .85rem 0 0;
-  color: #adb3c0;
+  color: var(--splash-caption);
   font-size: .79rem;
 }
 
@@ -148,6 +228,7 @@
   .trainex-splash {
     grid-template-rows: minmax(120px, 1fr) auto minmax(100px, .75fr);
   }
+  .trainex-splash::before { background-size: 112px 112px; }
   .trainex-splash__branding { padding-top: .75rem; }
   .trainex-splash__eyebrow { letter-spacing: .13em; }
   .trainex-splash__rail-scene {
