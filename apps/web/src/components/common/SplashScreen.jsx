@@ -26,7 +26,7 @@ export default function SplashScreen() {
           className="trainex-splash__train"
           src="/images/train-side.svg"
           alt=""
-          width="1600"
+          width="7700"
           height="500"
           draggable="false"
           fetchPriority="high"

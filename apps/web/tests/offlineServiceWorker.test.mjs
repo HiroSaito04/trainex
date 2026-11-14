@@ -20,7 +20,7 @@ assert.ok(
   bundledSvgPath,
   "Built service worker must precache the bundled 2D SVG",
 );
-
+F
 function makeOfflineServiceWorker() {
   const listeners = new Map();
   const cachedResponses = new Map([

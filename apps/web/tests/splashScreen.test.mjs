@@ -31,3 +31,17 @@ test('existing PWA pre-caches new local public assets after build', async () => 
   assert.match(swGenerator, /walk\(distDir\)/);
   assert.match(swGenerator, /cache\.addAll\(PRECACHE_URLS\)/);
 });
+
+
+test('five cars are connected in one traveling SVG; rails and sleepers remain motionless', async () => {
+  const svg = await read('../public/images/train-side.svg');
+  const css = await read('../src/assets/styles/components/SplashScreen.css');
+  const splash = await read('../src/components/common/SplashScreen.jsx');
+  assert.equal((svg.match(/data-splash-car=\"[1-5]\"/g) || []).length, 5);
+  assert.match(svg, /id="trainex-car-5"/);
+  assert.match(splash, /className="trainex-splash__train"/);
+  assert.match(css, /\.trainex-splash__train\s*\{[^}]*animation:\s*trainex-splash-ride/s);
+  assert.doesNotMatch(css, /trainex-splash-tracks/);
+  assert.doesNotMatch(css, /\.trainex-splash__sleepers\s*\{[^}]*animation:/s);
+  assert.doesNotMatch(css, /\.trainex-splash__rail\s*\{[^}]*animation:/s);
+});

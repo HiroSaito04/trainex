@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500" role="img" aria-label="TRAINEX maroon and yellow modern Philippine commuter train, true side view">
-<title>TRAINEX — PNR-inspired side profile commuter train</title>
-<desc>Original scalable SVG vector illustration with maroon and golden yellow livery. Not an official PNR train diagram.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="7700" height="500" viewBox="0 0 7700 500" role="img" aria-label="TRAINEX five connected maroon and yellow railway cars, side view">
+<title>TRAINEX — five-car modern Philippine commuter train</title>
+<desc>Five-car original vector art: four connected passenger coaches and one forward driver cab. The train is drawn without any tracks so the splash rails remain a separate fixed CSS element. PNR-inspired artwork, not an official train diagram.</desc>
 <defs>
   <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B4222B"/><stop offset=".4" stop-color="#88000D"/><stop offset="1" stop-color="#650008"/></linearGradient>
   <linearGradient id="gold" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFE064"/><stop offset=".42" stop-color="#FDBF21"/><stop offset="1" stop-color="#E68C00"/></linearGradient>
@@ -13,6 +13,156 @@
   <g id="passenger-window"><rect width="106" height="74" rx="11" fill="#10151D" stroke="#CFD2D7" stroke-width="4"/><rect x="6" y="6" width="94" height="62" rx="7" fill="url(#glass)"/><path d="M18 7H51L16 68H7Z" fill="#FFFFFF" opacity=".13"/><path d="M70 7H83L45 68H31Z" fill="#FFFFFF" opacity=".07"/></g>
   <g id="pair-door"><rect width="124" height="166" rx="10" fill="#15191F" stroke="#E1E3E7" stroke-width="4"/><rect x="5" y="5" width="114" height="156" rx="7" fill="url(#metal)"/><path d="M62 6V161" stroke="#666E77" stroke-width="3"/><rect x="12" y="19" width="42" height="69" rx="7" fill="url(#glass)" stroke="#4D5763" stroke-width="2"/><rect x="70" y="19" width="42" height="69" rx="7" fill="url(#glass)" stroke="#4D5763" stroke-width="2"/><rect x="51" y="100" width="5" height="23" rx="2" fill="#5B6069"/><rect x="68" y="100" width="5" height="23" rx="2" fill="#5B6069"/><path d="M62 143V161" stroke="#D5DBE0" stroke-width="2"/></g>
 </defs>
+<g id="trainex-car-1" data-splash-car="1" transform="translate(0 0)">
+
+  <!-- Underbody / stiffener -->
+  <rect x="20" y="340" width="1460" height="43" rx="6" fill="url(#skirt)" stroke="#24292f" stroke-width="4" />
+  <!-- Coach A-body, no cab nose -->
+  <path d="M31 162 Q31 141 54 141 H1453 Q1477 141 1477 162 V346 Q1477 364 1453 364 H55 Q31 364 31 345Z" fill="url(#body)" stroke="#56040d" stroke-width="6" />
+  <!-- Roof trim and central HVAC unit -->
+  <path d="M50 140 Q60 126 92 124 H1414 Q1447 124 1457 140 Z" fill="url(#metal)" stroke="#606973" stroke-width="3" />
+  <path d="M77 150 H1432" stroke="#f0f1f2" stroke-width="4" opacity=".42" />
+  <path d="M490 124 V100 Q490 84 506 84 H1002 Q1018 84 1018 100 V124 Z" fill="url(#metal)" stroke="#666e76" stroke-width="4" />
+  <path d="M535 95V116 M554 95V116 M573 95V116 M592 95V116 M611 95V116 M630 95V116 M649 95V116 M668 95V116 M687 95V116 M706 95V116 M725 95V116 M744 95V116 M763 95V116 M782 95V116 M801 95V116 M820 95V116 M839 95V116 M858 95V116 M877 95V116 M896 95V116 M915 95V116 M934 95V116 M953 95V116" stroke="#707980" stroke-width="3" />
+  <path d="M52 185 H1459 V271 H52 Z" fill="#440009" opacity=".48" />
+  <use href="#passenger-window" x="91" y="191" />
+  <use href="#passenger-window" x="208" y="191" />
+  <use href="#passenger-window" x="550" y="191" />
+  <use href="#passenger-window" x="667" y="191" />
+  <use href="#passenger-window" x="784" y="191" />
+  <use href="#passenger-window" x="1150" y="191" />
+  <use href="#passenger-window" x="1267" y="191" />
+  <!-- Same maroon + gold livery across all 5 cars -->
+  <rect x="31" y="291" width="1446" height="49" fill="url(#gold)" />
+  <rect x="31" y="312" width="1446" height="20" fill="#77000A" />
+  <rect x="31" y="352" width="1446" height="13" fill="#D59310" />
+  <use href="#pair-door" x="366" y="188" />
+  <use href="#pair-door" x="1002" y="188" />
+  <!-- Two independent bogies on every coach -->
+  <g fill="#373e47" stroke="#1f252b" stroke-width="4"><path d="M185 373H443L418 410H213Z"/><path d="M1082 373H1362L1334 410H1110Z"/></g>
+  <use href="#wheel" x="245" y="410" /><use href="#wheel" x="368" y="410" />
+  <use href="#wheel" x="1138" y="410" /><use href="#wheel" x="1292" y="410" />
+  <g fill="none" stroke="#1d232b" stroke-linecap="round" stroke-width="9"><path d="M245 388H368"/><path d="M1138 388H1292"/></g>
+  <!-- Equipment boxes -->
+  <g fill="#414b55" stroke="#252b34" stroke-width="4"><rect x="508" y="377" width="148" height="48" rx="6"/><rect x="674" y="377" width="141" height="47" rx="6"/><rect x="828" y="377" width="152" height="48" rx="6"/></g>
+  <!-- Accordion connections, visible gaps between cars -->
+  <rect x="1472" y="192" width="42" height="159" rx="7" fill="#2c3038" stroke="#131720" stroke-width="5" />
+  <path d="M1481 195V349M1492 195V349M1503 195V349" stroke="#656e77" stroke-width="4" />
+
+</g>
+<g id="trainex-car-2" data-splash-car="2" transform="translate(1510 0)">
+
+  <!-- Underbody / stiffener -->
+  <rect x="20" y="340" width="1460" height="43" rx="6" fill="url(#skirt)" stroke="#24292f" stroke-width="4" />
+  <!-- Coach A-body, no cab nose -->
+  <path d="M31 162 Q31 141 54 141 H1453 Q1477 141 1477 162 V346 Q1477 364 1453 364 H55 Q31 364 31 345Z" fill="url(#body)" stroke="#56040d" stroke-width="6" />
+  <!-- Roof trim and central HVAC unit -->
+  <path d="M50 140 Q60 126 92 124 H1414 Q1447 124 1457 140 Z" fill="url(#metal)" stroke="#606973" stroke-width="3" />
+  <path d="M77 150 H1432" stroke="#f0f1f2" stroke-width="4" opacity=".42" />
+  <path d="M490 124 V100 Q490 84 506 84 H1002 Q1018 84 1018 100 V124 Z" fill="url(#metal)" stroke="#666e76" stroke-width="4" />
+  <path d="M535 95V116 M554 95V116 M573 95V116 M592 95V116 M611 95V116 M630 95V116 M649 95V116 M668 95V116 M687 95V116 M706 95V116 M725 95V116 M744 95V116 M763 95V116 M782 95V116 M801 95V116 M820 95V116 M839 95V116 M858 95V116 M877 95V116 M896 95V116 M915 95V116 M934 95V116 M953 95V116" stroke="#707980" stroke-width="3" />
+  <path d="M52 185 H1459 V271 H52 Z" fill="#440009" opacity=".48" />
+  <use href="#passenger-window" x="91" y="191" />
+  <use href="#passenger-window" x="208" y="191" />
+  <use href="#passenger-window" x="550" y="191" />
+  <use href="#passenger-window" x="667" y="191" />
+  <use href="#passenger-window" x="784" y="191" />
+  <use href="#passenger-window" x="1150" y="191" />
+  <use href="#passenger-window" x="1267" y="191" />
+  <!-- Same maroon + gold livery across all 5 cars -->
+  <rect x="31" y="291" width="1446" height="49" fill="url(#gold)" />
+  <rect x="31" y="312" width="1446" height="20" fill="#77000A" />
+  <rect x="31" y="352" width="1446" height="13" fill="#D59310" />
+  <use href="#pair-door" x="366" y="188" />
+  <use href="#pair-door" x="1002" y="188" />
+  <!-- Two independent bogies on every coach -->
+  <g fill="#373e47" stroke="#1f252b" stroke-width="4"><path d="M185 373H443L418 410H213Z"/><path d="M1082 373H1362L1334 410H1110Z"/></g>
+  <use href="#wheel" x="245" y="410" /><use href="#wheel" x="368" y="410" />
+  <use href="#wheel" x="1138" y="410" /><use href="#wheel" x="1292" y="410" />
+  <g fill="none" stroke="#1d232b" stroke-linecap="round" stroke-width="9"><path d="M245 388H368"/><path d="M1138 388H1292"/></g>
+  <!-- Equipment boxes -->
+  <g fill="#414b55" stroke="#252b34" stroke-width="4"><rect x="508" y="377" width="148" height="48" rx="6"/><rect x="674" y="377" width="141" height="47" rx="6"/><rect x="828" y="377" width="152" height="48" rx="6"/></g>
+  <!-- Accordion connections, visible gaps between cars -->
+  <rect x="1472" y="192" width="42" height="159" rx="7" fill="#2c3038" stroke="#131720" stroke-width="5" />
+  <path d="M1481 195V349M1492 195V349M1503 195V349" stroke="#656e77" stroke-width="4" />
+
+</g>
+<g id="trainex-car-3" data-splash-car="3" transform="translate(3020 0)">
+
+  <!-- Underbody / stiffener -->
+  <rect x="20" y="340" width="1460" height="43" rx="6" fill="url(#skirt)" stroke="#24292f" stroke-width="4" />
+  <!-- Coach A-body, no cab nose -->
+  <path d="M31 162 Q31 141 54 141 H1453 Q1477 141 1477 162 V346 Q1477 364 1453 364 H55 Q31 364 31 345Z" fill="url(#body)" stroke="#56040d" stroke-width="6" />
+  <!-- Roof trim and central HVAC unit -->
+  <path d="M50 140 Q60 126 92 124 H1414 Q1447 124 1457 140 Z" fill="url(#metal)" stroke="#606973" stroke-width="3" />
+  <path d="M77 150 H1432" stroke="#f0f1f2" stroke-width="4" opacity=".42" />
+  <path d="M490 124 V100 Q490 84 506 84 H1002 Q1018 84 1018 100 V124 Z" fill="url(#metal)" stroke="#666e76" stroke-width="4" />
+  <path d="M535 95V116 M554 95V116 M573 95V116 M592 95V116 M611 95V116 M630 95V116 M649 95V116 M668 95V116 M687 95V116 M706 95V116 M725 95V116 M744 95V116 M763 95V116 M782 95V116 M801 95V116 M820 95V116 M839 95V116 M858 95V116 M877 95V116 M896 95V116 M915 95V116 M934 95V116 M953 95V116" stroke="#707980" stroke-width="3" />
+  <path d="M52 185 H1459 V271 H52 Z" fill="#440009" opacity=".48" />
+  <use href="#passenger-window" x="91" y="191" />
+  <use href="#passenger-window" x="208" y="191" />
+  <use href="#passenger-window" x="550" y="191" />
+  <use href="#passenger-window" x="667" y="191" />
+  <use href="#passenger-window" x="784" y="191" />
+  <use href="#passenger-window" x="1150" y="191" />
+  <use href="#passenger-window" x="1267" y="191" />
+  <!-- Same maroon + gold livery across all 5 cars -->
+  <rect x="31" y="291" width="1446" height="49" fill="url(#gold)" />
+  <rect x="31" y="312" width="1446" height="20" fill="#77000A" />
+  <rect x="31" y="352" width="1446" height="13" fill="#D59310" />
+  <use href="#pair-door" x="366" y="188" />
+  <use href="#pair-door" x="1002" y="188" />
+  <!-- Two independent bogies on every coach -->
+  <g fill="#373e47" stroke="#1f252b" stroke-width="4"><path d="M185 373H443L418 410H213Z"/><path d="M1082 373H1362L1334 410H1110Z"/></g>
+  <use href="#wheel" x="245" y="410" /><use href="#wheel" x="368" y="410" />
+  <use href="#wheel" x="1138" y="410" /><use href="#wheel" x="1292" y="410" />
+  <g fill="none" stroke="#1d232b" stroke-linecap="round" stroke-width="9"><path d="M245 388H368"/><path d="M1138 388H1292"/></g>
+  <!-- Equipment boxes -->
+  <g fill="#414b55" stroke="#252b34" stroke-width="4"><rect x="508" y="377" width="148" height="48" rx="6"/><rect x="674" y="377" width="141" height="47" rx="6"/><rect x="828" y="377" width="152" height="48" rx="6"/></g>
+  <!-- Accordion connections, visible gaps between cars -->
+  <rect x="1472" y="192" width="42" height="159" rx="7" fill="#2c3038" stroke="#131720" stroke-width="5" />
+  <path d="M1481 195V349M1492 195V349M1503 195V349" stroke="#656e77" stroke-width="4" />
+
+</g>
+<g id="trainex-car-4" data-splash-car="4" transform="translate(4530 0)">
+
+  <!-- Underbody / stiffener -->
+  <rect x="20" y="340" width="1460" height="43" rx="6" fill="url(#skirt)" stroke="#24292f" stroke-width="4" />
+  <!-- Coach A-body, no cab nose -->
+  <path d="M31 162 Q31 141 54 141 H1453 Q1477 141 1477 162 V346 Q1477 364 1453 364 H55 Q31 364 31 345Z" fill="url(#body)" stroke="#56040d" stroke-width="6" />
+  <!-- Roof trim and central HVAC unit -->
+  <path d="M50 140 Q60 126 92 124 H1414 Q1447 124 1457 140 Z" fill="url(#metal)" stroke="#606973" stroke-width="3" />
+  <path d="M77 150 H1432" stroke="#f0f1f2" stroke-width="4" opacity=".42" />
+  <path d="M490 124 V100 Q490 84 506 84 H1002 Q1018 84 1018 100 V124 Z" fill="url(#metal)" stroke="#666e76" stroke-width="4" />
+  <path d="M535 95V116 M554 95V116 M573 95V116 M592 95V116 M611 95V116 M630 95V116 M649 95V116 M668 95V116 M687 95V116 M706 95V116 M725 95V116 M744 95V116 M763 95V116 M782 95V116 M801 95V116 M820 95V116 M839 95V116 M858 95V116 M877 95V116 M896 95V116 M915 95V116 M934 95V116 M953 95V116" stroke="#707980" stroke-width="3" />
+  <path d="M52 185 H1459 V271 H52 Z" fill="#440009" opacity=".48" />
+  <use href="#passenger-window" x="91" y="191" />
+  <use href="#passenger-window" x="208" y="191" />
+  <use href="#passenger-window" x="550" y="191" />
+  <use href="#passenger-window" x="667" y="191" />
+  <use href="#passenger-window" x="784" y="191" />
+  <use href="#passenger-window" x="1150" y="191" />
+  <use href="#passenger-window" x="1267" y="191" />
+  <!-- Same maroon + gold livery across all 5 cars -->
+  <rect x="31" y="291" width="1446" height="49" fill="url(#gold)" />
+  <rect x="31" y="312" width="1446" height="20" fill="#77000A" />
+  <rect x="31" y="352" width="1446" height="13" fill="#D59310" />
+  <use href="#pair-door" x="366" y="188" />
+  <use href="#pair-door" x="1002" y="188" />
+  <!-- Two independent bogies on every coach -->
+  <g fill="#373e47" stroke="#1f252b" stroke-width="4"><path d="M185 373H443L418 410H213Z"/><path d="M1082 373H1362L1334 410H1110Z"/></g>
+  <use href="#wheel" x="245" y="410" /><use href="#wheel" x="368" y="410" />
+  <use href="#wheel" x="1138" y="410" /><use href="#wheel" x="1292" y="410" />
+  <g fill="none" stroke="#1d232b" stroke-linecap="round" stroke-width="9"><path d="M245 388H368"/><path d="M1138 388H1292"/></g>
+  <!-- Equipment boxes -->
+  <g fill="#414b55" stroke="#252b34" stroke-width="4"><rect x="508" y="377" width="148" height="48" rx="6"/><rect x="674" y="377" width="141" height="47" rx="6"/><rect x="828" y="377" width="152" height="48" rx="6"/></g>
+  <!-- Accordion connections, visible gaps between cars -->
+  <rect x="1472" y="192" width="42" height="159" rx="7" fill="#2c3038" stroke="#131720" stroke-width="5" />
+  <path d="M1481 195V349M1492 195V349M1503 195V349" stroke="#656e77" stroke-width="4" />
+
+</g>
+<g id="trainex-car-5" data-splash-car="5" transform="translate(6060 0)">
+
 <!-- soft ground shadow (not a backdrop) -->
 <ellipse cx="793" cy="424" rx="705" ry="15" fill="#18212B" opacity=".11" filter="url(#drop)"/>
 <!-- coupling and lower running equipment -->
@@ -103,4 +253,5 @@
 <g stroke="#8D98A3" stroke-width="2"><path d="M538 390h60M538 398h60M707 390h45M707 399h45M857 392h83M857 402h83"/></g>
 <!-- coupler caps -->
 <path d="M53 384h-35v13h35M1538 384h38v13h-38" fill="#343D46" stroke="#20252A" stroke-width="4"/>
-</svg>
+
+</g></svg>

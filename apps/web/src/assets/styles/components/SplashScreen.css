@@ -1,4 +1,4 @@
-/* TRAINEX 5-second launch animation — all presentation lives in assets/styles. */
+/* TRAINEX 5-second splash — 5 connected cars move; the rails and sleepers are stationary. */
 .trainex-splash {
   --splash-maroon: #800000;
   --splash-gold: #ffd700;
@@ -101,9 +101,9 @@
 .trainex-splash__train {
   position: absolute;
   z-index: 3;
-  bottom: 0;
+  bottom: calc(13% - 10px);
   left: 50%;
-  width: clamp(680px, 82vw, 1170px);
+  width: clamp(920px, 92vw, 1750px);
   height: auto;
   max-width: none;
   pointer-events: none;
@@ -143,10 +143,6 @@
   right: 0;
   height: 13%;
   background: repeating-linear-gradient(90deg, transparent 0 42px, #4e515c 42px 63px, transparent 63px 100px);
-  animation: trainex-splash-tracks .7s linear infinite;
-}
-@keyframes trainex-splash-tracks {
-  to { background-position-x: 100px; }
 }
 
 .trainex-splash__footer {
@@ -195,7 +191,7 @@
   .trainex-splash__branding { padding-top: .75rem; }
   .trainex-splash__eyebrow { letter-spacing: .13em; }
   .trainex-splash__rail-scene { height: 32vh; min-height: 165px; }
-  .trainex-splash__train { width: 680px; bottom: 6%; }
+  .trainex-splash__train { width: 920px; bottom: calc(13% - 7px); }
   .trainex-splash__progress-heading { font-size: .6rem; letter-spacing: .05em; }
 }
 
@@ -211,6 +207,5 @@
 @media (prefers-reduced-motion: reduce) {
   /* Accessibility: still keep the 5-second splash, but don't move the train. */
   .trainex-splash__train { animation: none; transform: translateX(-50%); }
-  .trainex-splash__sleepers { animation: none; }
   .trainex-splash__progress-fill { animation: none; width: 100%; }
 }
