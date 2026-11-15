@@ -1,5 +1,5 @@
-/* TRAINEX launch splash — crisp architectural background, responsive to the
-   same html[data-theme] setting as the website. No filters or blurs. */
+/* TRAINEX launch splash — crisp background and bottom-anchored train.
+   Only the portrait-phone top safe-area receives a subtle backdrop blur. */
 .trainex-splash {
   --splash-maroon: #800000;
   --splash-gold: #ffd700;
@@ -238,29 +238,35 @@
   font-size: .79rem;
 }
 
-/* Screen-edge treatment for mobile/PWA: blur ONLY the outer few pixels.
-   No hard frame, maroon side panel, or fixed border. Browser chrome and
-   phone hardware outside the web viewport remain controlled by the OS. */
-@media (max-width: 1100px) {
+/* Portrait phone safe-area ONLY: lightly frosted area behind the status bar.
+   No blur on the sides, bottom, train, or landscape / desktop layouts.
+   If the browser provides no top safe-area inset, this overlay is 0px tall. */
+@media (orientation: portrait) and (max-width: 650px) {
   .trainex-splash::after {
     content: "";
     position: absolute;
     z-index: 5;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: env(safe-area-inset-top, 0px);
     pointer-events: none;
-    background: linear-gradient(90deg,
-      rgba(128, 0, 0, 0.055),
-      transparent 32px,
-      transparent calc(100% - 32px),
-      rgba(128, 0, 0, 0.055));
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    -webkit-mask-image: linear-gradient(90deg,
-      black 0, transparent 34px,
-      transparent calc(100% - 34px), black 100%);
-    mask-image: linear-gradient(90deg,
-      black 0, transparent 34px,
-      transparent calc(100% - 34px), black 100%);
+    background: rgba(255, 253, 248, 0.10);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+  }
+
+  :root[data-theme="dark"] .trainex-splash::after {
+    background: rgba(10, 12, 16, 0.12);
+  }
+}
+
+/* Match the OS dark preference before TRAINEX applies data-theme. */
+@media (orientation: portrait) and (max-width: 650px) and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .trainex-splash::after {
+    background: rgba(10, 12, 16, 0.12);
   }
 }
 
