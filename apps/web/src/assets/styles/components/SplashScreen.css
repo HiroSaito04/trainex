@@ -10,7 +10,7 @@
   --splash-kicker: #8e1826;
   --splash-highlight: #9a6500;
   --splash-grid: rgba(48, 65, 85, .12); /* Soft grid in light mode */
-    --splash-horizon: rgba(128, 0, 0, .28);
+  --splash-horizon: rgba(128, 0, 0, .28);
   --splash-stage: rgba(128, 0, 0, .030);
   --splash-progress-bg: #cad2dd;
   --splash-caption: #6e7685;
@@ -19,11 +19,14 @@
   inset: 0;
   z-index: 10000;
   display: grid;
-  grid-template-rows: minmax(170px, 1fr) auto minmax(88px, .40fr);
-  align-items: center;
+  /* The railway scene is always the LAST grid row and touches the bottom edge. */
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: stretch;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  padding-top: env(safe-area-inset-top, 0px);
   overflow: hidden;
   isolation: isolate;
   background: var(--splash-background);
@@ -55,7 +58,7 @@
     --splash-kicker: #e8bd79;
     --splash-highlight: #ffd700;
     --splash-grid: rgba(205, 218, 237, .10); /* Soft grid in dark mode */
-      --splash-horizon: rgba(255, 215, 0, .22);
+    --splash-horizon: rgba(255, 215, 0, .22);
     --splash-stage: rgba(255, 215, 0, .016);
     --splash-progress-bg: #353c48;
     --splash-caption: #a3adbb;
@@ -86,10 +89,10 @@
 .trainex-splash__branding {
   position: relative;
   z-index: 2;
-  align-self: end;
+  align-self: center;
   justify-self: center;
-  width: min(750px, calc(100% - 2rem));
-  padding: 1.3rem 1rem 1rem;
+  width: min(750px, 100%);
+  padding: .8rem max(1rem, env(safe-area-inset-right)) .8rem max(1rem, env(safe-area-inset-left));
 }
 .trainex-splash__app-icon {
   display: block;
@@ -105,15 +108,26 @@
   font-weight: 750;
   color: var(--splash-kicker);
 }
+/* Reuse BrandWordmark, while scaling it appropriately for the splash.
+   Target each word separately; a generic span rule would override TRAIN and EX. */
 .trainex-splash__wordmark {
+  display: flex;
+  justify-content: center;
   margin: 0;
-  color: var(--splash-ink);
-  font-size: clamp(3.1rem, 7.8vw, 5.5rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -.07em;
+  padding: 0 0 .6rem; /* space for the wordmark's built-in underline */
 }
-.trainex-splash__wordmark span { color: var(--splash-highlight); }
+.trainex-splash__wordmark .brand-wordmark {
+  font-size: clamp(2.5rem, 7.8vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -.055em;
+}
+.trainex-splash__wordmark .brand-wordmark-train {
+  color: var(--splash-ink);
+}
+.trainex-splash__wordmark .brand-wordmark-ex {
+  color: var(--splash-gold);
+  background: var(--splash-maroon);
+}
 .trainex-splash__tagline {
   max-width: 38rem;
   margin: .65rem auto 0;
@@ -128,9 +142,9 @@
   --wheel-offset: calc(var(--train-height) * .116);
   position: relative;
   z-index: 1;
-  align-self: center;
+  align-self: end;
   width: 100%;
-  height: clamp(280px, 42vh, 360px);
+  height: clamp(265px, 43dvh, 410px);
   overflow: hidden;
 }
 /* The stage keeps a soft fade only; no extra vertical guide lines. */
@@ -224,32 +238,144 @@
   font-size: .79rem;
 }
 
-@media (max-width: 650px) {
-  .trainex-splash {
-    grid-template-rows: minmax(120px, 1fr) auto minmax(100px, .75fr);
+/* Screen-edge treatment for mobile/PWA: blur ONLY the outer few pixels.
+   No hard frame, maroon side panel, or fixed border. Browser chrome and
+   phone hardware outside the web viewport remain controlled by the OS. */
+@media (max-width: 1100px) {
+  .trainex-splash::after {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+      rgba(128, 0, 0, 0.055),
+      transparent 32px,
+      transparent calc(100% - 32px),
+      rgba(128, 0, 0, 0.055));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    -webkit-mask-image: linear-gradient(90deg,
+      black 0, transparent 34px,
+      transparent calc(100% - 34px), black 100%);
+    mask-image: linear-gradient(90deg,
+      black 0, transparent 34px,
+      transparent calc(100% - 34px), black 100%);
   }
+}
+
+/* Portrait phones: branding floats above the train, which stays at bottom. */
+@media (max-width: 650px) and (orientation: portrait) {
   .trainex-splash::before { background-size: 112px 112px; }
-  .trainex-splash__branding { padding-top: .75rem; }
-  .trainex-splash__eyebrow { letter-spacing: .13em; }
-  .trainex-splash__rail-scene {
-    --train-height: clamp(135px, 20vh, 178px);
-    --track-height: clamp(60px, 9vh, 83px);
-    height: clamp(190px, 30vh, 264px);
+  .trainex-splash__branding {
+    padding-block: .6rem;
+    padding-inline: max(14px, env(safe-area-inset-left)) max(14px, env(safe-area-inset-right));
   }
-  .trainex-splash__progress-heading { font-size: .60rem; letter-spacing: .05em; }
-}
-@media (max-height: 560px) and (orientation: landscape) {
-  .trainex-splash { grid-template-rows: auto 1fr auto; }
-  .trainex-splash__branding { padding-top: .35rem; }
-  .trainex-splash__app-icon, .trainex-splash__tagline { display: none; }
-  .trainex-splash__wordmark { font-size: 2.5rem; }
-  .trainex-splash__rail-scene {
-    --train-height: clamp(95px, 27vh, 148px);
-    --track-height: 58px;
-    height: clamp(132px, 40vh, 175px);
+  .trainex-splash__app-icon { width: clamp(38px, 10vw, 54px); }
+  .trainex-splash__wordmark .brand-wordmark {
+    font-size: clamp(2.4rem, 11vw, 4rem);
   }
-  .trainex-splash__footer { padding: 0 0 .6rem; }
+  .trainex-splash__eyebrow { letter-spacing: .12em; }
+  .trainex-splash__progress-heading {
+    font-size: .59rem;
+    letter-spacing: .04em;
+  }
+  .trainex-splash__rail-scene {
+    --train-height: clamp(135px, 20dvh, 178px);
+    --track-height: clamp(60px, 9dvh, 83px);
+    height: clamp(180px, 36dvh, 330px);
+  }
 }
+
+/* Desktop/tablet landscape: remove old spacer and keep rails at viewport bottom. */
+@media (orientation: landscape) and (min-height: 561px) {
+  .trainex-splash { grid-template-rows: minmax(0, 1fr) auto; }
+  .trainex-splash__rail-scene {
+    --train-height: clamp(185px, 29dvh, 270px);
+    --track-height: clamp(76px, 11dvh, 110px);
+    height: clamp(258px, 42dvh, 385px);
+  }
+}
+
+/* Landscape mobile PWA: safe-area padding applies to TEXT, not to rails.
+   Tracks stay full-bleed along the bottom even when the device has a notch. */
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 1100px) {
+  .trainex-splash {
+    grid-template-rows: minmax(0, 1fr) auto;
+    padding-top: max(7px, env(safe-area-inset-top));
+    padding-bottom: 0;
+  }
+  .trainex-splash__branding {
+    align-self: center;
+    width: min(680px, 100%);
+    margin: 0 auto;
+    padding: 2px max(20px, env(safe-area-inset-right))
+             4px max(20px, env(safe-area-inset-left));
+    transform: none;
+  }
+  .trainex-splash__app-icon {
+    display: block;
+    width: clamp(23px, 7dvh, 32px);
+    height: auto;
+    margin: 0 auto 3px;
+    border-radius: 7px;
+  }
+  .trainex-splash__eyebrow {
+    margin: 0 0 3px;
+    font-size: clamp(.50rem, 2dvh, .65rem);
+    line-height: 1.2;
+    letter-spacing: .12em;
+  }
+  .trainex-splash__wordmark { margin: 0; padding: 0 0 8px; }
+  .trainex-splash__wordmark .brand-wordmark {
+    font-size: clamp(1.8rem, 8.5dvh, 2.35rem);
+    line-height: 1;
+  }
+  .trainex-splash__wordmark .brand-wordmark::after { bottom: -6px; height: 2px; }
+  .trainex-splash__tagline {
+    display: block;
+    margin: 3px auto 6px;
+    font-size: clamp(.56rem, 2dvh, .68rem);
+    line-height: 1.25;
+  }
+  .trainex-splash__progress-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: .7rem;
+    width: min(620px, 100%);
+    margin-inline: auto;
+    font-size: clamp(.54rem, 1.95dvh, .64rem);
+    line-height: 1.3;
+    letter-spacing: .06em;
+  }
+  .trainex-splash__progress-heading span { white-space: nowrap; }
+  .trainex-splash__progress-track {
+    width: min(620px, 100%);
+    margin: 5px auto 0;
+    height: 4px;
+  }
+  .trainex-splash__rail-scene {
+    --train-height: clamp(90px, 29dvh, 145px);
+    --track-height: clamp(42px, 10dvh, 54px);
+    align-self: end;
+    height: clamp(115px, 44dvh, 185px);
+    transform: none;
+  }
+}
+
+/* Extra-short landscape devices: prevent the branding from clipping. */
+@media (orientation: landscape) and (max-height: 330px) and (max-width: 1100px) {
+  .trainex-splash__app-icon { width: 22px; margin-bottom: 2px; }
+  .trainex-splash__eyebrow { font-size: .49rem; }
+  .trainex-splash__wordmark .brand-wordmark { font-size: 1.65rem; }
+  .trainex-splash__tagline { display: none; }
+  .trainex-splash__rail-scene {
+    --train-height: clamp(72px, 27dvh, 100px);
+    --track-height: 42px;
+    height: clamp(94px, 43dvh, 130px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .trainex-splash__train { animation: none; transform: translateX(-50%); }
   .trainex-splash__progress-fill { animation: none; width: 100%; }

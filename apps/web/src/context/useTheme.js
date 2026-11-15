@@ -26,6 +26,13 @@ let theme = savedTheme ?? getSystemTheme();
 function updateDocumentTheme() {
   if (typeof document !== "undefined") {
     document.documentElement.dataset.theme = theme;
+
+    // Sync the mobile browser/PWA edge color with the selected TRAINEX theme.
+    // Both media-specific meta tags use the same resolved user choice.
+    const browserThemeColor = theme === "dark" ? "#0a0c10" : "#f3f5f8";
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.setAttribute("content", browserThemeColor);
+    });
   }
 }
 
