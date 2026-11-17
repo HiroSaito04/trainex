@@ -7,6 +7,7 @@ const controls = [
   "Vigilance Button",
   "Passenger Door Controls",
   "Security Brake Button",
+  "Emergency  Brake Button"
 ];
 
 export default function SimulatorPreview() {
@@ -18,11 +19,10 @@ export default function SimulatorPreview() {
         <p className="eyebrow">FUNCTIONAL DRIVER CAB COMPONENTS</p>
 
         <p className="lead">
-          The Train Management System Panel, All Doors Closed Lamp, 
-          All Doors Open Lamp, Speedometer, Master Control Handle,
-          Horn Button, Vigilance Button and Lamp, Security Brake Button,
-          and Passenger Door Controls form the initial
-          simulation scope.
+          The Master Control Handle (MCH), Emergency Brake and Security Brake Button,
+          Passenger Door Controls and Indicators, Vigilance Acknowledgement Button 
+          and Indicators, Horn Button, Speakers, and The Train Management System Panel
+          form the initial simulation scope.
         </p>
 
       </div>
